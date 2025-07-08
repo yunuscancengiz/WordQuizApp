@@ -4,7 +4,7 @@ from starlette.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, Field
 from typing import Optional, Annotated
-from ..models import Words
+from ..models import Words, CorrectIncorrect
 from ..database import SessionLocal
 from .auth import get_current_user
 
@@ -31,6 +31,11 @@ user_dependency = Annotated[dict, Depends(get_current_user)]
 class WordRequest(BaseModel):
     word: str = Field(min_length=1, max_length=100)
     meaning: str = Field(min_length=1, max_length=100)
+
+
+class CorrectIncorrectRequest(BaseModel):
+    is_last_time_correct: bool = Field(default=False)
+
 
 
 def redirect_to_login():
@@ -65,13 +70,25 @@ async def read_word(user: user_dependency, db: db_dependency, word_id: int = Pat
 
 
 @router.post('/word', status_code=status.HTTP_201_CREATED)
-async def create_word(user: user_dependency, db: db_dependency, word_request: WordRequest):
+async def create_word(user: user_dependency, db: db_dependency, word_request: WordRequest, correct_incorrect_request: CorrectIncorrectRequest):
     if user is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Authentication Failed!')
     
     word_model = Words(**word_request.model_dump(), owner_id=user.get('id'))
     db.add(word_model)
     db.commit()
+    db.refresh(word_model)
+
+    owner_id = word_model.owner_id
+    word_id = word_model.id
+    correct_incorrect_model = CorrectIncorrect(
+        is_last_time_correct=correct_incorrect_request.is_last_time_correct,
+        owner_id=owner_id,
+        word_id=word_id
+    )
+    db.add(correct_incorrect_model)
+    db.commit()
+    
 
 
 @router.put('/word/{word_id}', status_code=status.HTTP_204_NO_CONTENT)

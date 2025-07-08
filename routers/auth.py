@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Path, HTTPException, Depends, status
+from fastapi import APIRouter, HTTPException, Depends, status
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from fastapi.templating import Jinja2Templates
 from jose import jwt, JWTError
@@ -7,18 +7,24 @@ from datetime import timedelta, datetime, timezone
 from pydantic import BaseModel, Field
 from typing import Optional, Annotated
 from sqlalchemy.orm import Session
-from ..models import Users, Words
+from ..models import Users, Words, Streaks
 from ..database import SessionLocal
 from dotenv import load_dotenv
 import os
+from pathlib import Path
 
 
 router = APIRouter(prefix='/auth', tags=['auth'])
 
+# set env path
+current_dir = Path(__file__).resolve().parent
+env_path = current_dir.parent / '.env'
+
 # load env variables from .env
-load_dotenv()
+load_dotenv(dotenv_path=env_path)
 SECRET_KEY = os.getenv('SECRET_KEY')
 ALGORITHM = os.getenv('ALGORITHM')
+
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 oauth2_bearer = OAuth2PasswordBearer(tokenUrl='auth/token')
 
@@ -30,6 +36,10 @@ class CreateUserRequest(BaseModel):
     last_name: str
     password: str
     role: str
+
+
+class CreateStreakRequest(BaseModel):
+    streak_count: int = Field(default=0)
 
 
 class Token(BaseModel):
@@ -86,7 +96,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
     
 
 @router.post('/', status_code=status.HTTP_201_CREATED)
-async def create_user(db: db_dependency, create_user_request: CreateUserRequest):
+async def create_user(db: db_dependency, create_user_request: CreateUserRequest, create_streak_request: CreateStreakRequest):
     create_user_model = Users(
         email=create_user_request.email,
         username=create_user_request.username,
@@ -98,11 +108,21 @@ async def create_user(db: db_dependency, create_user_request: CreateUserRequest)
     )
     db.add(create_user_model)
     db.commit()
+    db.refresh(create_user_model)
+
+    owner_id = create_user_model.id
+    create_streak_model = Streaks(
+        streak_count=create_streak_request.streak_count,
+        owner_id=owner_id
+    )
+    db.add(create_streak_model)
+    db.commit()
 
 
 @router.post('/token', response_model=Token)
 async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], db: db_dependency):
     user = authenticate_user(username=form_data.username, password=form_data.password, db=db)
+    print(user.username)
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Could not validate user!')
     token = create_access_token(username=user.username, user_id=user.id, role=user.role, expires_delta=timedelta(days=10))
