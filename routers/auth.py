@@ -7,7 +7,7 @@ from datetime import timedelta, datetime, timezone
 from pydantic import BaseModel, Field
 from typing import Optional, Annotated
 from sqlalchemy.orm import Session
-from ..models import Users, Words, Streaks
+from ..models import Users, Words
 from ..database import SessionLocal
 from dotenv import load_dotenv
 import os
@@ -110,13 +110,13 @@ async def create_user(db: db_dependency, create_user_request: CreateUserRequest,
     db.commit()
     db.refresh(create_user_model)
 
-    owner_id = create_user_model.id
+    """owner_id = create_user_model.id
     create_streak_model = Streaks(
         streak_count=create_streak_request.streak_count,
         owner_id=owner_id
     )
     db.add(create_streak_model)
-    db.commit()
+    db.commit()"""
 
 
 @router.post('/token', response_model=Token)

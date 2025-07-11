@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>French App</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ url_for('static', path='js/index_script.js') }}" defer></script>
+</head>
+<body>
+  <button class="mode-toggle" onclick="toggleDarkMode()">🌓 Dark Mode</button>
+
+  <nav class="navbar">
+    <div class="navbar-left">
+      <a href="/">French App</a>
+    </div>
+    <div class="navbar-right">
+      {% if user %}
+        <a href="/flashcards">Flashcard</a>
+        <a href="/ros">ROS Game</a>
+        <a href="/quiz">Quiz</a>
+        <a href="/conjugations">Conjugations</a>
+        <a href="/profile">Profile</a>
+      {% else %}
+        <a href="/login">Login</a>
+        <a href="/signup">Sign Up</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <div class="dashboard">
+    <div class="left-panel">
+      <canvas id="streakChart"></canvas>
+    </div>
+    <div class="right-panel">
+      <div class="top-box">
+        <h3>🎯 Streak Info</h3>
+        <p>Current Streak: <span id="currentStreak">13</span></p>
+        <p>Today's Max Streak: <span id="maxStreak">37</span></p>
+      </div>
+      <div class="bottom-box">
+        <h3>🎵 Today's Song</h3>
+        <p id="songName">Cœur de Pirate - Comme des enfants</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

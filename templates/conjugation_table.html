@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{ verb }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+  <script src="{{ url_for('static', path='js/conjugation_script.js') }}" defer></script>
+</head>
+<body>
+  <button class="mode-toggle" onclick="toggleDarkMode()">🌓 Dark Mode</button>
+  <h1>Conjugations</h1>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search a verb..." autocomplete="off">
+    <button onclick="searchVerb()">Search</button>
+    <div id="suggestions" class="autocomplete-box"></div>
+  </div>
+
+  {% if not_found %}
+    <p class="not-found">❌ Verb '{{ verb }}' not found.</p>
+  {% else %}
+    <div class="container">
+      <h2 style="text-align:center">{{ verb }}</h2>
+      <ul class="info-list">
+        {% for item in info %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+
+      {% for group in conjugations %}
+        <div class="mode-block">
+          <div class="mode-title">{{ group.mode }}</div>
+          <div class="tense-row">
+            {% for tense in group.tenses %}
+              <div class="tense-block">
+                <div class="tense-title">{{ tense.tense }}</div>
+                {% for entry in tense.entries %}
+                  <div class="form-line">
+                    {% if entry.ending %}
+                        {{ entry.full_form[:-(entry.ending | length)] }}<span class="form-ending">{{ entry.ending }}</span>
+                    {% else %}
+                        {{ entry.full_form }}
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+              {% if loop.index % 3 == 0 %}
+                </div><div class="tense-row">
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</body>
+</html>
