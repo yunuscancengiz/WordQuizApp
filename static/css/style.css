@@ -1,3 +1,4 @@
+
 :root {
   --bg-color: #f7f7f7;
   --text-color: #222;
@@ -17,6 +18,7 @@ body.dark {
 body {
   font-family: Arial, sans-serif;
   padding: 2rem;
+  margin: 0;
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: all 0.3s ease;
@@ -61,8 +63,9 @@ button:hover {
 }
 
 .mode-toggle {
-  float: right;
-  margin-bottom: 1rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   padding: 6px 12px;
   background-color: var(--card-bg);
   color: var(--text-color);
@@ -149,6 +152,18 @@ button:hover {
   color: white;
 }
 
+#suggestions div.active {
+  background-color: var(--highlight-color);
+  color: white;
+}
+
+.info-list {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding-left: 1.2rem;
+  line-height: 1.6;
+}
+
 /* 🎯 Responsive düzenlemeler */
 @media (max-width: 768px) {
   h1 {
@@ -186,61 +201,70 @@ button:hover {
   .mode-title {
     font-size: 18px;
   }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-nav .nav-item {
+    margin-left: 0;
+    margin-bottom: 5px;
+  }
 }
 
+/* ---------------------- Navbar özel stiller ------------------------- */
 
-#suggestions div.active {
-  background-color: var(--highlight-color);
-  color: white;
+.logo {
+  height: 80px;
+  vertical-align: middle;
 }
 
-
-.info-list {
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  padding-left: 1.2rem;
-  line-height: 1.6;
+.navbar-brand img {
+  height: 80px;
 }
 
-/*-------------------------  index.html  -------------------------------*/
-
-body {
-  margin: 0;
-  font-family: sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: 0.3s;
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.dark {
-  --bg-color: #121212;
-  --text-color: #eee;
+.navbar-nav .nav-item {
+  margin-left: 10px;
 }
 
-:root {
-  --bg-color: #fff;
-  --text-color: #111;
-  --highlight-color: #4db8ff;
+.ml-auto {
+  margin-left: auto;
 }
 
-.mode-toggle {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-.navbar {
+.navbar-collapse {
   display: flex;
   justify-content: space-between;
-  background-color: rgb(107, 30, 196);
-  padding: 10px 20px;
+  align-items: center;
+  width: 100%;
 }
 
-.navbar a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
+.navbar-nav .nav-link {
+  color: rgb(255, 0, 0) !important;
+  font-weight: 500;
+  padding: 8px 12px;
 }
+
+.navbar-nav .btn {
+  font-weight: 500;
+}
+
+.navbar-toggler {
+  border-color: rgb(255, 0, 0);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* ---------------------- Dashboard layout ------------------------- */
 
 .dashboard {
   display: flex;

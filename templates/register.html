@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container" style="max-width: 700px;">
+  <div class="card shadow-sm">
+    <div class="card-header bg-dark text-white">
+      <h4 class="mb-0">Register</h4>
+    </div>
+    <div class="card-body">
+      <form id="registerForm" method="POST" action="/auth/register-page">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Username</label>
+            <input type="text" class="form-control" name="username" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>First Name</label>
+            <input type="text" class="form-control" name="firstname" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Last Name</label>
+            <input type="text" class="form-control" name="lastname" required>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label>Password</label>
+          <input type="password" class="form-control" name="password" autocomplete="new-password" required>
+        </div>
+        <div class="mb-3">
+          <label>Verify Password</label>
+          <input type="password" class="form-control" name="password2" autocomplete="new-password" required>
+        </div>
+        <button type="submit" class="btn btn-danger w-100">Register</button>
+      </form>
+    </div>
+    <div class="card-footer text-center">
+      <small>
+        Already have an account?
+        <a href="/auth/login-page" class="text-danger">Log in</a>
+      </small>
+    </div>
+  </div>
+</div>
+{% endblock %}

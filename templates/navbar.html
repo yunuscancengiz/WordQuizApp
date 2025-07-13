@@ -1,0 +1,49 @@
+<div>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: black;">
+    <a class="navbar-brand" href="/">
+      <img src="{{ url_for('static', path='logo.png') }}" alt="Oui Chérie Logo" class="logo">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        {% if user %}
+        <li class="nav-item">
+          <a class="nav-link text-danger" href="/flashcards">Flashcard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-danger" href="/ros">ROS Game</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-danger" href="/quiz">Quiz</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-danger" href="/conjugations">Conjugations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-danger" href="/profile">Profile</a>
+        </li>
+        {% endif %}
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        {% if not user %}
+        <li class="nav-item m-1">
+          <a href="{{ url_for('login-page') }}">Login</a>
+        </li>
+        <li class="nav-item m-1">
+          <a href="{{ url_for('register-page') }}">Sign Up</a>
+        </li>
+        {% else %}
+        <li class="nav-item m-1">
+          <a class="btn btn-outline-light" onclick="logout()">Logout</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</div>

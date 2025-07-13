@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>French Verb Conjugation</title>
-  <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
-  <script src="{{ url_for('static', path='js/conjugation_script.js') }}" defer></script>
-</head>
-<body>
+{% extends 'layout.html' %}
 
-  <button class="mode-toggle" onclick="toggleDarkMode()">🌓 Dark Mode</button>
-  <h1>Conjugations</h1>
+{% block content %}
+<button class="mode-toggle" onclick="toggleDarkMode()">🌓 Dark Mode</button>
+<h1>Conjugations</h1>
 
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search Verb..." autocomplete="off">
-    <button onclick="searchVerb()">Search</button>
-    <div id="suggestions" class="autocomplete-box"></div>
-  </div>
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search Verb..." autocomplete="off">
+  <button onclick="searchVerb()">Search</button>
+  <div id="suggestions" class="autocomplete-box"></div>
+</div>
+{% endblock %}
 
-</body>
-</html>
+{% block scripts %}
+<script src="{{ url_for('static', path='js/conjugation_script.js') }}" defer></script>
+{% endblock %}

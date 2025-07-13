@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi import APIRouter, HTTPException, Depends, status, Request
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from fastapi.templating import Jinja2Templates
 from jose import jwt, JWTError
@@ -38,10 +38,6 @@ class CreateUserRequest(BaseModel):
     role: str
 
 
-class CreateStreakRequest(BaseModel):
-    streak_count: int = Field(default=0)
-
-
 class Token(BaseModel):
     access_token: str
     token_type: str
@@ -56,10 +52,18 @@ def get_db():
 
 
 db_dependency = Annotated[Session, Depends(get_db)]
-templates = Jinja2Templates(directory='word_id/templates')
+templates = Jinja2Templates(directory='WordQuizApp/templates')
 
 
 ### Pages ###
+@router.get('/login-page', name="login-page")
+def render_login_page(request: Request):
+    return templates.TemplateResponse('login.html', {'request': request})
+
+
+@router.get('/register-page', name="register-page")
+def render_register_page(request: Request):
+    return templates.TemplateResponse('register.html', {'request': request})
 
 
 
@@ -82,6 +86,11 @@ def create_access_token(username: str, user_id: int, role: str, expires_delta: t
 
 
 async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
+    if token is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token is missing."
+        )
     try:
         payload = jwt.decode(token=token, key=SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get('sub')
@@ -92,11 +101,14 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Could not validate user!')
         return {'sub': username, 'id': user_id, 'user_role': user_role}
     except JWTError:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Could not validate user!')
-    
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials"
+        )
+        
 
 @router.post('/', status_code=status.HTTP_201_CREATED)
-async def create_user(db: db_dependency, create_user_request: CreateUserRequest, create_streak_request: CreateStreakRequest):
+async def create_user(db: db_dependency, create_user_request: CreateUserRequest):
     create_user_model = Users(
         email=create_user_request.email,
         username=create_user_request.username,
@@ -110,19 +122,10 @@ async def create_user(db: db_dependency, create_user_request: CreateUserRequest,
     db.commit()
     db.refresh(create_user_model)
 
-    """owner_id = create_user_model.id
-    create_streak_model = Streaks(
-        streak_count=create_streak_request.streak_count,
-        owner_id=owner_id
-    )
-    db.add(create_streak_model)
-    db.commit()"""
-
 
 @router.post('/token', response_model=Token)
 async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], db: db_dependency):
     user = authenticate_user(username=form_data.username, password=form_data.password, db=db)
-    print(user.username)
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Could not validate user!')
     token = create_access_token(username=user.username, user_id=user.id, role=user.role, expires_delta=timedelta(days=10))
