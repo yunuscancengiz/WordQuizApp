@@ -24,6 +24,7 @@ env_path = current_dir.parent / '.env'
 load_dotenv(dotenv_path=env_path)
 SECRET_KEY = os.getenv('SECRET_KEY')
 ALGORITHM = os.getenv('ALGORITHM')
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 oauth2_bearer = OAuth2PasswordBearer(tokenUrl='auth/token')
@@ -52,7 +53,7 @@ def get_db():
 
 
 db_dependency = Annotated[Session, Depends(get_db)]
-templates = Jinja2Templates(directory='WordQuizApp/templates')
+templates = Jinja2Templates(directory=str(BASE_DIR / 'templates'))
 
 
 ### Pages ###

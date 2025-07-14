@@ -7,11 +7,14 @@ from typing import Optional, Annotated
 from ..models import Words, CorrectIncorrect
 from ..database import SessionLocal
 from .auth import get_current_user
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 
-
-templates = Jinja2Templates(directory='WordQuizApp/templates')
+templates = Jinja2Templates(directory=str(BASE_DIR / 'templates'))
 router = APIRouter(prefix='/words', tags=['words'])
 
 

@@ -4,9 +4,13 @@ from fastapi.templating import Jinja2Templates
 import os
 import json
 from collections import defaultdict
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 router = APIRouter(prefix='/conjugations', tags=['conjugations'])
-templates = Jinja2Templates(directory='WordQuizApp/templates')
+templates = Jinja2Templates(directory=str(BASE_DIR / 'templates'))
 
 # JSON verisini yükle
 json_path = os.path.join(os.path.dirname(__file__), '..', 'static', 'verbs.json')

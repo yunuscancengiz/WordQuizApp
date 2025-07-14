@@ -5,11 +5,15 @@ from starlette.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from typing import Annotated
 from .auth import get_current_user, get_db, JWTError
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 
 router = APIRouter()
-templates = Jinja2Templates(directory='WordQuizApp/templates')
+templates = Jinja2Templates(directory=str(BASE_DIR / 'templates'))
 
 db_dependency = Annotated[Session, Depends(get_db)]
 
