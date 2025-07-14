@@ -126,10 +126,10 @@ if (registerForm) {
     const payload = {
       email: data.email,
       username: data.username,
-      first_name: data.firstname,
-      last_name: data.lastname,
-      role: data.role,
-      password: data.password
+      first_name: data.first_name,
+      last_name: data.last_name,
+      password: data.password,
+      role: data.role
     };
 
     try {
