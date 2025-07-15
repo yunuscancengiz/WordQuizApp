@@ -1,43 +1,34 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<!-- Dark Mode Toggle -->
-<div class="flex justify-end mb-4">
-  <button onclick="toggleDarkMode()" class="bg-midgreen text-white px-4 py-2 rounded hover:bg-lightgreen hover:text-darkgreen transition">
-    🌓 Toggle Dark Mode
-  </button>
-</div>
+
 
 <!-- Başlık -->
 <h1 class="text-3xl font-bold text-center mb-6">Conjugations</h1>
 
-<!-- Arama Kutusu: relative kapsayıcı sadece input + autocomplete -->
+<!-- Arama Kutusu -->
 <div class="flex flex-col sm:flex-row justify-center items-start gap-4 mb-8">
-  <!-- input + autocomplete aynı div içinde -->
   <div class="relative w-full sm:w-[300px]">
     <input type="text" id="searchInput" placeholder="Search Verb..." autocomplete="off"
            class="w-full px-4 py-2 border border-lightgreen rounded outline-none focus:ring-2 focus:ring-midgreen dark:bg-darkgreen dark:text-lightgreen">
 
     <div id="suggestions"
          class="absolute top-full left-0 w-full mt-1 bg-white dark:bg-midgreen border border-lightgreen rounded shadow z-50 max-h-44 overflow-y-auto hidden">
-      <!-- JS ile doldurulacak -->
     </div>
   </div>
 
-  <!-- buton ayrı -->
   <button onclick="searchVerb()" class="bg-midgreen text-white px-4 py-2 rounded hover:bg-lightgreen hover:text-darkgreen transition">
     Search
   </button>
 </div>
 
-
 {% if not_found %}
   <p class="text-red-500 font-semibold text-center mb-6">❌ Verb '{{ verb }}' not found.</p>
 {% else %}
 
-  <div class="max-w-5xl mx-auto">
+  <div class="max-w-5xl mx-auto bg-lightgreen dark:bg-darkgreen p-4 rounded-lg transition">
     <h2 class="text-2xl font-semibold text-center mb-4">{{ verb }}</h2>
-    
+
     <ul class="list-disc pl-6 mb-6 text-base leading-relaxed">
       {% for item in info %}
         <li>{{ item }}</li>
@@ -46,21 +37,26 @@
 
     {% for group in conjugations %}
       <div class="mb-10">
-        <div class="text-xl font-semibold border-b-2 border-lightgreen pb-1 mb-4 dark:text-lightgreen">{{ group.mode }}</div>
+        <div class="text-xl font-semibold border-b-2 border-lightgreen pb-1 mb-4 text-darkgreen dark:text-lightgreen">
+          {{ group.mode }}
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {% for tense in group.tenses %}
-            <div class="bg-white dark:bg-darkgreen border border-lightgreen p-4 rounded shadow">
-              <div class="text-lg font-semibold border-b border-lightgreen pb-2 mb-3 dark:text-lightgreen">{{ tense.tense }}</div>
-              
+            <div class="p-4 rounded shadow 
+                        bg-darkgreen text-lightgreen 
+                        dark:bg-lightgreen dark:text-darkgreen 
+                        transition">
+              <div class="text-lg font-semibold border-b border-lightgreen pb-2 mb-3">
+                {{ tense.tense }}
+              </div>
+
               {% for entry in tense.entries %}
                 <div class="mb-1">
                   {% if entry.ending %}
-                    <span class="whitespace-nowrap">
+                    <span class="whitespace-nowrap font-semibold">
                       {{ entry.full_form[:-(entry.ending | length)] }}<span class="text-midgreen font-bold">{{ entry.ending }}</span>
                     </span>
-                    <!-- {{ entry.full_form[:-(entry.ending | length)] }}
-                    <span class="text-midgreen font-bold">{{ entry.ending }}</span> -->
                   {% else %}
                     {{ entry.full_form }}
                   {% endif %}

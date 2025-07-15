@@ -73,11 +73,11 @@ function searchVerb() {
   }
 }
 
-function toggleDarkMode() {
-  const html = document.documentElement;
-  html.classList.toggle("dark");
-  localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
-}
+// function toggleDarkMode() {
+//   const html = document.documentElement;
+//   html.classList.toggle("dark");
+//   localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+// }
 
 (function applyInitialTheme() {
   const html = document.documentElement;
