@@ -36,7 +36,7 @@ class CreateUserRequest(BaseModel):
     first_name: str
     last_name: str
     password: str
-    role: str
+    role: str = Field(default='user')
 
 
 class Token(BaseModel):
@@ -65,8 +65,6 @@ def render_login_page(request: Request):
 @router.get('/register-page', name="register-page")
 def render_register_page(request: Request):
     return templates.TemplateResponse('register.html', {'request': request})
-
-
 
 
 ### Endpoints ###
