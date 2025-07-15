@@ -1,49 +1,54 @@
-<div>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: black;">
-    <a class="navbar-brand" href="/">
-      <img src="{{ url_for('static', path='logo.png') }}" alt="Oui Chérie Logo" class="logo">
-    </a>
+<nav class="bg-darkgreen text-lightgreen px-4 py-3">
+  <div class="max-w-7xl mx-auto flex items-center justify-between flex-wrap">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- Logo -->
+    <div class="flex items-center flex-shrink-0 mr-6">
+      <a href="/">
+        <img src="{{ url_for('static', path='logo.png') }}" alt="Oui Chérie Logo" class="h-12">
+      </a>
+    </div>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+    <!-- Hamburger Menu Button -->
+    <div class="block md:hidden">
+      <button class="text-lightgreen focus:outline-none" onclick="toggleNavbar()">
+        <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menu -->
+    <div id="navbar-menu" class="w-full md:flex md:items-center md:w-auto hidden md:block">
+      <ul class="md:flex md:space-x-6 text-sm font-medium">
         {% if user %}
-        <li class="nav-item">
-          <a class="nav-link text-danger" href="/flashcards">Flashcard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-danger" href="/ros">ROS Game</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-danger" href="/quiz">Quiz</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-danger" href="/conjugations">Conjugations</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-danger" href="/profile">Profile</a>
-        </li>
+        <li><a href="/flashcards" class="hover:text-midgreen">Flashcard</a></li>
+        <li><a href="/ros" class="hover:text-midgreen">ROS Game</a></li>
+        <li><a href="/quiz" class="hover:text-midgreen">Quiz</a></li>
+        <li><a href="/conjugations" class="hover:text-midgreen">Conjugations</a></li>
+        <li><a href="/profile" class="hover:text-midgreen">Profile</a></li>
         {% endif %}
       </ul>
 
-      <ul class="navbar-nav ml-auto">
+      <ul class="mt-4 md:mt-0 md:ml-auto md:flex md:items-center md:space-x-4 text-sm">
         {% if not user %}
-        <li class="nav-item m-1">
-          <a href="{{ url_for('login-page') }}">Login</a>
-        </li>
-        <li class="nav-item m-1">
-          <a href="{{ url_for('register-page') }}">Sign Up</a>
-        </li>
+        <li><a href="{{ url_for('login-page') }}" class="hover:text-midgreen">Login</a></li>
+        <li><a href="{{ url_for('register-page') }}" class="hover:text-midgreen">Sign Up</a></li>
         {% else %}
-        <li class="nav-item m-1">
-          <a class="btn btn-outline-light" onclick="logout()">Logout</a>
+        <li>
+          <button onclick="logout()" class="border border-lightgreen text-lightgreen hover:bg-lightgreen hover:text-darkgreen px-3 py-1 rounded transition duration-300">
+            Logout
+          </button>
         </li>
         {% endif %}
       </ul>
     </div>
-  </nav>
-</div>
+
+  </div>
+</nav>
+
+<script>
+  function toggleNavbar() {
+    const menu = document.getElementById('navbar-menu');
+    menu.classList.toggle('hidden');
+  }
+</script>

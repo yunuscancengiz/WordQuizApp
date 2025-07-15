@@ -1,50 +1,72 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="container" style="max-width: 700px;">
-  <div class="card shadow-sm">
-    <div class="card-header bg-dark text-white">
-      <h4 class="mb-0">Register</h4>
-    </div>
-    <div class="card-body">
-      <form id="registerForm" method="POST" action="/auth/register-page">
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label>Email</label>
-            <input type="email" class="form-control" name="email" required>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label>Username</label>
-            <input type="text" class="form-control" name="username" required>
-          </div>
+<div class="max-w-3xl mx-auto mt-10 bg-white dark:bg-darkgreen rounded-lg shadow-md overflow-hidden">
+
+  <!-- Header -->
+  <div class="bg-darkgreen text-lightgreen px-6 py-4">
+    <h4 class="text-xl font-semibold mb-0">Register</h4>
+  </div>
+
+  <!-- Form -->
+  <div class="px-6 py-6">
+    <form id="registerForm" method="POST" action="/auth/register-page" class="space-y-4">
+
+      <!-- 1. Satır: Email & Username -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium mb-1">Email</label>
+          <input type="email" name="email" required
+                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
         </div>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label>First Name</label>
-            <input type="text" class="form-control" name="first_name" required>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label>Last Name</label>
-            <input type="text" class="form-control" name="last_name" required>
-          </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Username</label>
+          <input type="text" name="username" required
+                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
         </div>
-        <div class="mb-3">
-          <label>Password</label>
-          <input type="password" class="form-control" name="password" autocomplete="new-password" required>
+      </div>
+
+      <!-- 2. Satır: First Name & Last Name -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium mb-1">First Name</label>
+          <input type="text" name="first_name" required
+                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
         </div>
-        <div class="mb-3">
-          <label>Verify Password</label>
-          <input type="password" class="form-control" name="password2" autocomplete="new-password" required>
+        <div>
+          <label class="block text-sm font-medium mb-1">Last Name</label>
+          <input type="text" name="last_name" required
+                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
         </div>
-        <button type="submit" class="btn btn-danger w-100">Register</button>
-      </form>
-    </div>
-    <div class="card-footer text-center">
-      <small>
-        Already have an account?
-        <a href="/auth/login-page" class="text-danger">Log in</a>
-      </small>
-    </div>
+      </div>
+
+      <!-- Parola -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Password</label>
+        <input type="password" name="password" autocomplete="new-password" required
+               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Verify Password</label>
+        <input type="password" name="password2" autocomplete="new-password" required
+               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit"
+              class="w-full bg-midgreen text-white py-2 rounded-md hover:bg-lightgreen hover:text-darkgreen transition">
+        Register
+      </button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <div class="bg-gray-100 dark:bg-midgreen text-center px-6 py-3">
+    <small class="text-sm text-gray-700 dark:text-lightgreen">
+      Already have an account?
+      <a href="/auth/login-page" class="text-midgreen underline hover:text-lightgreen">Log in</a>
+    </small>
   </div>
 </div>
 {% endblock %}

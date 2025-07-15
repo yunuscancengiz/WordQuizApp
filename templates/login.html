@@ -1,30 +1,42 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="container" style="max-width: 500px;">
-  <div class="card shadow-sm">
-    <div class="card-header bg-dark text-white">
-      <h4 class="mb-0">Login</h4>
-    </div>
-    <div class="card-body">
-      <form id="loginForm" method="POST" action="/auth/login-page">
-        <div class="mb-3">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" name="username" id="username" autocomplete="username" required>
-        </div>
-        <div class="mb-3">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" id="password" autocomplete="current-password" required>
-        </div>
-        <button type="submit" class="btn btn-danger w-100">Login</button>
-      </form>
-    </div>
-    <div class="card-footer text-center">
-      <small>
-        Don’t have an account?
-        <a href="/auth/register-page" class="text-danger">Sign Up</a>
-      </small>
-    </div>
+<div class="max-w-md mx-auto mt-10 bg-white dark:bg-darkgreen rounded-lg shadow-md overflow-hidden">
+
+  <!-- Header -->
+  <div class="bg-darkgreen text-lightgreen px-6 py-4">
+    <h4 class="text-xl font-semibold mb-0">Login</h4>
+  </div>
+
+  <!-- Form -->
+  <div class="px-6 py-4">
+    <form id="loginForm" method="POST" action="/auth/login-page" class="space-y-4">
+      
+      <div>
+        <label for="username" class="block text-sm font-medium mb-1">Username</label>
+        <input type="text" name="username" id="username" autocomplete="username" required
+               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium mb-1">Password</label>
+        <input type="password" name="password" id="password" autocomplete="current-password" required
+               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
+      </div>
+
+      <button type="submit"
+              class="w-full bg-midgreen text-white py-2 rounded-md hover:bg-lightgreen hover:text-darkgreen transition">
+        Login
+      </button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <div class="bg-gray-100 dark:bg-midgreen text-center px-6 py-3">
+    <small class="text-sm text-gray-700 dark:text-lightgreen">
+      Don’t have an account?
+      <a href="/auth/register-page" class="text-midgreen underline hover:text-lightgreen">Sign Up</a>
+    </small>
   </div>
 </div>
 {% endblock %}
