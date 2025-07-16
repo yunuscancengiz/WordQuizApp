@@ -26,7 +26,7 @@ const data = {
     label: 'Daily Max Streak',
     data: [15, 22, 18, 33, 25, 26, 27, 8, 32, 34, 36, 21, 40, 38, 37],
     fill: false,
-    borderColor: 'rgba(255, 255, 255, 1)',
+    borderColor: '#ffffffff',
     tension: 0.2,
     pointHoverRadius: 20
   }]

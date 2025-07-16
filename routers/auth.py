@@ -7,6 +7,7 @@ from datetime import timedelta, datetime, timezone
 from pydantic import BaseModel, Field
 from typing import Optional, Annotated
 from sqlalchemy.orm import Session
+from starlette.responses import RedirectResponse
 from ..models import Users, Words
 from ..database import SessionLocal
 from dotenv import load_dotenv
@@ -42,6 +43,12 @@ class CreateUserRequest(BaseModel):
 class Token(BaseModel):
     access_token: str
     token_type: str
+
+
+def redirect_to_login():
+    redirect_response = RedirectResponse(url='/auth/login-page', status_code=status.HTTP_302_FOUND)
+    redirect_response.delete_cookie(key='access_token')
+    return redirect_response
 
 
 def get_db():

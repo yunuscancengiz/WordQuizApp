@@ -1,10 +1,10 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="max-w-3xl mx-auto mt-10 bg-white dark:bg-darkgreen rounded-lg shadow-md overflow-hidden">
+<div class="max-w-3xl mx-auto mt-10 bg-darkgreen dark:bg-lightgreen rounded-lg shadow-md overflow-hidden">
 
   <!-- Header -->
-  <div class="bg-darkgreen text-lightgreen px-6 py-4">
+  <div class="bg-darkgreen dark:bg-lightgreen text-lightgreen dark:text-darkgreen px-6 py-4">
     <h4 class="text-xl font-semibold mb-0">Register</h4>
   </div>
 
@@ -15,42 +15,42 @@
       <!-- 1. Satır: Email & Username -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium mb-1">Email</label>
+          <label class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">Email</label>
           <input type="email" name="email" required
-                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
+                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
         </div>
         <div>
-          <label class="block text-sm font-medium mb-1">Username</label>
+          <label class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">Username</label>
           <input type="text" name="username" required
-                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
+                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
         </div>
       </div>
 
       <!-- 2. Satır: First Name & Last Name -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium mb-1">First Name</label>
+          <label class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">First Name</label>
           <input type="text" name="first_name" required
-                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
+                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
         </div>
         <div>
-          <label class="block text-sm font-medium mb-1">Last Name</label>
+          <label class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">Last Name</label>
           <input type="text" name="last_name" required
-                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
+                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
         </div>
       </div>
 
       <!-- Parola -->
       <div>
-        <label class="block text-sm font-medium mb-1">Password</label>
+        <label class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">Password</label>
         <input type="password" name="password" autocomplete="new-password" required
-               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
+               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
       </div>
 
       <div>
-        <label class="block text-sm font-medium mb-1">Verify Password</label>
+        <label class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">Verify Password</label>
         <input type="password" name="password2" autocomplete="new-password" required
-               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white dark:bg-darkgreen dark:text-lightgreen focus:outline-none focus:ring-2 focus:ring-midgreen">
+               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
       </div>
 
       <!-- Submit Button -->

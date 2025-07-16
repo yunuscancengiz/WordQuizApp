@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from .models import Base
 from .database import engine
-from .routers import auth, words, admin, users, conjugations, index
+from .routers import auth, words, admin, users, conjugations, index, flashcards
 
 
 
@@ -25,3 +25,4 @@ app.include_router(router=users.router)
 app.include_router(router=words.router)
 app.include_router(router=conjugations.router)
 app.include_router(router=index.router)
+app.include_router(router=flashcards.router)

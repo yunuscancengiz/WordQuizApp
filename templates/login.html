@@ -13,15 +13,15 @@
     <form id="loginForm" method="POST" action="/auth/login-page" class="space-y-4">
       
       <div>
-        <label for="username" class="block text-sm font-medium mb-1">Username</label>
+        <label for="username" class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">Username</label>
         <input type="text" name="username" id="username" autocomplete="username" required
-               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-midgreen">
+               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
       </div>
 
       <div>
-        <label for="password" class="block text-sm font-medium mb-1">Password</label>
+        <label for="password" class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">Password</label>
         <input type="password" name="password" id="password" autocomplete="current-password" required
-               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-midgreen">
+               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
       </div>
 
       <button type="submit"
@@ -33,9 +33,9 @@
 
   <!-- Footer -->
   <div class="bg-midgreen dark:bg-midgreen text-center px-6 py-3">
-    <button type="submit" class="text-sm text-gray-700 text-darkgreen dark:text-lightgreen">
+    <button type="submit" class="text-sm text-gray-700 text-white">
       Don’t have an account?
-      <a href="/auth/register-page" class="text-midgreen underline hover:text-lightgreen">Sign Up</a>
+      <a href="/auth/register-page" class="text-midgreen underline hover:text-white">Sign Up</a>
     </button>
   </div>
 </div>
