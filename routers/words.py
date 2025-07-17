@@ -4,31 +4,18 @@ from starlette.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, Field
 from typing import Optional, Annotated
-from ..models import Words, CorrectIncorrect
+from ..models import Words, CorrectIncorrect, Sentences
 from ..database import SessionLocal
-from .auth import get_current_user
+from .auth import get_current_user, get_db, redirect_to_login
 from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-
 templates = Jinja2Templates(directory=str(BASE_DIR / 'templates'))
 router = APIRouter(prefix='/words', tags=['words'])
-
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-
 db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
+
 
 
 class WordRequest(BaseModel):
@@ -40,11 +27,8 @@ class CorrectIncorrectRequest(BaseModel):
     is_last_time_correct: bool = Field(default=False)
 
 
-
-def redirect_to_login():
-    redirect_response = RedirectResponse(url='/auth/login-page', status_code=status.HTTP_302_FOUND)
-    redirect_response.delete_cookie(key='access_token')
-    return redirect_response
+class SentenceRequest(BaseModel):
+    sentence: str = Field(min_length=3, max_length=100)
 
 
 ### Pages ###
@@ -73,7 +57,10 @@ async def read_word(user: user_dependency, db: db_dependency, word_id: int = Pat
 
 
 @router.post('/word', status_code=status.HTTP_201_CREATED)
-async def create_word(user: user_dependency, db: db_dependency, word_request: WordRequest, correct_incorrect_request: CorrectIncorrectRequest):
+async def create_word(user: user_dependency, db: db_dependency,
+                      word_request: WordRequest,
+                      correct_incorrect_request: CorrectIncorrectRequest,
+                      sentence_request: SentenceRequest):
     if user is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Authentication Failed!')
     
@@ -84,12 +71,22 @@ async def create_word(user: user_dependency, db: db_dependency, word_request: Wo
 
     owner_id = word_model.owner_id
     word_id = word_model.id
+
     correct_incorrect_model = CorrectIncorrect(
         is_last_time_correct=correct_incorrect_request.is_last_time_correct,
         owner_id=owner_id,
         word_id=word_id
     )
     db.add(correct_incorrect_model)
+    db.commit()
+    db.refresh(correct_incorrect_model)
+
+    sentence_model = Sentences(
+        sentence=sentence_request.sentence,
+        word_id=word_id,
+        owner_id=owner_id
+    )
+    db.add(sentence_model)
     db.commit()
     
 
