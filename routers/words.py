@@ -1,34 +1,12 @@
-from fastapi import APIRouter, Path, Query, HTTPException, Depends, Request, status
+from fastapi import APIRouter, Path, HTTPException, status
 from fastapi.templating import Jinja2Templates
-from starlette.responses import RedirectResponse
-from sqlalchemy.orm import Session
-from pydantic import BaseModel, Field
-from typing import Optional, Annotated
-from ..models import Words, CorrectIncorrect, Sentences
-from ..database import SessionLocal
-from .auth import get_current_user, get_db, redirect_to_login
 from pathlib import Path
+from ..models import Words, CorrectIncorrect, Sentences
+from ..schemas import WordRequest, CorrectIncorrectRequest, SentenceRequest
+from ..dependencies import db_dependency, user_dependency, templates
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-templates = Jinja2Templates(directory=str(BASE_DIR / 'templates'))
 router = APIRouter(prefix='/words', tags=['words'])
-db_dependency = Annotated[Session, Depends(get_db)]
-user_dependency = Annotated[dict, Depends(get_current_user)]
-
-
-
-class WordRequest(BaseModel):
-    word: str = Field(min_length=1, max_length=100)
-    meaning: str = Field(min_length=1, max_length=100)
-
-
-class CorrectIncorrectRequest(BaseModel):
-    is_last_time_correct: bool = Field(default=False)
-
-
-class SentenceRequest(BaseModel):
-    sentence: str = Field(min_length=3, max_length=100)
 
 
 ### Pages ###

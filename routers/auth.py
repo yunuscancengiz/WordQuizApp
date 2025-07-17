@@ -4,15 +4,16 @@ from fastapi.templating import Jinja2Templates
 from jose import jwt, JWTError
 from passlib.context import CryptContext
 from datetime import timedelta, datetime, timezone
-from pydantic import BaseModel, Field
-from typing import Optional, Annotated
+from typing import Annotated
 from sqlalchemy.orm import Session
 from starlette.responses import RedirectResponse
-from ..models import Users, Words
-from ..database import SessionLocal
 from dotenv import load_dotenv
 import os
 from pathlib import Path
+from ..models import Users, Words
+from ..database import SessionLocal
+from ..schemas import CreateUserRequest, Token
+
 
 
 router = APIRouter(prefix='/auth', tags=['auth'])
@@ -26,23 +27,10 @@ load_dotenv(dotenv_path=env_path)
 SECRET_KEY = os.getenv('SECRET_KEY')
 ALGORITHM = os.getenv('ALGORITHM')
 BASE_DIR = Path(__file__).resolve().parent.parent
+templates = Jinja2Templates(directory=str(BASE_DIR / 'templates'))
 
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 oauth2_bearer = OAuth2PasswordBearer(tokenUrl='auth/token')
-
-
-class CreateUserRequest(BaseModel):
-    email: str
-    username: str
-    first_name: str
-    last_name: str
-    password: str
-    role: str = Field(default='user')
-
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str
 
 
 def redirect_to_login():
@@ -60,7 +48,6 @@ def get_db():
 
 
 db_dependency = Annotated[Session, Depends(get_db)]
-templates = Jinja2Templates(directory=str(BASE_DIR / 'templates'))
 
 
 ### Pages ###

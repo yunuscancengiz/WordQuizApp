@@ -1,18 +1,15 @@
-from fastapi import APIRouter, Request, Depends, status
+from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from typing import Annotated
 import os
 import json
 from collections import defaultdict
 from pathlib import Path
-from .auth import get_current_user, redirect_to_login
+from .auth import get_current_user, redirect_to_login, templates
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
 router = APIRouter(prefix='/conjugations', tags=['conjugations'])
-templates = Jinja2Templates(directory=str(BASE_DIR / 'templates'))
-user_dependency = Annotated[dict, Depends(get_current_user)]
+
 
 # JSON verisini yükle
 json_path = os.path.join(os.path.dirname(__file__), '..', 'static', 'verbs.json')
@@ -30,7 +27,7 @@ async def show_search_page(request: Request):
         if user is None:
             redirect_to_login()
         else:
-            return templates.TemplateResponse('conjugation.html', {'request': request})
+            return templates.TemplateResponse('conjugation.html', {'request': request, 'user': user})
     except:
         redirect_to_login()
 
@@ -48,6 +45,7 @@ async def show_conjugation(request: Request, verb: str):
         if not data:
             return templates.TemplateResponse('conjugation_table.html', {
                 'request': request,
+                'user': user,
                 'verb': verb,
                 'info': [],
                 'conjugations': [],

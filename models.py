@@ -59,7 +59,7 @@ class QuizStreaks(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     streak = Column(Integer, default=0)
-    max_streak_id = Column(Integer, ForeignKey('daily_streaks.id'))
+    max_streak = Column(Integer, default=0)
     owner_id = Column(Integer, ForeignKey('users.id'))
 
 
@@ -76,9 +76,10 @@ class Conjugations(Base):
     __tablename__ = 'conjugations'
 
     id = Column(Integer, primary_key=True, index=True)
+    mode = Column(String)
+    tense = Column(String)                           # imparfait
     verb = Column(String, index=True)                # agir
+    person = Column(String)                          # je
     stem = Column(String)                            # agiss
     ending = Column(String)                          # ais
     full_form = Column(String)                       # j'agissais
-    person = Column(String)                          # je
-    tense = Column(String)                           # imparfait

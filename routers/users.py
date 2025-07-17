@@ -1,33 +1,11 @@
-from fastapi import APIRouter, Path, Query, HTTPException, Depends, status
-from sqlalchemy.orm import Session
-from passlib.context import CryptContext
-from pydantic import BaseModel, Field
-from typing import Optional, Annotated
+from fastapi import APIRouter, HTTPException, status
 from ..models import Users
-from ..database import SessionLocal
-from .auth import get_current_user
-
+from .auth import bcrypt_context
+from ..schemas import UserVerification
+from ..dependencies import db_dependency, user_dependency
 
 
 router = APIRouter(prefix='/user', tags=['user'])
-
-
-class UserVerification(BaseModel):
-    password: str
-    new_password: str = Field(min_length=6)
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-
-db_dependency = Annotated[Session, Depends(get_db)]
-user_dependency = Annotated[dict, Depends(get_current_user)]
-bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
 
 @router.get('/', status_code=status.HTTP_200_OK)
