@@ -1,42 +1,41 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse, JSONResponse
 from sqlalchemy.exc import NoResultFound
-from ..models import Words, QuizStreaks, CorrectIncorrect
+from ..models import Words, QuizStreaks
 from ..schemas import AnswerRequest
 from ..dependencies import db_dependency
 from ..config import templates
-from ..utils.db_utils import get_random_word_and_sentences
+from ..utils.db_utils import get_random_quiz_word_and_choices
 from ..utils.auth_utils import get_current_user, redirect_to_login
 
 
-router = APIRouter(prefix='/flashcards', tags=['flashcards'])
+router = APIRouter(prefix='/quiz', tags=['quiz'])
 
 
 ### Pages ###
 
 @router.get('/', response_class=HTMLResponse)
-async def flashcards_page(request: Request, db: db_dependency):
+async def quiz_page(request: Request, db: db_dependency):
     try:
         user = await get_current_user(token=request.cookies.get('access_token'))
         if user is None:
             return redirect_to_login()
 
-        word, sentences = get_random_word_and_sentences(db=db, user_id=user.get('id'))
-        if not word:
-            return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={'error': 'No words found.'})
-        
-        streak = 0
-        streak_model = db.query(QuizStreaks).filter(QuizStreaks.owner_id == user.get('id')).first()
-        if streak_model:
-            streak = streak_model.streak
-        db.commit()
+        word, choices = get_random_quiz_word_and_choices(db=db, user_id=user.get('id'))
+        print(word, choices)
+        if not word or not choices:
+            return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={'error': 'No quiz data found.'})
 
-        return templates.TemplateResponse('flashcards.html', {
+        streak_model = db.query(QuizStreaks).filter(QuizStreaks.owner_id == user.get('id')).first()
+        streak = streak_model.streak if streak_model else 0
+
+        return templates.TemplateResponse('quiz.html', {
             'request': request,
             'user': user,
-            'word': word, 
-            'sentences': sentences,
-            'streak': streak})
+            'word': word,
+            'choices': choices,
+            'streak': streak
+        })
     except:
         return redirect_to_login()
 
@@ -44,17 +43,21 @@ async def flashcards_page(request: Request, db: db_dependency):
 ### Endpoints ###
 
 @router.post('/check')
-async def check_answer(request: Request, db: db_dependency, answer_request: AnswerRequest):
+async def check_quiz_answer(request: Request, db: db_dependency, answer_request: AnswerRequest):
     user = await get_current_user(token=request.cookies.get('access_token'))
-    
-    word_model = db.query(Words).filter(Words.owner_id == user.get('id'), Words.word == answer_request.current_word).first()
+
+    word_model = db.query(Words).filter(
+        Words.owner_id == user.get('id'),
+        Words.word == answer_request.current_word
+    ).first()
+
     if not word_model:
         return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={'result': 'not_found'})
-    
-    correct_meaning = word_model.meaning.casefold().strip()
-    is_correct = correct_meaning == answer_request.user_answer.casefold().strip()
 
-    # update quiz_streaks table
+    correct_meaning = word_model.meaning.casefold().strip()
+    user_answer = answer_request.user_answer.casefold().strip()
+    is_correct = correct_meaning == user_answer
+
     try:
         streak_model = db.query(QuizStreaks).filter(QuizStreaks.owner_id == user.get('id')).one()
     except NoResultFound:
@@ -70,23 +73,6 @@ async def check_answer(request: Request, db: db_dependency, answer_request: Answ
         streak_model.streak = 0
     db.commit()
 
-    # update correct_incorrect table
-    correct_incorrect_model = db.query(CorrectIncorrect).filter(
-        CorrectIncorrect.word_id == word_model.id,
-        CorrectIncorrect.owner_id == user.get('id')
-    ).first()
-
-    if correct_incorrect_model:
-        correct_incorrect_model.is_last_time_correct = is_correct
-    else:
-        correct_incorrect_model = CorrectIncorrect(
-            word_id=word_model.id,
-            owner_id=user.get('id'),
-            is_last_time_correct=is_correct
-        )
-        db.add(correct_incorrect_model)
-    db.commit()
-
     return JSONResponse(
         status_code=status.HTTP_200_OK,
         content={
@@ -99,13 +85,13 @@ async def check_answer(request: Request, db: db_dependency, answer_request: Answ
 
 
 @router.get('/next')
-async def get_next_word(request: Request, db: db_dependency):
+async def get_next_quiz(request: Request, db: db_dependency):
     user = await get_current_user(token=request.cookies.get('access_token'))
 
-    word, sentences = get_random_word_and_sentences(db=db, user_id=user.get('id'))
-    if not word:
-            return JSONResponse(status_code=404, content={'error': 'No words found.'})
-    
+    word, choices = get_random_quiz_word_and_choices(db=db, user_id=user.get('id'))
+    if not word or not choices:
+        return JSONResponse(status_code=404, content={'error': 'No quiz data found.'})
+
     streak_model = db.query(QuizStreaks).filter(QuizStreaks.owner_id == user.get('id')).first()
     streak = streak_model.streak if streak_model else 0
 
@@ -113,7 +99,7 @@ async def get_next_word(request: Request, db: db_dependency):
         status_code=200,
         content={
             "word": word,
-            "sentences": sentences,
+            "choices": choices,
             "streak": streak
         }
     )

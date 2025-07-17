@@ -13,6 +13,7 @@ router = APIRouter(prefix='/auth', tags=['auth'])
 
 
 ### Pages ###
+
 @router.get('/login-page', name="login-page")
 def render_login_page(request: Request):
     return templates.TemplateResponse('login.html', {'request': request})
@@ -23,8 +24,7 @@ def render_register_page(request: Request):
     return templates.TemplateResponse('register.html', {'request': request})
 
 
-### Endpoints ###
-        
+### Endpoints ###  
 
 @router.post('/', status_code=status.HTTP_201_CREATED)
 async def create_user(db: db_dependency, create_user_request: CreateUserRequest):

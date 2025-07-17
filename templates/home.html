@@ -16,8 +16,8 @@
     <!-- Streak Info Box -->
     <div class="bg-midgreen p-4 rounded-lg shadow-md">
       <h3 class="text-lg font-semibold mb-2">🎯 Streak Info</h3>
-      <p class="text-lightgreen dark:text-darkgreen">Current Streak: <span id="currentStreak" class="font-bold text-white">13</span></p>
-      <p class="text-lightgreen dark:text-darkgreen">Today's Max Streak: <span id="maxStreak" class="font-bold text-white">37</span></p>
+      <p class="text-lightgreen dark:text-darkgreen">Current Streak: <span id="currentStreak" class="font-bold text-white">{{ streak }}</span></p>
+      <p class="text-lightgreen dark:text-darkgreen">Today's Max Streak: <span id="maxStreak" class="font-bold text-white">{{ max_streak }}</span></p>
     </div>
 
     <!-- Song Box -->
@@ -38,5 +38,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', path='js/index_script.js') }}" defer></script>
+<script src="{{ url_for('static', path='js/home_script.js') }}" defer></script>
 {% endblock %}

@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Path, HTTPException, status
-from fastapi.templating import Jinja2Templates
 from pathlib import Path
 from ..models import Words, CorrectIncorrect, Sentences
 from ..schemas import WordRequest, CorrectIncorrectRequest, SentenceRequest

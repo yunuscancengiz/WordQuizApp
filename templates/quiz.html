@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="relative">
+  <!-- Sağ üstte streak -->
+  <div class="absolute top-0 right-0 bg-midgreen text-white px-4 py-2 rounded-bl-lg">
+    🔥 Streak: <span id="streak-count">{{ streak }}</span>
+  </div>
+</div>
+
+<div class="max-w-md mx-auto mt-20 p-6 bg-darkgreen dark:bg-lightgreen text-lightgreen dark:text-darkgreen rounded-lg shadow-lg">
+  <!-- Soru: Kelime -->
+  <div class="text-center mb-6">
+    <h2 class="text-3xl font-bold" id="quiz-word">{{ word }}</h2>
+    <p class="text-sm text-midgreen mt-2">Choose the correct meaning:</p>
+  </div>
+
+  <!-- Şıklar -->
+  <div id="choices-container" class="space-y-3">
+    {% for choice in choices %}
+      <button 
+        class="w-full bg-lightgreen dark:bg-darkgreen hover:bg-midgreen text-darkgreen dark:text-lightgreen font-semibold py-2 px-4 rounded transition-all"
+        onclick="submitAnswer(this)"
+        data-choice="{{ choice }}">
+        {{ choice }}
+      </button>
+    {% endfor %}
+  </div>
+
+  <!-- Geri bildirim -->
+  <div id="feedback" class="text-center mt-4 font-semibold"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='js/quiz_script.js') }}" defer></script>
+{% endblock %}

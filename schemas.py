@@ -44,3 +44,10 @@ class SentenceRequest(BaseModel):
 class AnswerRequest(BaseModel):
     user_answer: str = Field(min_length=1, max_length=50)
     current_word: str = Field(min_length=1, max_length=50)
+
+
+### routers/ros.py ###
+
+class SentenceAnswerRequest(BaseModel):
+    user_answer: str = Field(min_length=1, max_length=200)
+    current_sentence: str = Field(min_length=1, max_length=200)

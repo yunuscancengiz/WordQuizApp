@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="relative">
+  <div class="absolute top-0 right-0 bg-midgreen text-white px-4 py-2 rounded-bl-lg">
+    🔥 Streak: <span id="streak-count">{{ streak }}</span>
+  </div>
+</div>
+
+<div class="max-w-5xl mx-auto mt-20 p-6 bg-darkgreen dark:bg-lightgreen text-lightgreen dark:text-darkgreen rounded-lg shadow-lg">
+  <div class="text-center mb-6">
+    <h2 class="text-2xl font-semibold mb-4">Arrange the sentence correctly:</h2>
+    
+    <!-- Randomly ordered word buttons -->
+    <div id="word-buttons" class="flex flex-wrap justify-center gap-3 mb-6">
+      {% for word in sentence %}
+      <button 
+        class="bg-lightgreen dark:bg-darkgreen hover:bg-midgreen dark:hover:bg-midgreen text-darkgreen dark:text-lightgreen font-semibold px-4 py-2 rounded-lg transition-all"
+        onclick="selectWord(this)">
+        {{ word }}
+      </button>
+      {% endfor %}
+    </div>
+
+    <!-- User's constructed sentence -->
+    <div class="bg-lightgreen dark:bg-darkgreen text-darkgreen dark:text-lightgreen p-4 rounded-lg min-h-[3rem] mb-6" id="response-area">
+      <span id="response-text" class="font-medium"></span>
+    </div>
+
+    <!-- Submit, Next & Reset buttons -->
+    <div class="flex justify-center gap-4">
+     <!-- Submit button (başta görünür) -->
+    <button 
+        id="submit-btn"
+        onclick="submitSentence()" 
+        class="bg-midgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-all">
+        Submit
+    </button>
+
+    <!-- Next button (başta gizli) -->
+    <button 
+        id="next-btn"
+        onclick="getNextSentence()" 
+        class="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-lg transition-all hidden">
+        Next
+    </button>
+
+    <!-- Reset button (her zaman görünür) -->
+    <button 
+        onclick="resetSentence()" 
+        class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition-all">
+        Reset
+    </button>
+    </div>
+
+    <!-- Feedback message -->
+    <div id="feedback" class="text-xl font-bold mt-6"></div>
+
+    <!-- Hidden input to store original sentence -->
+    <input type="hidden" id="original-sentence" value="{{ original_sentence }}">
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='js/ros_script.js') }}" defer></script>
+{% endblock %}

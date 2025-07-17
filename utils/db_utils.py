@@ -19,7 +19,29 @@ def get_random_word_and_sentences(db, user_id: int):
 
     random.shuffle(selected_list)
     word = selected_list[0]
-    sentences = db.query(Sentences.sentence).filter(Sentences.word_id == word.id).all()
-    sentence_list = [s[0] for s in sentences]
+    sentences = [s[0] for s in db.query(Sentences.sentence).filter(Sentences.word_id == word.id).all()]
+    return word.word, sentences
 
-    return word.word, sentence_list
+
+def get_random_sentences(db, user_id):
+    sentences = [s[0] for s in db.query(Sentences.sentence).filter(Sentences.owner_id == user_id).all()]
+    random.shuffle(sentences)
+    original_sentence = sentences[0]
+    splitted_sentence = sentences[0].rstrip('.').split()
+    random.shuffle(splitted_sentence)
+    return original_sentence, splitted_sentence
+
+
+def get_random_quiz_word_and_choices(db, user_id):
+    all_words = db.query(Words).filter(Words.owner_id == user_id).all()
+    if len(all_words) < 4:
+        return None, []
+
+    random.shuffle(all_words)
+    correct_word = all_words[0]
+    wrong_choices = [w.meaning for w in all_words[1:4]]
+
+    choices = wrong_choices + [correct_word.meaning]
+    random.shuffle(choices)
+    return correct_word.word, choices
+
