@@ -69,32 +69,48 @@
 ├── models.py
 ├── schemas.py
 ├── config.py
+├── dependencies.py
+├── database.py
+├── .env
+├── ouicherie.db
 │
 ├── /templates       # Jinja2 HTML templates
 │   ├── layout.html
 │   ├── flashcards.html
 │   ├── quiz.html
 │   ├── ros.html
+│   ├── home.html
+│   ├── login.html
+│   ├── navbar.html
+│   ├── register.html
+│   ├── conjugation.html
 │   └── conjugation_table.html
 │
 ├── /static
 │   └── /js
 │       ├── flashcards_script.js
 │       ├── quiz_script.js
+│       ├── script.js
+│       ├── home_script.js
+│       ├── conjugation_script.js
 │       └── ros_script.js
 │
 ├── /routers
 │   ├── flashcards.py
 │   ├── quiz.py
 │   ├── ros.py
+│   ├── admin.py
+│   ├── auth.py
+│   ├── home.py
+│   ├── users.py
+│   ├── words.py
 │   └── conjugations.py
 │
 ├── /utils
 │   ├── db_utils.py
+|   ├── conjugation_utils.py
 │   └── auth_utils.py
-│
-└── /dependencies
-    └── db_dependency.py
+
 ```
 
 ---
@@ -102,8 +118,8 @@
 ## 🧪 Installation (Dev)
 
 ```bash
-git clone https://github.com/yourusername/ouicherie.git
-cd ouicherie
+git clone https://github.com/yunuscancengiz/OuiCherie.git
+cd OuiCherie
 
 # Create a virtual environment
 python -m venv venv
