@@ -62,3 +62,93 @@
 
 ## 📁 Project Structure (Simplified)
 
+```
+/app
+│
+├── main.py
+├── models.py
+├── schemas.py
+├── config.py
+│
+├── /templates       # Jinja2 HTML templates
+│   ├── layout.html
+│   ├── flashcards.html
+│   ├── quiz.html
+│   ├── ros.html
+│   └── conjugation_table.html
+│
+├── /static
+│   └── /js
+│       ├── flashcards_script.js
+│       ├── quiz_script.js
+│       └── ros_script.js
+│
+├── /routers
+│   ├── flashcards.py
+│   ├── quiz.py
+│   ├── ros.py
+│   └── conjugations.py
+│
+├── /utils
+│   ├── db_utils.py
+│   └── auth_utils.py
+│
+└── /dependencies
+    └── db_dependency.py
+```
+
+---
+
+## 🧪 Installation (Dev)
+
+```bash
+git clone https://github.com/yourusername/ouicherie.git
+cd ouicherie
+
+# Create a virtual environment
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the app
+uvicorn main:app --reload
+```
+
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env` file with the following (or manage via `config.py`):
+
+```env
+DATABASE_URL=postgresql://user:password@localhost:5432/yourdb
+SECRET_KEY=your_jwt_secret
+SPOTIFY_CLIENT_ID=your_spotify_client_id
+SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+```
+
+---
+
+## 🔮 Roadmap
+
+- [x] Flashcards with example sentences
+- [x] Quiz mode with multiple choices
+- [x] Sentence construction game (ROS)
+- [x] Conjugation table
+- [x] Streak system
+- [ ] Spotify integration for daily songs & playlists
+- [ ] Word list management with search, edit, delete
+- [ ] Enhanced user profile
+- [ ] Admin panel (future dev use)
+
+---
+
+## 📄 License
+
+MIT License © 2025 [Your Name or Team Name]
+
+---
+
+🥐 *Made for French learners.*
