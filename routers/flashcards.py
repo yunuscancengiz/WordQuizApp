@@ -1,32 +1,15 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse, JSONResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import NoResultFound
-from pathlib import Path
-import random
-from .auth import get_current_user, redirect_to_login
-from ..models import Words, Sentences, QuizStreaks, CorrectIncorrect
+from ..models import Words, QuizStreaks, CorrectIncorrect
 from ..schemas import AnswerRequest
-from ..dependencies import db_dependency, templates
+from ..dependencies import db_dependency
+from ..config import templates
+from ..utils.db_utils import get_random_word_and_sentences
+from ..utils.auth_utils import get_current_user, redirect_to_login
 
 
 router = APIRouter(prefix='/flashcards', tags=['flashcards'])
-
-
-# helper functions
-
-def get_random_word_and_sentences(db, user_id: int):
-    words = db.query(Words).filter(Words.owner_id == user_id).all()
-    if not words:
-        return None, []
-
-    random.shuffle(words)
-    word = words[0]
-
-    sentences = db.query(Sentences.sentence).filter(Sentences.word_id == word.id).all()
-    sentence_list = [s[0] for s in sentences]
-
-    return word.word, sentence_list
 
 
 ### Pages ###

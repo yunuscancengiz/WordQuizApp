@@ -1,23 +1,15 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
-import os
-import json
 from collections import defaultdict
-from pathlib import Path
-from .auth import get_current_user, redirect_to_login, templates
+from ..utils.auth_utils import get_current_user, redirect_to_login
+from ..config import templates
+from ..utils.conjugation_utils import load_json_data
 
 
 router = APIRouter(prefix='/conjugations', tags=['conjugations'])
 
 
-# JSON verisini yükle
-json_path = os.path.join(os.path.dirname(__file__), '..', 'static', 'verbs.json')
-with open(json_path, mode='r', encoding='utf-8') as f:
-    try:
-        verb_data = json.load(f)
-    except json.JSONDecodeError:
-        verb_data = {"verbs": {}}
+verb_data = load_json_data()    # load conjugations data from /static/verbs.json
 
 
 @router.get('/', response_class=HTMLResponse)

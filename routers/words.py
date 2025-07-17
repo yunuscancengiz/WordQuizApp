@@ -3,7 +3,7 @@ from fastapi.templating import Jinja2Templates
 from pathlib import Path
 from ..models import Words, CorrectIncorrect, Sentences
 from ..schemas import WordRequest, CorrectIncorrectRequest, SentenceRequest
-from ..dependencies import db_dependency, user_dependency, templates
+from ..dependencies import db_dependency, user_dependency
 
 
 router = APIRouter(prefix='/words', tags=['words'])

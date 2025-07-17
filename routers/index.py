@@ -3,8 +3,8 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from starlette.responses import RedirectResponse
 from pathlib import Path
-from .auth import get_current_user
-from ..dependencies import templates
+from ..utils.auth_utils import get_current_user
+from ..config import templates
 
 
 router = APIRouter()
