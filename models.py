@@ -1,5 +1,5 @@
 from .database import Base
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Date
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, DateTime,  Date
 from datetime import datetime
 from sqlalchemy.schema import UniqueConstraint
 
@@ -41,6 +41,10 @@ class CorrectIncorrect(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     is_last_time_correct = Column(Boolean, default=False)
+    correct_count = Column(Integer, default=0)
+    incorrect_count = Column(Integer, default=0)
+    last_attempted_at = Column(DateTime, default=datetime.timezone.utc)
+    created_at = Column(DateTime, default=datetime.timezone.utc)
     owner_id = Column(Integer, ForeignKey('users.id'))
     word_id = Column(Integer, ForeignKey('words.id'))
 

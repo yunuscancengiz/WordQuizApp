@@ -84,7 +84,7 @@ async function submitSentence() {
         disableAllButtons();
       } else {
         document.getElementById("streak-count").textContent = "0";
-        feedback.textContent = "❌ Incorrect! Try again.";
+        feedback.textContent = `❌ Incorrect! Correct answer: ${data.correct_answer}`;
         feedback.className = "text-red-500";
       }
 
