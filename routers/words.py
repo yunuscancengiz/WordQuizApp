@@ -2,7 +2,7 @@ from fastapi import APIRouter, Path, Request, HTTPException, status
 from fastapi.responses import HTMLResponse, JSONResponse
 from sqlalchemy.exc import IntegrityError
 from ..models import Words, CorrectIncorrect, Sentences
-from ..schemas import WordRequest
+from ..schemas import WordRequest, WordUpdateRequest
 from ..dependencies import db_dependency
 from ..config import templates
 from ..utils.auth_utils import redirect_to_login, get_current_user
@@ -114,19 +114,49 @@ async def create_word(request: Request, db: db_dependency):
 
 
 @router.put('/word/{word_id}', status_code=status.HTTP_204_NO_CONTENT)
-async def update_word(request: Request, db: db_dependency, word_request: WordRequest, word_id: int = Path(gt=0)):
+async def update_word(
+    request: Request,
+    db: db_dependency,
+    word_id: int = Path(gt=0),
+    word_request: WordUpdateRequest = None
+):
     user = await get_current_user(token=request.cookies.get('access_token'))
 
+    # Verileri al
+    word_text = word_request.word.strip()
+    meaning = word_request.meaning.strip()
+    sentence = word_request.sentence.strip()
+
+    if not word_text or not meaning or not sentence:
+        raise HTTPException(status_code=400, detail="All fields are required.")
+
+    # Word tablosu
     word_model = db.query(Words).filter(
         Words.id == word_id,
-        Words.owner_id == user.get('id')
+        Words.owner_id == user.get("id")
     ).first()
 
-    if word_model is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Word not found!')
+    if not word_model:
+        raise HTTPException(status_code=404, detail="Word not found!")
 
-    word_model.word = word_request.word
-    word_model.meaning = word_request.meaning
+    word_model.word = word_text
+    word_model.meaning = meaning
+
+    # Sentence tablosu
+    sentence_model = db.query(Sentences).filter(
+        Sentences.word_id == word_id,
+        Sentences.owner_id == user.get("id")
+    ).first()
+
+    if sentence_model:
+        sentence_model.sentence = sentence
+    else:
+        db.add(Sentences(
+            word_id=word_id,
+            owner_id=user.get("id"),
+            sentence=sentence
+        ))
+
     db.commit()
 
 

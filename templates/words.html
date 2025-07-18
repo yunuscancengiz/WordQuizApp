@@ -27,45 +27,64 @@
     </button>
   </div>
 
-    <!-- Add Word Form (gizli başlayacak) -->
-    <div id="add-word-form" class="mb-6 p-4 border border-lightgreen rounded hidden bg-lightgreen dark:bg-darkgreen">
+  <!-- Add Word Form (gizli başlayacak) -->
+  <div id="add-word-form" class="mb-6 p-4 border border-lightgreen rounded hidden bg-lightgreen dark:bg-darkgreen">
     <h3 class="text-xl font-semibold mb-4">Add a New Word</h3>
     <form id="new-word-form" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-        <!-- Word -->
-        <div class="w-full">
+      <!-- Word -->
+      <div class="w-full">
         <input type="text" id="new-word" placeholder="Word" required
-                class="w-full px-3 py-2 border border-gray-400 rounded text-darkgreen">
-        </div>
+               class="w-full px-3 py-2 border border-gray-400 rounded text-darkgreen">
+      </div>
 
-        <!-- Meaning -->
-        <div class="w-full">
+      <!-- Meaning -->
+      <div class="w-full">
         <input type="text" id="new-meaning" placeholder="Meaning" required
-                class="w-full px-3 py-2 border border-gray-400 rounded text-darkgreen">
-        </div>
+               class="w-full px-3 py-2 border border-gray-400 rounded text-darkgreen">
+      </div>
 
-        <!-- Sentence (tam genişlikte) -->
-        <div class="col-span-1 sm:col-span-2">
+      <!-- Sentence (tam genişlikte) -->
+      <div class="col-span-1 sm:col-span-2">
         <input type="text" id="new-sentence" placeholder="Example sentence" required
-                class="w-full px-3 py-2 border border-gray-400 rounded text-darkgreen">
-        </div>
+               class="w-full px-3 py-2 border border-gray-400 rounded text-darkgreen">
+      </div>
 
-        <!-- Submit butonu (tam genişlikte) -->
-        <div class="col-span-1 sm:col-span-2">
+      <!-- Submit butonu (tam genişlikte) -->
+      <div class="col-span-1 sm:col-span-2">
         <button type="submit"
                 class="w-full bg-midgreen text-white px-4 py-2 rounded hover:bg-lightgreen hover:text-darkgreen transition">
-            Add
+          Add
         </button>
-        </div>
+      </div>
 
     </form>
-    </div>
-
-
+  </div>
 
   <!-- Kelime Listesi -->
   <div id="word-list" class="space-y-4">
-    <!-- Kelime kartları burada dinamik olarak listelenecek -->
+    <!-- JS ile dinamik olarak üretilecek, aşağıdaki yapı örnek olarak konuldu -->
+    <div class="bg-lightgreen dark:bg-darkgreen text-darkgreen dark:text-lightgreen p-4 rounded shadow">
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="font-bold text-lg">Word: <span class="word-text">Bonjour</span></p>
+          <p>Meaning: <span class="meaning-text">Hello</span></p>
+          <p>Sentence: <span class="sentence-text">Bonjour, comment ça va ?</span></p>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="toggleEditForm('1')" class="bg-yellow-400 text-darkgreen px-3 py-1 rounded hover:bg-yellow-300 transition">Edit</button>
+          <button onclick="deleteWord('1')" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">Delete</button>
+        </div>
+      </div>
+
+      <!-- Edit Form (başlangıçta gizli) -->
+      <form id="edit-form-1" class="mt-4 hidden grid grid-cols-1 sm:grid-cols-2 gap-4" onsubmit="submitEditForm(event, '1')">
+        <input type="text" id="edit-word-1" placeholder="Word" class="w-full px-3 py-2 border rounded text-darkgreen col-span-1 sm:col-span-2">
+        <input type="text" id="edit-meaning-1" placeholder="Meaning" class="w-full px-3 py-2 border rounded text-darkgreen col-span-1 sm:col-span-2">
+        <input type="text" id="edit-sentence-1" placeholder="Sentence" class="w-full px-3 py-2 border rounded text-darkgreen col-span-1 sm:col-span-2">
+        <button type="submit" class="w-full col-span-1 sm:col-span-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800 transition">Save Changes</button>
+      </form>
+    </div>
   </div>
 </div>
 {% endblock %}

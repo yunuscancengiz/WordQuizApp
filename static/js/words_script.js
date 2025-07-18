@@ -35,29 +35,44 @@ function displayWords(words) {
 
   words.forEach(word => {
     const card = document.createElement("div");
-    card.className = "bg-lightgreen dark:bg-darkgreen text-darkgreen dark:text-lightgreen p-4 rounded-lg shadow cursor-pointer transition hover:scale-[1.02]";
+    card.className = "bg-lightgreen dark:bg-darkgreen text-darkgreen dark:text-lightgreen p-4 rounded-lg shadow";
+
     card.innerHTML = `
-      <div class="flex justify-between items-center">
-        <h3 class="text-xl font-bold">${word.word}</h3>
-        <button onclick="toggleDetails(event, ${word.id})" class="text-sm text-midgreen underline">Details</button>
-      </div>
+      <p class="font-bold text-lg cursor-pointer hover:underline" id="word-text-${word.id}">${word.word}</p>
+
       <div id="details-${word.id}" class="mt-4 hidden">
-        <p><strong>Meaning:</strong> <span id="meaning-${word.id}">${word.meaning}</span></p>
-        <p><strong>Example:</strong> <span id="sentence-${word.id}">Loading...</span></p>
-        <div class="flex gap-3 mt-3">
-          <button onclick="editWord(${word.id})" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">Edit</button>
-          <button onclick="deleteWord(${word.id})" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded">Delete</button>
+        <p>Meaning: <span class="meaning-text" id="meaning-${word.id}">${word.meaning}</span></p>
+        <p>Sentence: <span class="sentence-text" id="sentence-${word.id}">Loading...</span></p>
+        <div class="flex gap-2 mt-2">
+          <button onclick="toggleEditForm(${word.id})" class="bg-yellow-400 text-darkgreen px-3 py-1 rounded hover:bg-yellow-300 transition">Edit</button>
+          <button onclick="deleteWord(${word.id})" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">Delete</button>
         </div>
+
+        <form id="edit-form-${word.id}" class="mt-4 hidden grid grid-cols-1 sm:grid-cols-2 gap-4" onsubmit="submitEditForm(event, ${word.id})">
+          <input type="text" id="edit-word-${word.id}" placeholder="Word" value="${word.word}" class="w-full px-3 py-2 border rounded text-darkgreen col-span-1 sm:col-span-2">
+          <input type="text" id="edit-meaning-${word.id}" placeholder="Meaning" value="${word.meaning}" class="w-full px-3 py-2 border rounded text-darkgreen col-span-1 sm:col-span-2">
+          <input type="text" id="edit-sentence-${word.id}" placeholder="Sentence" class="w-full px-3 py-2 border rounded text-darkgreen col-span-1 sm:col-span-2">
+          <button type="submit" class="w-full col-span-1 sm:col-span-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800 transition">Save Changes</button>
+        </form>
       </div>
     `;
+
     container.appendChild(card);
+
+    // Sadece başlığa tıklanınca detay aç/kapat
+    const title = card.querySelector(`#word-text-${word.id}`);
+    title.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleDetails(null, word.id);
+    });
   });
 }
 
-async function toggleDetails(event, id) {
-  event.stopPropagation();
+async function toggleDetails(_, id) {
   const details = document.getElementById(`details-${id}`);
   const sentenceSpan = document.getElementById(`sentence-${id}`);
+  const editInput = document.getElementById(`edit-sentence-${id}`);
+
   details.classList.toggle("hidden");
 
   if (!details.classList.contains("hidden")) {
@@ -66,24 +81,58 @@ async function toggleDetails(event, id) {
       if (!res.ok) throw new Error("Fetch failed.");
       const wordData = await res.json();
       sentenceSpan.textContent = wordData.sentence || "No example available.";
+      if (editInput) editInput.value = wordData.sentence || "";
     } catch {
       sentenceSpan.textContent = "Failed to load sentence.";
+      if (editInput) editInput.value = "";
     }
   }
 }
 
-function editWord(id) {
-  const currentMeaning = document.getElementById(`meaning-${id}`).textContent;
-  const newMeaning = prompt("Edit meaning:", currentMeaning);
-  if (newMeaning && newMeaning !== currentMeaning) {
-    fetch(`/words/word/${id}`, {
+function toggleEditForm(id) {
+  const form = document.getElementById(`edit-form-${id}`);
+  form.classList.toggle("hidden");
+}
+
+async function submitEditForm(event, id) {
+  event.preventDefault();
+
+  const wordInput = document.getElementById(`edit-word-${id}`);
+  const meaningInput = document.getElementById(`edit-meaning-${id}`);
+  const sentenceInput = document.getElementById(`edit-sentence-${id}`);
+
+  const updatedWord = wordInput.value.trim();
+  const updatedMeaning = meaningInput.value.trim();
+  const updatedSentence = sentenceInput.value.trim();
+
+  if (!updatedWord || !updatedMeaning || !updatedSentence) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  try {
+    const res = await fetch(`/words/word/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ word: allWords.find(w => w.id === id).word, meaning: newMeaning })
-    }).then(() => {
-      document.getElementById(`meaning-${id}`).textContent = newMeaning;
+      body: JSON.stringify({
+        word: updatedWord,
+        meaning: updatedMeaning,
+        sentence: updatedSentence
+      })
     });
+
+    if (!res.ok) throw new Error("Update failed.");
+
+    // UI'ı güncelle
+    document.getElementById(`word-text-${id}`).textContent = updatedWord;
+    document.getElementById(`meaning-${id}`).textContent = updatedMeaning;
+    document.getElementById(`sentence-${id}`).textContent = updatedSentence;
+
+    toggleEditForm(id);
+  } catch (error) {
+    console.error("Failed to update word:", error);
+    alert("Failed to update word.");
   }
 }
 
@@ -99,13 +148,11 @@ function deleteWord(id) {
   }
 }
 
-// Show/Hide Add Word Form
 function toggleAddWordForm() {
   const form = document.getElementById("add-word-form");
   form.classList.toggle("hidden");
 }
 
-// Handle Add Word
 async function handleAddWord(event) {
   event.preventDefault();
 
@@ -138,7 +185,6 @@ async function handleAddWord(event) {
 
     if (!res.ok) throw new Error("Failed to add word.");
 
-    // Clear form
     document.getElementById("new-word").value = "";
     document.getElementById("new-meaning").value = "";
     document.getElementById("new-sentence").value = "";

@@ -26,6 +26,11 @@ class UserVerification(BaseModel):
 
 ### routers/words.py ###
 
+class WordUpdateRequest(BaseModel):
+    word: str
+    meaning: str
+    sentence: str
+
 class WordRequest(BaseModel):
     word: str = Field(min_length=1, max_length=100)
     meaning: str = Field(min_length=1, max_length=100)
