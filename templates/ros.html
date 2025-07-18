@@ -3,12 +3,12 @@
 {% block content %}
 
 <div class="relative">
-  <div class="absolute top-0 right-0 bg-midgreen text-white px-4 py-2 rounded-bl-lg">
+  <div class="absolute top-0 right-0 bg-midcolor text-white px-4 py-2 rounded-bl-lg">
     🔥 Streak: <span id="streak-count">{{ streak }}</span>
   </div>
 </div>
 
-<div class="max-w-5xl mx-auto mt-20 p-6 bg-darkgreen dark:bg-lightgreen text-lightgreen dark:text-darkgreen rounded-lg shadow-lg">
+<div class="max-w-5xl mx-auto mt-20 p-6 bg-darkcolor dark:bg-lightcolor text-lightcolor dark:text-darkcolor rounded-lg shadow-lg">
   <div class="text-center mb-6">
     <h2 class="text-2xl font-semibold mb-4">Arrange the sentence correctly:</h2>
     
@@ -16,7 +16,7 @@
     <div id="word-buttons" class="flex flex-wrap justify-center gap-3 mb-6">
       {% for word in sentence %}
       <button 
-        class="bg-lightgreen dark:bg-darkgreen hover:bg-midgreen dark:hover:bg-midgreen text-darkgreen dark:text-lightgreen font-semibold px-4 py-2 rounded-lg transition-all"
+        class="bg-lightcolor dark:bg-darkcolor hover:bg-midcolor dark:hover:bg-midcolor text-darkcolor dark:text-lightcolor font-semibold px-4 py-2 rounded-lg transition-all"
         onclick="selectWord(this)">
         {{ word }}
       </button>
@@ -24,7 +24,7 @@
     </div>
 
     <!-- User's constructed sentence -->
-    <div class="bg-lightgreen dark:bg-darkgreen text-darkgreen dark:text-lightgreen p-4 rounded-lg min-h-[3rem] mb-6" id="response-area">
+    <div class="bg-lightcolor dark:bg-darkcolor text-darkcolor dark:text-lightcolor p-4 rounded-lg min-h-[3rem] mb-6" id="response-area">
       <span id="response-text" class="font-medium"></span>
     </div>
 
@@ -37,7 +37,7 @@
     <button 
         id="submit-btn"
         onclick="submitSentence()" 
-        class="bg-midgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-all">
+        class="bg-midcolor hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-all">
         Submit
     </button>
 

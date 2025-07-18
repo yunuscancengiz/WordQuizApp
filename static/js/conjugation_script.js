@@ -32,7 +32,7 @@ function showSuggestions() {
   // 1. Doldur
   suggestionBox.innerHTML = matches
     .map(verb =>
-      `<div data-value="${verb}" class="px-3 py-2 hover:bg-midgreen hover:text-white cursor-pointer">${verb}</div>`
+      `<div data-value="${verb}" class="px-3 py-2 hover:bg-midcolor hover:text-white cursor-pointer">${verb}</div>`
     )
     .join("");
 

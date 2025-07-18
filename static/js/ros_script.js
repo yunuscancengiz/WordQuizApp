@@ -121,7 +121,7 @@ async function getNextSentence() {
     data.splitted_sentence.forEach(word => {
       const button = document.createElement("button");
       button.textContent = word;
-      button.className = "bg-lightgreen dark:bg-darkgreen hover:bg-midgreen dark:hover:bg-midgreen text-darkgreen dark:text-lightgreen font-semibold px-4 py-2 rounded-lg transition-all";
+      button.className = "bg-lightcolor dark:bg-darkcolor hover:bg-midcolor dark:hover:bg-midcolor text-darkcolor dark:text-lightcolor font-semibold px-4 py-2 rounded-lg transition-all";
       button.onclick = function () {
         selectWord(button);
       };

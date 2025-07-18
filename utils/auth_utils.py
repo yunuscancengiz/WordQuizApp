@@ -8,12 +8,6 @@ from ..models import Users
 from ..config import SECRET_KEY, ALGORITHM, oauth2_bearer, bcrypt_context
 
 
-def redirect_to_login():
-    redirect_response = RedirectResponse(url='/auth/login-page', status_code=status.HTTP_302_FOUND)
-    redirect_response.delete_cookie(key='access_token')
-    return redirect_response
-
-
 async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
     if token is None:
         raise HTTPException(
@@ -34,6 +28,12 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials"
         )
+
+
+def redirect_to_login():
+    redirect_response = RedirectResponse(url='/auth/login-page', status_code=status.HTTP_302_FOUND)
+    redirect_response.delete_cookie(key='access_token')
+    return redirect_response
     
 
 def authenticate_user(username: str, password: str, db: Session):

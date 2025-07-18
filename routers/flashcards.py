@@ -1,12 +1,13 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse, JSONResponse
 from sqlalchemy.exc import NoResultFound
+import traceback
 from ..models import Words, QuizStreaks, CorrectIncorrect
 from ..schemas import AnswerRequest
 from ..dependencies import db_dependency
 from ..config import templates
 from ..utils.db_utils import get_random_word_and_sentences
-from ..utils.auth_utils import get_current_user, redirect_to_login
+from ..utils.auth_utils import redirect_to_login, get_current_user
 
 
 router = APIRouter(prefix='/flashcards', tags=['flashcards'])
@@ -18,8 +19,6 @@ router = APIRouter(prefix='/flashcards', tags=['flashcards'])
 async def flashcards_page(request: Request, db: db_dependency):
     try:
         user = await get_current_user(token=request.cookies.get('access_token'))
-        if user is None:
-            return redirect_to_login()
 
         word, sentences = get_random_word_and_sentences(db=db, user_id=user.get('id'))
         if not word:
@@ -38,6 +37,7 @@ async def flashcards_page(request: Request, db: db_dependency):
             'sentences': sentences,
             'streak': streak})
     except:
+        print(traceback.format_exc())
         return redirect_to_login()
 
 
@@ -68,6 +68,7 @@ async def check_answer(request: Request, db: db_dependency, answer_request: Answ
         streak_model.max_streak = max(streak_model.streak, streak_model.max_streak)
     else:
         streak_model.streak = 0
+    streak_model.question_count += 1
     db.commit()
 
     # update correct_incorrect table

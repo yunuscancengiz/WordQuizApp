@@ -3,16 +3,16 @@
 {% block content %}
 <div class="relative">
   <!-- Sağ üstte streak -->
-  <div class="absolute top-0 right-0 bg-midgreen text-white px-4 py-2 rounded-bl-lg">
+  <div class="absolute top-0 right-0 bg-midcolor text-white px-4 py-2 rounded-bl-lg">
     🔥 Streak: <span id="streak-count">{{ streak }}</span>
   </div>
 </div>
 
-<div class="max-w-md mx-auto mt-20 p-6 bg-darkgreen dark:bg-lightgreen text-lightgreen dark:text-darkgreen rounded-lg shadow-lg">
+<div class="max-w-md mx-auto mt-20 p-6 bg-darkcolor dark:bg-lightcolor text-lightcolor dark:text-darkcolor rounded-lg shadow-lg">
   <!-- Soru: Kelime -->
   <div class="text-center mb-6">
     <h2 class="text-3xl font-bold" id="quiz-word">{{ word }}</h2>
-    <p class="text-sm text-midgreen mt-2">Choose the correct meaning:</p>
+    <p class="text-sm text-midcolor mt-2">Choose the correct meaning:</p>
   </div>
 
   <!-- Şıklar -->
@@ -21,7 +21,7 @@
   <div id="choices-container" class="space-y-3">
     {% for choice in choices %}
       <button 
-        class="w-full bg-lightgreen dark:bg-darkgreen hover:bg-midgreen text-darkgreen dark:text-lightgreen font-semibold py-2 px-4 rounded transition-all"
+        class="w-full bg-lightcolor dark:bg-darkcolor hover:bg-midcolor text-darkcolor dark:text-lightcolor font-semibold py-2 px-4 rounded transition-all"
         onclick="submitAnswer(this)"
         data-choice="{{ choice }}">
         {{ choice }}

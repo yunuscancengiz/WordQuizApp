@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="max-w-3xl mx-auto mt-20 p-6 bg-darkgreen dark:bg-lightgreen text-lightgreen dark:text-darkgreen rounded-lg shadow-lg">
+<div class="max-w-3xl mx-auto mt-20 p-6 bg-darkcolor dark:bg-lightcolor text-lightcolor dark:text-darkcolor rounded-lg shadow-lg">
   <!-- Başlık -->
   <h2 class="text-3xl font-bold text-center mb-6">📚 My Words</h2>
 
@@ -9,9 +9,9 @@
   <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
     <div class="flex flex-1 gap-4">
       <input type="text" id="search-input" placeholder="Search a word..."
-             class="flex-1 px-4 py-2 border border-lightgreen rounded focus:outline-none focus:ring-2 focus:ring-midgreen">
+             class="flex-1 px-4 py-2 border border-lightcolor rounded focus:outline-none focus:ring-2 focus:ring-midcolor">
       <button onclick="searchWord()"
-              class="bg-midgreen text-white px-4 py-2 rounded hover:bg-lightgreen hover:text-darkgreen transition">
+              class="bg-midcolor text-white px-4 py-2 rounded hover:bg-lightcolor hover:text-darkcolor transition">
         Search
       </button>
       <button onclick="getAllWords()"
@@ -22,38 +22,38 @@
 
     <!-- Add Word Button -->
     <button onclick="toggleAddWordForm()"
-            class="bg-yellow-500 text-darkgreen px-4 py-2 rounded hover:bg-yellow-400 transition">
+            class="bg-yellow-500 text-darkcolor px-4 py-2 rounded hover:bg-yellow-400 transition">
       ➕ Add Word
     </button>
   </div>
 
   <!-- Add Word Form (gizli başlayacak) -->
-  <div id="add-word-form" class="mb-6 p-4 border border-lightgreen rounded hidden bg-lightgreen dark:bg-darkgreen">
+  <div id="add-word-form" class="mb-6 p-4 border border-lightcolor rounded hidden bg-lightcolor dark:bg-darkcolor">
     <h3 class="text-xl font-semibold mb-4">Add a New Word</h3>
     <form id="new-word-form" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
       <!-- Word -->
       <div class="w-full">
         <input type="text" id="new-word" placeholder="Word" required
-               class="w-full px-3 py-2 border border-gray-400 rounded text-darkgreen">
+               class="w-full px-3 py-2 border border-gray-400 rounded text-darkcolor">
       </div>
 
       <!-- Meaning -->
       <div class="w-full">
         <input type="text" id="new-meaning" placeholder="Meaning" required
-               class="w-full px-3 py-2 border border-gray-400 rounded text-darkgreen">
+               class="w-full px-3 py-2 border border-gray-400 rounded text-darkcolor">
       </div>
 
       <!-- Sentence (tam genişlikte) -->
       <div class="col-span-1 sm:col-span-2">
         <input type="text" id="new-sentence" placeholder="Example sentence" required
-               class="w-full px-3 py-2 border border-gray-400 rounded text-darkgreen">
+               class="w-full px-3 py-2 border border-gray-400 rounded text-darkcolor">
       </div>
 
       <!-- Submit butonu (tam genişlikte) -->
       <div class="col-span-1 sm:col-span-2">
         <button type="submit"
-                class="w-full bg-midgreen text-white px-4 py-2 rounded hover:bg-lightgreen hover:text-darkgreen transition">
+                class="w-full bg-midcolor text-white px-4 py-2 rounded hover:bg-lightcolor hover:text-darkcolor transition">
           Add
         </button>
       </div>
@@ -64,7 +64,7 @@
   <!-- Kelime Listesi -->
   <div id="word-list" class="space-y-4">
     <!-- JS ile dinamik olarak üretilecek, aşağıdaki yapı örnek olarak konuldu -->
-    <div class="bg-lightgreen dark:bg-darkgreen text-darkgreen dark:text-lightgreen p-4 rounded shadow">
+    <div class="bg-lightcolor dark:bg-darkcolor text-darkcolor dark:text-lightcolor p-4 rounded shadow">
       <div class="flex justify-between items-center">
         <div>
           <p class="font-bold text-lg">Word: <span class="word-text">Bonjour</span></p>
@@ -72,16 +72,16 @@
           <p>Sentence: <span class="sentence-text">Bonjour, comment ça va ?</span></p>
         </div>
         <div class="flex gap-2">
-          <button onclick="toggleEditForm('1')" class="bg-yellow-400 text-darkgreen px-3 py-1 rounded hover:bg-yellow-300 transition">Edit</button>
+          <button onclick="toggleEditForm('1')" class="bg-yellow-400 text-darkcolor px-3 py-1 rounded hover:bg-yellow-300 transition">Edit</button>
           <button onclick="deleteWord('1')" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">Delete</button>
         </div>
       </div>
 
       <!-- Edit Form (başlangıçta gizli) -->
       <form id="edit-form-1" class="mt-4 hidden grid grid-cols-1 sm:grid-cols-2 gap-4" onsubmit="submitEditForm(event, '1')">
-        <input type="text" id="edit-word-1" placeholder="Word" class="w-full px-3 py-2 border rounded text-darkgreen col-span-1 sm:col-span-2">
-        <input type="text" id="edit-meaning-1" placeholder="Meaning" class="w-full px-3 py-2 border rounded text-darkgreen col-span-1 sm:col-span-2">
-        <input type="text" id="edit-sentence-1" placeholder="Sentence" class="w-full px-3 py-2 border rounded text-darkgreen col-span-1 sm:col-span-2">
+        <input type="text" id="edit-word-1" placeholder="Word" class="w-full px-3 py-2 border rounded text-darkcolor col-span-1 sm:col-span-2">
+        <input type="text" id="edit-meaning-1" placeholder="Meaning" class="w-full px-3 py-2 border rounded text-darkcolor col-span-1 sm:col-span-2">
+        <input type="text" id="edit-sentence-1" placeholder="Sentence" class="w-full px-3 py-2 border rounded text-darkcolor col-span-1 sm:col-span-2">
         <button type="submit" class="w-full col-span-1 sm:col-span-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800 transition">Save Changes</button>
       </form>
     </div>

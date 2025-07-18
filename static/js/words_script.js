@@ -35,7 +35,7 @@ function displayWords(words) {
 
   words.forEach(word => {
     const card = document.createElement("div");
-    card.className = "bg-lightgreen dark:bg-darkgreen text-darkgreen dark:text-lightgreen p-4 rounded-lg shadow";
+    card.className = "bg-lightcolor dark:bg-darkcolor text-darkcolor dark:text-lightcolor p-4 rounded-lg shadow";
 
     card.innerHTML = `
       <p class="font-bold text-lg cursor-pointer hover:underline" id="word-text-${word.id}">${word.word}</p>
@@ -44,14 +44,14 @@ function displayWords(words) {
         <p>Meaning: <span class="meaning-text" id="meaning-${word.id}">${word.meaning}</span></p>
         <p>Sentence: <span class="sentence-text" id="sentence-${word.id}">Loading...</span></p>
         <div class="flex gap-2 mt-2">
-          <button onclick="toggleEditForm(${word.id})" class="bg-yellow-400 text-darkgreen px-3 py-1 rounded hover:bg-yellow-300 transition">Edit</button>
+          <button onclick="toggleEditForm(${word.id})" class="bg-yellow-400 text-darkcolor px-3 py-1 rounded hover:bg-yellow-300 transition">Edit</button>
           <button onclick="deleteWord(${word.id})" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">Delete</button>
         </div>
 
         <form id="edit-form-${word.id}" class="mt-4 hidden grid grid-cols-1 sm:grid-cols-2 gap-4" onsubmit="submitEditForm(event, ${word.id})">
-          <input type="text" id="edit-word-${word.id}" placeholder="Word" value="${word.word}" class="w-full px-3 py-2 border rounded text-darkgreen col-span-1 sm:col-span-2">
-          <input type="text" id="edit-meaning-${word.id}" placeholder="Meaning" value="${word.meaning}" class="w-full px-3 py-2 border rounded text-darkgreen col-span-1 sm:col-span-2">
-          <input type="text" id="edit-sentence-${word.id}" placeholder="Sentence" class="w-full px-3 py-2 border rounded text-darkgreen col-span-1 sm:col-span-2">
+          <input type="text" id="edit-word-${word.id}" placeholder="Word" value="${word.word}" class="w-full px-3 py-2 border rounded text-darkcolor col-span-1 sm:col-span-2">
+          <input type="text" id="edit-meaning-${word.id}" placeholder="Meaning" value="${word.meaning}" class="w-full px-3 py-2 border rounded text-darkcolor col-span-1 sm:col-span-2">
+          <input type="text" id="edit-sentence-${word.id}" placeholder="Sentence" class="w-full px-3 py-2 border rounded text-darkcolor col-span-1 sm:col-span-2">
           <button type="submit" class="w-full col-span-1 sm:col-span-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800 transition">Save Changes</button>
         </form>
       </div>

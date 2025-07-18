@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends, status, Request
 from fastapi.security import OAuth2PasswordRequestForm
 from datetime import timedelta
 from typing import Annotated
-from ..models import Users
+from ..models import Users, Themes
 from ..schemas import CreateUserRequest, Token
 from ..dependencies import db_dependency
 from ..utils.auth_utils import create_access_token, authenticate_user
@@ -15,19 +15,22 @@ router = APIRouter(prefix='/auth', tags=['auth'])
 ### Pages ###
 
 @router.get('/login-page', name="login-page")
-def render_login_page(request: Request):
-    return templates.TemplateResponse('login.html', {'request': request})
+def render_login_page(request: Request, db: db_dependency):
+    default_theme = db.query(Themes).filter(Themes.is_default == True).first()
+    return templates.TemplateResponse('login.html', {'request': request, 'theme': default_theme})
 
 
 @router.get('/register-page', name="register-page")
-def render_register_page(request: Request):
-    return templates.TemplateResponse('register.html', {'request': request})
+def render_register_page(request: Request, db: db_dependency):
+    default_theme = db.query(Themes).filter(Themes.is_default == True).first()
+    return templates.TemplateResponse('register.html', {'request': request, 'theme': default_theme})
 
 
 ### Endpoints ###  
 
 @router.post('/', status_code=status.HTTP_201_CREATED)
 async def create_user(db: db_dependency, create_user_request: CreateUserRequest):
+    default_theme = db.query(Themes).filter_by(is_default=True).first()
     create_user_model = Users(
         email=create_user_request.email,
         username=create_user_request.username,
@@ -35,7 +38,8 @@ async def create_user(db: db_dependency, create_user_request: CreateUserRequest)
         last_name=create_user_request.last_name,
         hashed_password=bcrypt_context.hash(create_user_request.password),
         role=create_user_request.role,
-        is_active=True
+        is_active=True,
+        theme_id=default_theme.id if default_theme else None
     )
     db.add(create_user_model)
     db.commit()

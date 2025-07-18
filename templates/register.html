@@ -1,10 +1,10 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="max-w-3xl mx-auto mt-10 bg-darkgreen dark:bg-lightgreen rounded-lg shadow-md overflow-hidden">
+<div class="max-w-3xl mx-auto mt-10 bg-darkcolor dark:bg-lightcolor rounded-lg shadow-md overflow-hidden">
 
   <!-- Header -->
-  <div class="bg-darkgreen dark:bg-lightgreen text-lightgreen dark:text-darkgreen px-6 py-4">
+  <div class="bg-darkcolor dark:bg-lightcolor text-lightcolor dark:text-darkcolor px-6 py-4">
     <h4 class="text-xl font-semibold mb-0">Register</h4>
   </div>
 
@@ -15,57 +15,57 @@
       <!-- 1. Satır: Email & Username -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">Email</label>
+          <label class="block text-sm font-medium mb-1 text-lightcolor dark:text-darkcolor">Email</label>
           <input type="email" name="email" required
-                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
+                 class="w-full px-3 py-2 border border-lightcolor rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midcolor">
         </div>
         <div>
-          <label class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">Username</label>
+          <label class="block text-sm font-medium mb-1 text-lightcolor dark:text-darkcolor">Username</label>
           <input type="text" name="username" required
-                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
+                 class="w-full px-3 py-2 border border-lightcolor rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midcolor">
         </div>
       </div>
 
       <!-- 2. Satır: First Name & Last Name -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">First Name</label>
+          <label class="block text-sm font-medium mb-1 text-lightcolor dark:text-darkcolor">First Name</label>
           <input type="text" name="first_name" required
-                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
+                 class="w-full px-3 py-2 border border-lightcolor rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midcolor">
         </div>
         <div>
-          <label class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">Last Name</label>
+          <label class="block text-sm font-medium mb-1 text-lightcolor dark:text-darkcolor">Last Name</label>
           <input type="text" name="last_name" required
-                 class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
+                 class="w-full px-3 py-2 border border-lightcolor rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midcolor">
         </div>
       </div>
 
       <!-- Parola -->
       <div>
-        <label class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">Password</label>
+        <label class="block text-sm font-medium mb-1 text-lightcolor dark:text-darkcolor">Password</label>
         <input type="password" name="password" autocomplete="new-password" required
-               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
+               class="w-full px-3 py-2 border border-lightcolor rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midcolor">
       </div>
 
       <div>
-        <label class="block text-sm font-medium mb-1 text-lightgreen dark:text-darkgreen">Verify Password</label>
+        <label class="block text-sm font-medium mb-1 text-lightcolor dark:text-darkcolor">Verify Password</label>
         <input type="password" name="password2" autocomplete="new-password" required
-               class="w-full px-3 py-2 border border-lightgreen rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midgreen">
+               class="w-full px-3 py-2 border border-lightcolor rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-midcolor">
       </div>
 
       <!-- Submit Button -->
       <button type="submit"
-              class="w-full bg-midgreen text-white py-2 rounded-md hover:bg-lightgreen hover:text-darkgreen transition">
+              class="w-full bg-midcolor text-white py-2 rounded-md hover:bg-lightcolor hover:text-darkcolor transition">
         Register
       </button>
     </form>
   </div>
 
   <!-- Footer -->
-  <div class="bg-gray-100 dark:bg-midgreen text-center px-6 py-3">
-    <small class="text-sm text-gray-700 dark:text-lightgreen">
+  <div class="bg-gray-100 dark:bg-midcolor text-center px-6 py-3">
+    <small class="text-sm text-gray-700 dark:text-lightcolor">
       Already have an account?
-      <a href="/auth/login-page" class="text-midgreen underline hover:text-lightgreen">Log in</a>
+      <a href="/auth/login-page" class="text-midcolor underline hover:text-lightcolor">Log in</a>
     </small>
   </div>
 </div>

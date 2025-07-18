@@ -15,9 +15,9 @@
       theme: {
         extend: {
           colors: {
-            darkgreen: '#061611',
-            midgreen: '#1d665d',
-            lightgreen: '#b2d98b',
+            darkcolor: '{{ theme.darkcolor | default("#abea94") }}',
+            midcolor: '{{ theme.midcolor | default("#758073") }}',
+            lightcolor: '{{ theme.lightcolor | default("#050706") }}',
           }
         }
       }
@@ -31,7 +31,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body class="bg-lightgreen text-darkgreen dark:bg-darkgreen dark:text-lightgreen transition-all duration-300 min-h-screen">
+<body class="bg-lightcolor text-darkcolor dark:bg-darkcolor dark:text-lightcolor transition-all duration-300 min-h-screen">
   
   {% include 'navbar.html' %}
   
@@ -40,7 +40,7 @@
 
   <!-- Dark Mode Toggle -->
   <div class="flex justify-end mb-4">
-  <button onclick="toggleDarkMode()" class="bg-midgreen text-white px-4 py-2 rounded hover:bg-lightgreen hover:text-darkgreen transition">
+  <button onclick="toggleDarkMode()" class="bg-midcolor text-white px-4 py-2 rounded hover:bg-lightcolor hover:text-darkcolor transition">
     🌓 Dark Mode
   </button>
   </div>

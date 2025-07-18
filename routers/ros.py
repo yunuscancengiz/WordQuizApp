@@ -1,12 +1,13 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse, JSONResponse
 from sqlalchemy.exc import NoResultFound
+import traceback
 from ..models import Sentences, QuizStreaks
 from ..schemas import SentenceAnswerRequest
 from ..dependencies import db_dependency
 from ..config import templates
 from ..utils.db_utils import get_random_sentences
-from ..utils.auth_utils import get_current_user, redirect_to_login
+from ..utils.auth_utils import redirect_to_login, get_current_user
 
 
 router = APIRouter(prefix='/ros', tags=['ros'])
@@ -35,6 +36,7 @@ async def ros_page(request: Request, db: db_dependency):
             'original_sentence': original_sentence,
             'streak': streak})
     except:
+        print(traceback.format_exc())
         return redirect_to_login()
     
 
@@ -67,6 +69,7 @@ async def check_answer(request: Request, db: db_dependency, sentence_answer_requ
         streak_model.max_streak = max(streak_model.streak, streak_model.max_streak)
     else:
         streak_model.streak = 0
+    streak_model.question_count += 1
     db.commit()
 
     return JSONResponse(

@@ -1,5 +1,6 @@
 import random
-from ..models import Words, Sentences, CorrectIncorrect
+from sqlalchemy.orm import Session
+from ..models import Words, Sentences, CorrectIncorrect, Themes
 
 
 def get_random_word_and_sentences(db, user_id: int):
@@ -45,3 +46,11 @@ def get_random_quiz_word_and_choices(db, user_id):
     random.shuffle(choices)
     return correct_word.word, choices
 
+
+def set_default_theme(theme_id: int, db: Session):
+    db.query(Themes).update({Themes.is_default: False})
+    theme = db.query(Themes).filter_by(id=theme_id).first()
+    if theme:
+        theme.is_default = True
+        db.commit()
+    return theme

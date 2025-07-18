@@ -52,3 +52,27 @@ class AnswerRequest(BaseModel):
 class SentenceAnswerRequest(BaseModel):
     user_answer: str = Field(min_length=1, max_length=200)
     current_sentence: str = Field(min_length=1, max_length=200)
+
+
+# routers/themes.py
+
+class CreateThemeRequest(BaseModel):
+    name: str = Field(min_length=1, max_length=50)
+    darkcolor: str = Field(min_length=7, max_length=7)
+    midcolor: str = Field(min_length=7, max_length=7)
+    lightcolor: str = Field(min_length=7, max_length=7)
+    is_default: bool = Field(default=False)
+
+
+class ThemeOut(BaseModel):
+    id: int
+    name: str
+    darkcolor: str
+    midcolor: str
+    lightcolor: str
+    is_default: bool
+    is_favorite: bool = False
+    is_active: bool
+
+    class Config:
+        from_attributes = True

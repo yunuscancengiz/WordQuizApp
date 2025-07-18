@@ -1,10 +1,12 @@
 from fastapi import APIRouter, Path, Request, HTTPException, status
 from fastapi.responses import HTMLResponse, JSONResponse
+import traceback
 from ..models import Words, CorrectIncorrect, Sentences
 from ..schemas import WordUpdateRequest
 from ..dependencies import db_dependency
 from ..config import templates
 from ..utils.auth_utils import redirect_to_login, get_current_user
+
 
 router = APIRouter(prefix='/words', tags=['words'])
 
@@ -20,6 +22,7 @@ async def words_page(request: Request, db: db_dependency):
             "user": user
         })
     except:
+        print(traceback.format_exc())
         return redirect_to_login()
 
 
@@ -32,7 +35,7 @@ async def read_all(request: Request, db: db_dependency):
 
 
 @router.get('/word/{word_id}', status_code=status.HTTP_200_OK)
-async def read_word(request: Request, db: db_dependency, word_id: int = Path(gt=0)):
+async def read_word(request: Request, db: db_dependency, word_id: int = Path(ge=0)):
     user = await get_current_user(token=request.cookies.get('access_token'))
 
     word_model = db.query(Words).filter(
@@ -116,7 +119,7 @@ async def create_word(request: Request, db: db_dependency):
 async def update_word(
     request: Request,
     db: db_dependency,
-    word_id: int = Path(gt=0),
+    word_id: int = Path(ge=0),
     word_request: WordUpdateRequest = None
 ):
     user = await get_current_user(token=request.cookies.get('access_token'))
@@ -132,7 +135,7 @@ async def update_word(
     # Word tablosu
     word_model = db.query(Words).filter(
         Words.id == word_id,
-        Words.owner_id == user.get("id")
+        Words.owner_id == user.get('id')
     ).first()
 
     if not word_model:
@@ -144,7 +147,7 @@ async def update_word(
     # Sentence tablosu
     sentence_model = db.query(Sentences).filter(
         Sentences.word_id == word_id,
-        Sentences.owner_id == user.get("id")
+        Sentences.owner_id == user.get('id')
     ).first()
 
     if sentence_model:
@@ -152,7 +155,7 @@ async def update_word(
     else:
         db.add(Sentences(
             word_id=word_id,
-            owner_id=user.get("id"),
+            owner_id=user.get('id'),
             sentence=sentence
         ))
 
@@ -160,7 +163,7 @@ async def update_word(
 
 
 @router.delete('/word/{word_id}', status_code=status.HTTP_204_NO_CONTENT)
-async def delete_word(request: Request, db: db_dependency, word_id: int = Path(gt=0)):
+async def delete_word(request: Request, db: db_dependency, word_id: int = Path(ge=0)):
     user = await get_current_user(token=request.cookies.get('access_token'))
 
     word_model = db.query(Words).filter(

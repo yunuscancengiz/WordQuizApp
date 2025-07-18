@@ -3,12 +3,12 @@
 {% block content %}
 <div class="relative">
   <!-- Sağ üstte streak -->
-  <div class="absolute top-0 right-0 bg-midgreen text-white px-4 py-2 rounded-bl-lg">
+  <div class="absolute top-0 right-0 bg-midcolor text-white px-4 py-2 rounded-bl-lg">
     🔥 Streak: <span id="streak-count">{{ streak }}</span>
   </div>
 </div>
 
-<div class="max-w-md mx-auto mt-20 p-6 bg-darkgreen dark:bg-lightgreen text-lightgreen dark:text-darkgreen rounded-lg shadow-lg">
+<div class="max-w-md mx-auto mt-20 p-6 bg-darkcolor dark:bg-lightcolor text-lightcolor dark:text-darkcolor rounded-lg shadow-lg">
   <!-- Kelime Alanı -->
   <div class="text-center mb-6">
     <h2 class="text-3xl font-bold" id="word-display">{{ word }}</h2>
@@ -17,11 +17,11 @@
   <!-- Anlam input -->
   <form id="flashcard-form" class="space-y-4">
     <input type="text" id="meaning-input" placeholder="Enter the meaning..." required
-           class="w-full px-4 py-2 border border-lightgreen rounded focus:outline-none focus:ring-2 focus:ring-midgreen">
+           class="w-full px-4 py-2 border border-lightcolor rounded focus:outline-none focus:ring-2 focus:ring-midcolor">
 
     <button type="submit"
             id="submit-btn"
-            class="w-full bg-midgreen text-white py-2 rounded hover:bg-lightgreen hover:text-darkgreen transition">
+            class="w-full bg-midcolor text-white py-2 rounded hover:bg-lightcolor hover:text-darkcolor transition">
       Submit
     </button>
   </form>

@@ -1,0 +1,177 @@
+[
+  {
+    "name": "black glaze | eucalyptus green | pistachio",
+    "darkcolor": "#061611",
+    "midcolor": "#1d665d",
+    "lightcolor": "#b2d98b",
+    "is_default": false
+  },
+  {
+    "name": "black wash | murrey | light coral",
+    "darkcolor": "#0d0d0d",
+    "midcolor": "#7a2246",
+    "lightcolor": "#f2858e",
+    "is_default": false
+  },
+  {
+    "name": "black stallion | noble fir | mirabelle yellow",
+    "darkcolor": "#0b1e1a",
+    "midcolor": "#5a736c",
+    "lightcolor": "#f2c063",
+    "is_default": false
+  },
+  {
+    "name": "licorice | indigo | wisteria",
+    "darkcolor": "#100311",
+    "midcolor": "#580092",
+    "lightcolor": "#cd9cec",
+    "is_default": false
+  },
+  {
+    "name": "eerie black | dim gray | robin egg blue",
+    "darkcolor": "#191f21",
+    "midcolor": "#706f6e",
+    "lightcolor": "#62d7dd",
+    "is_default": false
+  },
+  {
+    "name": "midnight green | pine green | rosy brown",
+    "darkcolor": "#031c26",
+    "midcolor": "#247c6d",
+    "lightcolor": "#bf988a",
+    "is_default": false
+  },
+  {
+    "name": "black wash | aged jade | thundelarra",
+    "darkcolor": "#0d0d0d",
+    "midcolor": "#6d6858",
+    "lightcolor": "#e88877",
+    "is_default": false
+  },
+  {
+    "name": "black | reseda green | light green",
+    "darkcolor": "#050706",
+    "midcolor": "#758073",
+    "lightcolor": "#abea94",
+    "is_default": false
+  },
+  {
+    "name": "rustic red | bohemian jazz | flax",
+    "darkcolor": "#38141a",
+    "midcolor": "#9e757e",
+    "lightcolor": "#f2d891",
+    "is_default": false
+  },
+  {
+    "name": "dark purple | mardi gras | maize",
+    "darkcolor": "#401234",
+    "midcolor": "#9e1581",
+    "lightcolor": "#f2e96d",
+    "is_default": false
+  },
+  {
+    "name": "stellar explorer | dim gray | salmon",
+    "darkcolor": "#081b26",
+    "midcolor": "#586166",
+    "lightcolor": "#f2766b",
+    "is_default": false
+  },
+  {
+    "name": "federal blue | egyptian blue | pumpkin",
+    "darkcolor": "#0e0e52",
+    "midcolor": "#28369e",
+    "lightcolor": "#fe7f2d",
+    "is_default": false
+  },
+  {
+    "name": "black bean | frenzied red | sandy brown",
+    "darkcolor": "#401e1e",
+    "midcolor": "#7f4b5b",
+    "lightcolor": "#ffb25f",
+    "is_default": false
+  },
+  {
+    "name": "corbeau | hunter green | simply posh",
+    "darkcolor": "#181126",
+    "midcolor": "#465938",
+    "lightcolor": "#8cb893",
+    "is_default": false
+  },
+  {
+    "name": "black mesa | cinereous | ecru",
+    "darkcolor": "#262014",
+    "midcolor": "#7f6f67",
+    "lightcolor": "#d3c27d",
+    "is_default": false
+  },
+  {
+    "name": "raisin black | burnt umber | jean blue",
+    "darkcolor": "#1b2232",
+    "midcolor": "#7c3e2a",
+    "lightcolor": "#5cb5f2",
+    "is_default": false
+  },
+  {
+    "name": "gunmetal | schooner | soft denim",
+    "darkcolor": "#1d2c36",
+    "midcolor": "#8f8578",
+    "lightcolor": "#b9c6c8",
+    "is_default": false
+  },
+  {
+    "name": "black wash | blood red | dill green",
+    "darkcolor": "#0b0d0c",
+    "midcolor": "#730d0d",
+    "lightcolor": "#b7ad4f",
+    "is_default": false
+  },
+  {
+    "name": "kuroi black | whales tale | imperial red",
+    "darkcolor": "#141421",
+    "midcolor": "#0a5784",
+    "lightcolor": "#f15152",
+    "is_default": false
+  },
+  {
+    "name": "dark purple | magenta haze | shaded willow",
+    "darkcolor": "#22031f",
+    "midcolor": "#9e2869",
+    "lightcolor": "#87b38d",
+    "is_default": false
+  },
+  {
+    "name": "black cherry | liver | salmon",
+    "darkcolor": "#260c1a",
+    "midcolor": "#5f4842",
+    "lightcolor": "#ef6060",
+    "is_default": false
+  },
+  {
+    "name": "coarse woal | sienna | ochre",
+    "darkcolor": "#1a2026",
+    "midcolor": "#872816",
+    "lightcolor": "#c4710b",
+    "is_default": false
+  },
+  {
+    "name": "gunmetal | winre leaf | mindaro",
+    "darkcolor": "#2a3140",
+    "midcolor": "#266d99",
+    "lightcolor": "#bdf26d",
+    "is_default": false
+  },
+  {
+    "name": "russian violet | iris | aureolin",
+    "darkcolor": "#150f33",
+    "midcolor": "#4e54bf",
+    "lightcolor": "#f2e422",
+    "is_default": false
+  },
+  {
+    "name": "oxford blue | paynes grey | yellow green",
+    "darkcolor": "#070f27",
+    "midcolor": "#456677",
+    "lightcolor": "#b5db5a",
+    "is_default": false
+  }
+]

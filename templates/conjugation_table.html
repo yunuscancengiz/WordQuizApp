@@ -10,14 +10,14 @@
 <div class="flex flex-col sm:flex-row justify-center items-start gap-4 mb-8">
   <div class="relative w-full sm:w-[300px]">
     <input type="text" id="searchInput" placeholder="Search Verb..." autocomplete="off"
-           class="w-full px-4 py-2 border border-darkgreen dark:border-lightgreen rounded outline-none focus:ring-2 focus:ring-midgreen bg-white dark:bg-darkgreen text-darkgreen dark:text-lightgreen">
+           class="w-full px-4 py-2 border border-darkcolor dark:border-lightcolor rounded outline-none focus:ring-2 focus:ring-midcolor bg-white dark:bg-darkcolor text-darkcolor dark:text-lightcolor">
 
     <div id="suggestions"
-         class="absolute top-full left-0 w-full mt-1 bg-midgreen dark:bg-midgreen border border-lightgreen rounded shadow z-50 max-h-44 overflow-y-auto hidden">
+         class="absolute top-full left-0 w-full mt-1 bg-midcolor dark:bg-midcolor border border-lightcolor rounded shadow z-50 max-h-44 overflow-y-auto hidden">
     </div>
   </div>
 
-  <button onclick="searchVerb()" class="bg-midgreen text-white px-4 py-2 rounded hover:bg-lightgreen hover:text-darkgreen transition">
+  <button onclick="searchVerb()" class="bg-midcolor text-white px-4 py-2 rounded hover:bg-lightcolor hover:text-darkcolor transition">
     Search
   </button>
 </div>
@@ -26,7 +26,7 @@
   <p class="text-red-500 font-semibold text-center mb-6">❌ Verb '{{ verb }}' not found.</p>
 {% else %}
 
-  <div class="max-w-5xl mx-auto bg-lightgreen dark:bg-darkgreen p-4 rounded-lg transition">
+  <div class="max-w-5xl mx-auto bg-lightcolor dark:bg-darkcolor p-4 rounded-lg transition">
     <h2 class="text-2xl font-semibold text-center mb-4">{{ verb }}</h2>
 
     <ul class="list-disc pl-6 mb-6 text-base leading-relaxed">
@@ -37,17 +37,17 @@
 
     {% for group in conjugations %}
       <div class="mb-10">
-        <div class="text-xl font-semibold border-b-2 border-lightgreen pb-1 mb-4 text-darkgreen dark:text-lightgreen">
+        <div class="text-xl font-semibold border-b-2 border-lightcolor pb-1 mb-4 text-darkcolor dark:text-lightcolor">
           {{ group.mode }}
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {% for tense in group.tenses %}
             <div class="p-4 rounded shadow 
-                        bg-darkgreen text-lightgreen 
-                        dark:bg-lightgreen dark:text-darkgreen 
+                        bg-darkcolor text-lightcolor 
+                        dark:bg-lightcolor dark:text-darkcolor 
                         transition">
-              <div class="text-lg font-semibold border-b border-lightgreen pb-2 mb-3">
+              <div class="text-lg font-semibold border-b border-lightcolor pb-2 mb-3">
                 {{ tense.tense }}
               </div>
 
@@ -55,7 +55,7 @@
                 <div class="mb-1">
                   {% if entry.ending %}
                     <span class="whitespace-nowrap font-semibold">
-                      {{ entry.full_form[:-(entry.ending | length)] }}<span class="text-midgreen font-bold">{{ entry.ending }}</span>
+                      {{ entry.full_form[:-(entry.ending | length)] }}<span class="text-midcolor font-bold">{{ entry.ending }}</span>
                     </span>
                   {% else %}
                     {{ entry.full_form }}

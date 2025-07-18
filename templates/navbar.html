@@ -1,17 +1,17 @@
 <!-- Navbar -->
-<nav class="bg-darkgreen dark:bg-lightgreen text-lightgreen dark:text-darkgreen w-full">
+<nav class="bg-darkcolor dark:bg-lightcolor text-lightcolor dark:text-darkcolor w-full">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap">
 
     <!-- Logo -->
     <div class="flex items-center flex-shrink-0 mr-6">
       <a href="/">
-        <!-- Dark mode için darkgreen logo -->
-        <img src="{{ url_for('static', path='/logo/logo_darkgreen.png') }}" 
+        <!-- Dark mode için darkcolor logo -->
+        <img src="{{ url_for('static', path='/logo/logo_white.png') }}" 
             alt="Oui Chérie Logo (dark mode)" 
             class="h-20 hidden dark:block">
 
-        <!-- Light mode için lightgreen logo -->
-        <img src="{{ url_for('static', path='/logo/logo_lightgreen.png') }}" 
+        <!-- Light mode için lightcolor logo -->
+        <img src="{{ url_for('static', path='/logo/logo_darkgreen.png') }}" 
             alt="Oui Chérie Logo (light mode)" 
             class="h-20 block dark:hidden">
       </a>
@@ -19,7 +19,7 @@
 
     <!-- Hamburger Menu Button -->
     <div class="block md:hidden">
-      <button class="text-lightgreen dark:text-darkgreen focus:outline-none" onclick="toggleNavbar()">
+      <button class="text-lightcolor dark:text-darkcolor focus:outline-none" onclick="toggleNavbar()">
         <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
           <path d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
@@ -30,26 +30,26 @@
     <div id="navbar-menu" class="w-full md:flex md:items-center md:w-auto hidden md:block">
       <ul class="md:flex md:space-x-6 text-sm font-medium">
         {% if user %}
-        <li><a href="/flashcards" class="hover:text-midgreen transition">Flashcard</a></li>
-        <li><a href="/ros" class="hover:text-midgreen transition">ROS</a></li>
-        <li><a href="/quiz" class="hover:text-midgreen transition">Quiz</a></li>
-        <li><a href="/words" class="hover:text-midgreen transition">Words</a></li>
-        <li><a href="/conjugations" class="hover:text-midgreen transition">Conjugations</a></li>
-        <li><a href="/profile" class="hover:text-midgreen transition">Profile</a></li>
+        <li><a href="/flashcards" class="hover:text-midcolor transition">Flashcard</a></li>
+        <li><a href="/ros" class="hover:text-midcolor transition">ROS</a></li>
+        <li><a href="/quiz" class="hover:text-midcolor transition">Quiz</a></li>
+        <li><a href="/words" class="hover:text-midcolor transition">Words</a></li>
+        <li><a href="/conjugations" class="hover:text-midcolor transition">Conjugations</a></li>
+        <li><a href="/profile" class="hover:text-midcolor transition">Profile</a></li>
         {% endif %}
       </ul>
 
       <ul class="mt-4 md:mt-0 md:ml-auto md:flex md:items-center md:space-x-4 text-sm">
         {% if not user %}
-        <li><a href="{{ url_for('login-page') }}" class="hover:text-midgreen transition">Login</a></li>
-        <li><a href="{{ url_for('register-page') }}" class="hover:text-midgreen transition">Sign Up</a></li>
+        <li><a href="{{ url_for('login-page') }}" class="hover:text-midcolor transition">Login</a></li>
+        <li><a href="{{ url_for('register-page') }}" class="hover:text-midcolor transition">Sign Up</a></li>
         {% else %}
         <li>
           <button onclick="logout()" 
-                  class="border border-lightgreen dark:border-darkgreen 
-                         text-lightgreen dark:text-darkgreen 
-                         hover:bg-lightgreen dark:hover:bg-darkgreen 
-                         hover:text-darkgreen dark:hover:text-lightgreen 
+                  class="border border-lightcolor dark:border-darkcolor 
+                         text-lightcolor dark:text-darkcolor 
+                         hover:bg-lightcolor dark:hover:bg-darkcolor 
+                         hover:text-darkcolor dark:hover:text-lightcolor 
                          px-3 py-1 rounded transition duration-300">
             Logout
           </button>

@@ -73,7 +73,7 @@ async function getNextQuiz() {
     const btn = document.createElement("button");
     btn.textContent = choice;
     btn.dataset.choice = choice;
-    btn.className = "w-full bg-lightgreen dark:bg-darkgreen hover:bg-midgreen text-darkgreen dark:text-lightgreen font-semibold py-2 px-4 rounded transition-all";
+    btn.className = "w-full bg-lightcolor dark:bg-darkcolor hover:bg-midcolor text-darkcolor dark:text-lightcolor font-semibold py-2 px-4 rounded transition-all";
     btn.onclick = function () {
       submitAnswer(btn);
     };

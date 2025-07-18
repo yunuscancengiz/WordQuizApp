@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto">
+  <h2 class="text-2xl font-bold mb-6 text-center">🎨 Select Your Theme</h2>
+
+  <form id="themeForm" class="space-y-4">
+    {% for theme in themes %}
+    <label class="flex items-center justify-between border p-4 rounded shadow hover:bg-lightcolor transition cursor-pointer">
+      <div class="flex items-center space-x-4">
+        <input
+          type="radio"
+          name="theme"
+          value="{{ theme.id }}"
+          {% if theme.is_active %}checked{% endif %}
+          data-theme-id="{{ theme.id }}"
+          class="accent-midcolor"
+        >
+        <span class="font-semibold">{{ theme.name }}</span>
+      </div>
+
+      <div class="flex space-x-1">
+        <div class="w-5 h-5 rounded" style="background-color: {{ theme.darkcolor | safe }};"></div>
+        <div class="w-5 h-5 rounded" style="background-color: {{ theme.midcolor | safe }};"></div>
+        <div class="w-5 h-5 rounded" style="background-color: {{ theme.lightcolor | safe }};"></div>
+      </div>
+    </label>
+    {% endfor %}
+  </form>
+
+  <div id="message" class="text-center mt-4 text-midcolor font-medium hidden">✅ Theme updated.</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const radios = document.querySelectorAll('input[name="theme"]');
+    radios.forEach(radio => {
+      radio.addEventListener("change", async function () {
+        const themeId = this.getAttribute("data-theme-id");
+
+        try {
+          const response = await fetch(`/themes/use/${themeId}`, {
+            method: "PATCH",
+            credentials: "include"
+          });
+
+          if (response.ok) {
+            document.getElementById("message").classList.remove("hidden");
+            document.getElementById("message").textContent = "✅ Theme updated.";
+          } else {
+            alert("Failed to update theme.");
+          }
+        } catch (err) {
+          console.error(err);
+          alert("An error occurred.");
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}
