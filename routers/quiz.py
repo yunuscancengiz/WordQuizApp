@@ -22,7 +22,6 @@ async def quiz_page(request: Request, db: db_dependency):
             return redirect_to_login()
 
         word, choices = get_random_quiz_word_and_choices(db=db, user_id=user.get('id'))
-        print(word, choices)
         if not word or not choices:
             return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={'error': 'No quiz data found.'})
 
