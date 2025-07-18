@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Path, Request, HTTPException, status
 from fastapi.responses import HTMLResponse, JSONResponse
 import traceback
-from ..models import Words, CorrectIncorrect, Sentences
+from ..models import Words, CorrectIncorrect, Sentences, Users, Themes
 from ..schemas import WordUpdateRequest
 from ..dependencies import db_dependency
 from ..config import templates
@@ -17,9 +17,14 @@ router = APIRouter(prefix='/words', tags=['words'])
 async def words_page(request: Request, db: db_dependency):
     try:
         user = await get_current_user(token=request.cookies.get('access_token'))
+
+        user_model = db.query(Users).filter(Users.id == user.get("id")).first()
+        theme_model = db.query(Themes).filter(Themes.id == user_model.theme_id).first()
+
         return templates.TemplateResponse('words.html', {
-            "request": request,
-            "user": user
+            'request': request,
+            'user': user,
+            'theme': theme_model
         })
     except:
         print(traceback.format_exc())

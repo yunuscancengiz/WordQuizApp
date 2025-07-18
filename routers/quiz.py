@@ -2,7 +2,7 @@ from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse, JSONResponse
 from sqlalchemy.exc import NoResultFound
 import traceback
-from ..models import Words, QuizStreaks
+from ..models import Words, QuizStreaks, Users, Themes
 from ..schemas import AnswerRequest
 from ..dependencies import db_dependency
 from ..config import templates
@@ -20,6 +20,9 @@ async def quiz_page(request: Request, db: db_dependency):
     try:
         user = await get_current_user(token=request.cookies.get('access_token'))
 
+        user_model = db.query(Users).filter(Users.id == user.get("id")).first()
+        theme_model = db.query(Themes).filter(Themes.id == user_model.theme_id).first()
+
         word, choices = get_random_quiz_word_and_choices(db=db, user_id=user.get('id'))
         if not word or not choices:
             return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={'error': 'No quiz data found.'})
@@ -30,6 +33,7 @@ async def quiz_page(request: Request, db: db_dependency):
         return templates.TemplateResponse('quiz.html', {
             'request': request,
             'user': user,
+            'theme': theme_model,
             'word': word,
             'choices': choices,
             'streak': streak

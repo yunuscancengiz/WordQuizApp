@@ -21,14 +21,14 @@ async def themes_page(request: Request, db: db_dependency):
     try:
         user = await get_current_user(token=request.cookies.get('access_token'))
 
+        user_model = db.query(Users).filter(Users.id == user.get("id")).first()
+        theme_model = db.query(Themes).filter(Themes.id == user_model.theme_id).first()
+
         all_themes = db.query(Themes).all()
         favorite_ids = {
             fav.theme_id
             for fav in db.query(UserThemeFavorite).filter(UserThemeFavorite.user_id == user.get('id')).all()
         }
-
-        user_model = db.query(Users).filter(Users.id == user.get("id")).first()
-        theme_model = db.query(Themes).filter(Themes.id == user_model.theme_id)
 
         themes = []
         for theme in all_themes:
@@ -47,7 +47,7 @@ async def themes_page(request: Request, db: db_dependency):
 
         return templates.TemplateResponse(
             'themes.html',
-            {'request': request, 'user': user, 'themes': themes, 'theme': 'theme_model'}
+            {'request': request, 'user': user, 'themes': themes, 'theme': theme_model}
         )
 
     except Exception as e:

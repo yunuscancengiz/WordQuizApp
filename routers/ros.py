@@ -2,7 +2,7 @@ from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse, JSONResponse
 from sqlalchemy.exc import NoResultFound
 import traceback
-from ..models import Sentences, QuizStreaks
+from ..models import Sentences, QuizStreaks, Users, Themes
 from ..schemas import SentenceAnswerRequest
 from ..dependencies import db_dependency
 from ..config import templates
@@ -19,6 +19,9 @@ router = APIRouter(prefix='/ros', tags=['ros'])
 async def ros_page(request: Request, db: db_dependency):
     try:
         user = await get_current_user(token=request.cookies.get('access_token'))
+
+        user_model = db.query(Users).filter(Users.id == user.get("id")).first()
+        theme_model = db.query(Themes).filter(Themes.id == user_model.theme_id).first()
         
         original_sentence, splitted_sentence = get_random_sentences(db=db, user_id=user.get('id'))
         if not original_sentence:
@@ -30,11 +33,14 @@ async def ros_page(request: Request, db: db_dependency):
             streak = streak_model.streak
 
         return templates.TemplateResponse('ros.html', {
-            'request': request,
-            'user': user,
-            'sentence': splitted_sentence,
-            'original_sentence': original_sentence,
-            'streak': streak})
+                    'request': request,
+                    'user': user,
+                    'theme': theme_model,
+                    'sentence': splitted_sentence,
+                    'original_sentence': original_sentence,
+                    'streak': streak
+                }
+            )
     except:
         print(traceback.format_exc())
         return redirect_to_login()

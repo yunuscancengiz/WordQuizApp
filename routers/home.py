@@ -25,7 +25,7 @@ async def home(request: Request, db: db_dependency):
             max_streak = streak_model.max_streak
 
         theme_id = db.query(Users.theme_id).filter(Users.id == user.get("id")).scalar()
-        theme = get_theme_by_id(db, theme_id)
+        theme = get_theme_by_id(db=db, theme_id=theme_id)
 
         return templates.TemplateResponse(
             "home.html",

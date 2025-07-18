@@ -20,7 +20,7 @@ async def show_search_page(request: Request, db: db_dependency):
     try:
         user = await get_current_user(token=request.cookies.get('access_token'))
         user_model = db.query(Users).filter(Users.id == user.get("id")).first()
-        theme_model = db.query(Themes).filter(Themes.id == user_model.theme_id)
+        theme_model = db.query(Themes).filter(Themes.id == user_model.theme_id).first()
         return templates.TemplateResponse('conjugation.html', {'request': request, 'user': user, 'theme': theme_model})
     except:
         print(traceback.format_exc())
@@ -33,7 +33,7 @@ async def show_conjugation(request: Request, db: db_dependency, verb: str):
         user = await get_current_user(token=request.cookies.get('access_token'))
 
         user_model = db.query(Users).filter(Users.id == user.get("id")).first()
-        theme_model = db.query(Themes).filter(Themes.id == user_model.theme_id)
+        theme_model = db.query(Themes).filter(Themes.id == user_model.theme_id).first()
         
         verb = verb.lower()
         data = verb_data.get('verbs', {}).get(verb)
@@ -42,6 +42,7 @@ async def show_conjugation(request: Request, db: db_dependency, verb: str):
             return templates.TemplateResponse('conjugation_table.html', {
                 'request': request,
                 'user': user,
+                'theme': theme_model,
                 'verb': verb,
                 'info': [],
                 'conjugations': [],
