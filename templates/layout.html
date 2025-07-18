@@ -5,26 +5,43 @@
   <title>Oui Chérie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <style>
+    :root {
+      --darkcolor: {{ theme.darkcolor }};
+      --midcolor: {{ theme.midcolor }};
+      --lightcolor: {{ theme.lightcolor }};
+    }
+
+    /* Tailwind sınıfları çalışmadıysa override etmek için */
+    .bg-lightcolor { background-color: var(--lightcolor) !important; }
+    .bg-midcolor { background-color: var(--midcolor) !important; }
+    .bg-darkcolor { background-color: var(--darkcolor) !important; }
+
+    .text-lightcolor { color: var(--lightcolor) !important; }
+    .text-midcolor { color: var(--midcolor) !important; }
+    .text-darkcolor { color: var(--darkcolor) !important; }
+  </style>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Tailwind Config (renkleri özelleştirmek istersen buraya ekleyebiliriz) -->
+  <!-- Tailwind Config (Kendi renk sisteminle uyumlu hale getirdik) -->
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            darkcolor: '{{ theme.darkcolor | default("#abea94") }}',
-            midcolor: '{{ theme.midcolor | default("#758073") }}',
-            lightcolor: '{{ theme.lightcolor | default("#050706") }}',
+            darkcolor: 'rgb(var(--darkcolor) / <alpha-value>)',
+            midcolor: 'rgb(var(--midcolor) / <alpha-value>)',
+            lightcolor: 'rgb(var(--lightcolor) / <alpha-value>)',
           }
         }
       }
     }
   </script>
 
-  <!-- Özel CSS (opsiyonel, eski style.css varsa) -->
+  <!-- Özel CSS -->
   <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
 
   <!-- Ortak JS Kitaplıkları -->
@@ -34,19 +51,20 @@
 <body class="bg-lightcolor text-darkcolor dark:bg-darkcolor dark:text-lightcolor transition-all duration-300 min-h-screen">
   
   {% include 'navbar.html' %}
-  
 
   <div class="container mx-auto px-4 py-8">
 
-  <!-- Dark Mode Toggle -->
-  <div class="flex justify-end mb-4">
-  <button onclick="toggleDarkMode()" class="bg-midcolor text-white px-4 py-2 rounded hover:bg-lightcolor hover:text-darkcolor transition">
-    🌓 Dark Mode
-  </button>
-  </div>
+    <!-- Dark Mode Toggle -->
+    <div class="flex justify-end mb-4">
+      <button onclick="toggleDarkMode()" class="bg-midcolor text-white px-4 py-2 rounded hover:bg-lightcolor hover:text-darkcolor transition">
+        🌓 Dark Mode
+      </button>
+    </div>
+
     {% block content %}
     {% endblock %}
   </div>
+
   <script src="{{ url_for('static', path='js/script.js') }}" defer></script>
   {% block scripts %}
   {% endblock %}

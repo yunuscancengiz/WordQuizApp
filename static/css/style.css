@@ -1,299 +1,77 @@
-
 :root {
-  --bg-color: #f7f7f7;
-  --text-color: #222;
-  --card-bg: #fff;
-  --border-color: #ddd;
-  --highlight-color: crimson;
-}
-
-body.dark {
-  --bg-color: #121212;
-  --text-color: #eaeaea;
-  --card-bg: #1e1e1e;
-  --border-color: #444;
-  --highlight-color: #ff6b6b;
+  --darkcolor: #abea94;
+  --midcolor: #758073;
+  --lightcolor: #050706;
 }
 
 body {
   font-family: Arial, sans-serif;
-  padding: 2rem;
   margin: 0;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: all 0.3s ease;
+  background-color: var(--lightcolor);
+  color: var(--darkcolor);
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 2rem;
+/* 🎨 Renk sınıfları (Tailwind class'larıyla paralel) */
+.bg-darkcolor {
+  background-color: var(--darkcolor) !important;
+  transition: background-color 0.5s ease;
 }
 
-.search-container {
-  position: relative;
-  width: fit-content;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 10px;
+.bg-midcolor {
+  background-color: var(--midcolor) !important;
+  transition: background-color 0.5s ease;
 }
 
-input[type="text"] {
-  width: 300px;
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+.bg-lightcolor {
+  background-color: var(--lightcolor) !important;
+  transition: background-color 0.5s ease;
 }
 
-button {
-  padding: 8px 16px;
-  font-size: 16px;
-  margin-left: 10px;
-  cursor: pointer;
-  border-radius: 4px;
-  border: none;
-  background-color: var(--highlight-color);
-  color: white;
+.text-darkcolor {
+  color: var(--darkcolor) !important;
+  transition: color 0.5s ease;
 }
 
-button:hover {
-  opacity: 0.9;
+.text-midcolor {
+  color: var(--midcolor) !important;
+  transition: color 0.5s ease;
 }
 
-.mode-toggle {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 6px 12px;
-  background-color: var(--card-bg);
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  cursor: pointer;
+.text-lightcolor {
+  color: var(--lightcolor) !important;
+  transition: color 0.5s ease;
 }
 
-.result {
-  margin-top: 30px;
+/* 🎯 Hover destekleri */
+.hover\:bg-lightcolor:hover {
+  background-color: var(--lightcolor) !important;
+  transition: background-color 0.3s ease;
 }
 
-.not-found {
-  color: red;
-  font-weight: bold;
-  margin-top: 20px;
+.hover\:text-darkcolor:hover {
+  color: var(--darkcolor) !important;
+  transition: color 0.3s ease;
 }
 
-.mode-block {
-  margin-top: 40px;
-}
-
-.mode-title {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  border-bottom: 2px solid var(--border-color);
-  padding-bottom: 5px;
-}
-
-.tense-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.tense-block {
-  flex: 1 1 30%;
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 10px;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.05);
-}
-
-.tense-title {
-  font-weight: bold;
-  margin-bottom: 8px;
-  font-size: 16px;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 4px;
-}
-
-.form-line {
-  margin: 4px 0;
-}
-
-.form-ending {
-  font-weight: bold;
-  color: var(--highlight-color);
-}
-
-.autocomplete-box {
-  position: absolute;
-  top: 38px;
-  left: 0;
-  width: 300px;
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  max-height: 180px;
-  overflow-y: auto;
-  z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  border-radius: 4px;
-}
-
-.autocomplete-box div {
-  padding: 8px;
-  cursor: pointer;
-}
-
-.autocomplete-box div:hover {
-  background-color: var(--highlight-color);
-  color: white;
-}
-
-#suggestions div.active {
-  background-color: var(--highlight-color);
-  color: white;
-}
-
-.info-list {
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  padding-left: 1.2rem;
-  line-height: 1.6;
-}
-
-/* 🎯 Responsive düzenlemeler */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 22px;
-  }
-
-  .search-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  input[type="text"] {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .autocomplete-box {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  button {
-    margin-left: 0;
-    margin-top: 10px;
-  }
-
-  .tense-block {
-    flex: 1 1 100%;
-  }
-
-  .tense-row {
-    gap: 15px;
-  }
-
-  .mode-title {
-    font-size: 18px;
-  }
-
-  .navbar-nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .navbar-nav .nav-item {
-    margin-left: 0;
-    margin-bottom: 5px;
-  }
-}
-
-/* ---------------------- Navbar özel stiller ------------------------- */
-
-.logo {
-  height: 80px;
-  vertical-align: middle;
-}
-
-.navbar-brand img {
-  height: 80px;
-}
-
-.navbar-nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.navbar-nav .nav-item {
-  margin-left: 10px;
-}
-
-.ml-auto {
-  margin-left: auto;
-}
-
-.navbar-collapse {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.navbar-nav .nav-link {
-  color: rgb(255, 0, 0) !important;
-  font-weight: 500;
-  padding: 8px 12px;
-}
-
-.navbar-nav .btn {
-  font-weight: 500;
-}
-
-.navbar-toggler {
-  border-color: rgb(255, 0, 0);
-}
-
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
-
-/* ---------------------- Dashboard layout ------------------------- */
-
-.dashboard {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 20px;
-}
-
-.left-panel {
-  flex: 2;
-  min-width: 300px;
-  height: 300px;
-  padding: 20px;
-}
-
-.right-panel {
-  flex: 1;
-  min-width: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.top-box, .bottom-box {
-  background-color: #f4f4f4;
-  padding: 15px;
-  margin: 10px;
+/* 🎯 Uyumlu kutular */
+.card {
+  background-color: var(--lightcolor);
+  color: var(--darkcolor);
+  border: 1px solid var(--midcolor);
   border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
 }
 
-.dark .top-box, .dark .bottom-box {
-  background-color: #222;
+/* ✅ Responsive utils */
+@media (max-width: 768px) {
+  .card {
+    padding: 0.75rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
 }

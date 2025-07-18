@@ -261,7 +261,16 @@ async def use_theme(request: Request, db: db_dependency, theme_id: int = Path(ge
         user_model.theme_id = theme_id
     db.commit()
     db.refresh(user_model)
-    return {'message': f'Theme set to "{theme.name}" successfully.', 'active_theme_id': user_model.theme_id}
+    
+    return {
+        'message': f'Theme set to "{theme.name}" successfully.',
+        'active_theme_id': user_model.theme_id,
+        'theme': {
+            'darkcolor': theme.darkcolor,
+            'midcolor': theme.midcolor,
+            'lightcolor': theme.lightcolor
+        }
+    }
 
 
 @router.delete('/{theme_id}')
