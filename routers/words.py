@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Path, Request, HTTPException, status
 from fastapi.responses import HTMLResponse, JSONResponse
-from sqlalchemy.exc import IntegrityError
 from ..models import Words, CorrectIncorrect, Sentences
-from ..schemas import WordRequest, WordUpdateRequest
+from ..schemas import WordUpdateRequest
 from ..dependencies import db_dependency
 from ..config import templates
 from ..utils.auth_utils import redirect_to_login, get_current_user
