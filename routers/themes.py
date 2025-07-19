@@ -122,7 +122,7 @@ async def list_favorite_themes(request: Request, db: db_dependency):
 @router.post('/create')
 async def create_theme(request: Request, db: db_dependency, create_theme_request: CreateThemeRequest):
     user = await get_current_user(token=request.cookies.get('access_token'))
-    if user.role != 'admin':
+    if user['user_role'] != 'admin':
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Not authorized! Only admins can add theme.')
     
     name = create_theme_request.name
@@ -175,7 +175,7 @@ async def create_theme(request: Request, db: db_dependency, create_theme_request
 async def bulk_create_themes(request: Request, db: db_dependency, theme_list: List[CreateThemeRequest]):
     user = await get_current_user(token=request.cookies.get('access_token'))
 
-    if user.role != 'admin':
+    if user['user_role'] != 'admin':
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail='Only admins can bulk create themes.')
 
     created = []
@@ -277,7 +277,7 @@ async def use_theme(request: Request, db: db_dependency, theme_id: int = Path(ge
 async def delete_theme(request: Request, db: db_dependency, theme_id: int = Path(ge=0)):
     user = await get_current_user(token=request.cookies.get('access_token'))
 
-    if user.role != 'admin':
+    if user['user_role'] != 'admin':
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail='Only admins can delete themes.')
 
     theme = db.query(Themes).filter_by(id=theme_id).first()

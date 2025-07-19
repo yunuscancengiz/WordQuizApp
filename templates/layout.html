@@ -13,19 +13,24 @@
         extend: {
           colors: {
             darkcolor: 'rgb(var(--darkcolor) / <alpha-value>)',
-            midcolor: 'rgb(var(--midcolor) / <alpha-value>)',
-            lightcolor: 'rgb(var(--lightcolor) / <alpha-value>)',
-          }
-        }
-      }
+            midcolor:  'rgb(var(--midcolor) / <alpha-value>)',
+            lightcolor:'rgb(var(--lightcolor) / <alpha-value>)',
+          },
+        },
+      },
     }
   </script>
 
   <style>
-    html.dark {
+    :root {
       --darkcolor: {{ theme.darkcolor }};
       --midcolor: {{ theme.midcolor }};
       --lightcolor: {{ theme.lightcolor }};
+    }
+    html.dark {
+      --darkcolor: {{ theme.lightcolor }};
+      --midcolor: {{ theme.midcolor }};
+      --lightcolor: {{ theme.darkcolor }};
     }
   </style>
 
@@ -42,7 +47,6 @@
         🌃 Dark Mode
       </button>
     </div>
-
     {% block content %}{% endblock %}
   </div>
 

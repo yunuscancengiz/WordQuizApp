@@ -1,43 +1,56 @@
-// Sayfa yüklenmeden önce dark mode sınıfını ekle
-(function applySavedThemeEarly() {
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-})();
+// // Sayfa yüklenmeden önce dark mode sınıfını ekle
+// (function applySavedThemeEarly() {
+//   const savedTheme = localStorage.getItem("theme");
+//   if (savedTheme === "dark") {
+//     document.documentElement.classList.add("dark");
+//   } else {
+//     document.documentElement.classList.remove("dark");
+//   }
+// })();
 
-// Toggle butonuna basıldığında dark/light değiştir
+// // Toggle butonuna basıldığında dark/light değiştir
+// function toggleDarkMode() {
+//   const html = document.documentElement;
+//   const isDark = html.classList.contains("dark");
+
+//   if (isDark) {
+//     html.classList.remove("dark");
+//     localStorage.setItem("theme", "light");
+//   } else {
+//     html.classList.add("dark");
+//     localStorage.setItem("theme", "dark");
+//   }
+
+//   // Yeniden applyThemeColors çağrılarak renkler doğru uygulanır
+//   applyStoredThemeColors();
+// }
+
+// // Sayfa yüklendikten sonra kaydedilen tema renklerini uygula
+// document.addEventListener("DOMContentLoaded", () => {
+//   applyStoredThemeColors();
+// });
+
+// function applyStoredThemeColors() {
+//   const theme = JSON.parse(localStorage.getItem("activeTheme"));
+//   if (theme) {
+//     document.documentElement.style.setProperty("--darkcolor", theme.darkcolor);
+//     document.documentElement.style.setProperty("--midcolor", theme.midcolor);
+//     document.documentElement.style.setProperty("--lightcolor", theme.lightcolor);
+//   }
+// }
+
+
 function toggleDarkMode() {
   const html = document.documentElement;
-  const isDark = html.classList.contains("dark");
-
-  if (isDark) {
-    html.classList.remove("dark");
-    localStorage.setItem("theme", "light");
-  } else {
-    html.classList.add("dark");
-    localStorage.setItem("theme", "dark");
-  }
-
-  // Yeniden applyThemeColors çağrılarak renkler doğru uygulanır
-  applyStoredThemeColors();
+  const isDark = html.classList.toggle('dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
 
-// Sayfa yüklendikten sonra kaydedilen tema renklerini uygula
-document.addEventListener("DOMContentLoaded", () => {
-  applyStoredThemeColors();
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('theme');
+  const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.classList.add(saved || prefers);
 });
-
-function applyStoredThemeColors() {
-  const theme = JSON.parse(localStorage.getItem("activeTheme"));
-  if (theme) {
-    document.documentElement.style.setProperty("--darkcolor", theme.darkcolor);
-    document.documentElement.style.setProperty("--midcolor", theme.midcolor);
-    document.documentElement.style.setProperty("--lightcolor", theme.lightcolor);
-  }
-}
 
 
 

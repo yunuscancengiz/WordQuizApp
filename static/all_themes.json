@@ -173,5 +173,66 @@
     "midcolor": "#456677",
     "lightcolor": "#b5db5a",
     "is_default": false
+  },
+  {
+    "name": "classic I",
+    "darkcolor": "#1E1E1E",
+    "midcolor": "#3B4252",
+    "lightcolor": "#ECEFF4"
+  },
+  {
+    "name": "classic II",
+    "darkcolor": "#121212",
+    "midcolor": "#4a566a",
+    "lightcolor": "#f8f9fa"
+  },
+  {
+    "name": "Nord",
+    "darkcolor": "#2E3440",
+    "midcolor": "#4C566A",
+    "lightcolor": "#D8DEE9"
+  },
+  {
+    "name": "Dracula",
+    "darkcolor": "#282A36",
+    "midcolor": "#6272A4",
+    "lightcolor": "#F8F8F2"
+  },
+  {
+    "name": "Midnight Blue",
+    "darkcolor": "#0F172A",
+    "midcolor": "#334155",
+    "lightcolor": "#E2E8F0"
+  },
+  {
+    "name": "Earth Tones",
+    "darkcolor": "#2D2A26",
+    "midcolor": "#8D6E63",
+    "lightcolor": "#F5F5DC"
+  },
+  {
+    "name": "Minimal Gray",
+    "darkcolor": "#212121",
+    "midcolor": "#9E9E9E",
+    "lightcolor": "#FAFAFA"
+  },
+  {
+    "name": "Modern Green",
+    "darkcolor": "#1B4332",
+    "midcolor": "#40916C",
+    "lightcolor": "#D8F3DC"
+  },
+  {
+    "name": "Ocean Breeze",
+    "darkcolor": "#003049",
+    "midcolor": "#669BBC",
+    "lightcolor": "#FDF0D5"
+  },
+  {
+    "name": "Vintage Sepia",
+    "darkcolor": "#3E2723",
+    "midcolor": "#795548",
+    "lightcolor": "#FFF8E1"
   }
+
 ]
