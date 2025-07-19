@@ -17,10 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
           document.getElementById("message").classList.remove("hidden");
           document.getElementById("message").textContent = "✅ Theme updated.";
 
-          // 🎨 Yeni renkleri anında uygula
-          if (data.theme) {
-            applyThemeColors(data.theme);
-          }
+          // Temayı uygula ve localStorage'a kaydet
+          applyThemeColors(data.theme);
+          localStorage.setItem("activeTheme", JSON.stringify(data.theme));
         } else {
           alert("Failed to update theme.");
         }
@@ -30,27 +29,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-
-  function applyThemeColors(theme) {
-    if (!theme) return;
-
-    // Eski geçici stil varsa kaldır
-    const oldStyle = document.getElementById("dynamic-theme-style");
-    if (oldStyle) oldStyle.remove();
-
-    // Yeni stil etiketi oluştur ve güncel renkleri yaz
-    const style = document.createElement("style");
-    style.id = "dynamic-theme-style";
-    style.innerHTML = `
-      :root {
-        --darkcolor: ${theme.darkcolor};
-        --midcolor: ${theme.midcolor};
-        --lightcolor: ${theme.lightcolor};
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Gerekirse Tailwind dark class'ını da koru
-    document.documentElement.classList.add("dark");
-  }
 });
+
+function applyThemeColors(theme) {
+  if (!theme) return;
+  document.documentElement.style.setProperty('--darkcolor', theme.darkcolor);
+  document.documentElement.style.setProperty('--midcolor', theme.midcolor);
+  document.documentElement.style.setProperty('--lightcolor', theme.lightcolor);
+}

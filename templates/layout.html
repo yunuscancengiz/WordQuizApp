@@ -1,31 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Oui Chérie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root {
-      --darkcolor: {{ theme.darkcolor }};
-      --midcolor: {{ theme.midcolor }};
-      --lightcolor: {{ theme.lightcolor }};
-    }
-
-    /* Tailwind sınıfları çalışmadıysa override etmek için */
-    .bg-lightcolor { background-color: var(--lightcolor) !important; }
-    .bg-midcolor { background-color: var(--midcolor) !important; }
-    .bg-darkcolor { background-color: var(--darkcolor) !important; }
-
-    .text-lightcolor { color: var(--lightcolor) !important; }
-    .text-midcolor { color: var(--midcolor) !important; }
-    .text-darkcolor { color: var(--darkcolor) !important; }
-  </style>
-
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Tailwind Config (Kendi renk sisteminle uyumlu hale getirdik) -->
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -41,32 +21,33 @@
     }
   </script>
 
-  <!-- Özel CSS -->
-  <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+  <style>
+    html.dark {
+      --darkcolor: {{ theme.darkcolor }};
+      --midcolor: {{ theme.midcolor }};
+      --lightcolor: {{ theme.lightcolor }};
+    }
+  </style>
 
-  <!-- Ortak JS Kitaplıkları -->
+  <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="bg-lightcolor text-darkcolor dark:bg-darkcolor dark:text-lightcolor transition-all duration-300 min-h-screen">
-  
   {% include 'navbar.html' %}
 
   <div class="container mx-auto px-4 py-8">
-
-    <!-- Dark Mode Toggle -->
     <div class="flex justify-end mb-4">
       <button onclick="toggleDarkMode()" class="bg-midcolor text-white px-4 py-2 rounded hover:bg-lightcolor hover:text-darkcolor transition">
-        🌓 Dark Mode
+        🌃 Dark Mode
       </button>
     </div>
 
-    {% block content %}
-    {% endblock %}
+    {% block content %}{% endblock %}
   </div>
 
   <script src="{{ url_for('static', path='js/script.js') }}" defer></script>
-  {% block scripts %}
-  {% endblock %}
+  <script src="{{ url_for('static', path='js/themes_script.js') }}" defer></script>
+  {% block scripts %}{% endblock %}
 </body>
 </html>
