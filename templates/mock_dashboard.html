@@ -3,40 +3,67 @@
 {% block content %}
 
 <!-- Mock Dashboard with Multiple Charts -->
-<div class="grid grid-cols-1 gap-8 p-6">
+<div class="grid lg:grid-cols-2 gap-6 p-4">
 
-  <!-- Max Streak & Question Count Line Chart -->
-  <div class="bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow overflow-x-auto">
+  <!-- Max Streak & Question Count -->
+  <div class="col-span-2 bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow overflow-x-auto">
     <div class="flex items-center justify-between mb-2">
       <h2 class="text-xl font-semibold">📈 Daily Max Streak & Question Count</h2>
       <button onclick="scrollToToday()" class="bg-midcolor text-lightcolor px-3 py-1 rounded hover:bg-lightcolor hover:text-darkcolor transition">⏩ Today</button>
     </div>
-    <div style="width: 3600px; min-width: 100%;">
-      <canvas id="streakChart" height="200"></canvas>
+    <div style="width: 100%; min-width: 100%; height: 280px;">
+      <canvas id="streakChart"></canvas>
     </div>
   </div>
 
-  <!-- Most Incorrect Words (Stacked Bar) -->
+  <!-- Most Incorrect Words -->
   <div class="bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow">
     <h2 class="text-xl font-semibold mb-4">📚 Most Challenging Words</h2>
-    <canvas id="hardestWordsChart"></canvas>
+    <div style="height: 250px;">
+      <canvas id="hardestWordsChart"></canvas>
+    </div>
   </div>
 
   <!-- Quiz Max Streak -->
   <div class="bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow">
-    <h2 class="text-xl font-semibold mb-4">🏆 Quiz Max Streak</h2>
-    <canvas id="quizChart"></canvas>
+    <h2 class="text-xl font-semibold mb-4">🏆 Quiz Max Streak & Question Count</h2>
+    <div style="height: 250px;">
+      <canvas id="quizChart"></canvas>
+    </div>
   </div>
 
-  <!-- Correct vs Incorrect -->
+  <!-- Accuracy -->
   <div class="bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow">
     <h2 class="text-xl font-semibold mb-4">✅ Accuracy</h2>
-    <canvas id="accuracyChart"></canvas>
+    <div class="flex justify-center" style="height: 250px;">
+      <canvas id="accuracyChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Most Correct Words -->
+  <div class="bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow">
+    <h2 class="text-xl font-semibold mb-4">🌟 Most Mastered Words</h2>
+    <div style="height: 250px;">
+      <canvas id="mostCorrectWordsChart"></canvas>
+    </div>
   </div>
 
 </div>
 
 <script>
+  const COLORS = {
+    primary: '#4361ee',
+    secondary: '#f72585',
+    highlight: '#4cc9f0',
+    warning: '#ff9f1c',
+    success: '#80ed99',
+    danger: '#ef233c',
+    lightGray: '#e0e0e0',
+    darkGray: '#6c757d',
+    vibrantGreen: '#38b000',
+    vibrantRed: '#d00000'
+  };
+
   const today = new Date();
   const labels = [];
   const maxStreaks = [];
@@ -59,25 +86,25 @@
       labels: labels,
       datasets: [
         {
-          label: 'Max Streak',
+          label: '🔥 Max Streak',
           data: maxStreaks,
-          borderColor: '#00b4d8',
-          backgroundColor: '#00b4d8',
-          tension: 0.3,
-          spanGaps: false,
-          pointRadius: 2,
-          pointHoverRadius: 6,
+          borderColor: COLORS.primary,
+          backgroundColor: COLORS.primary,
+          tension: 0.4,
+          fill: false,
+          pointRadius: 3,
+          pointHoverRadius: 7,
           yAxisID: 'y'
         },
         {
-          label: 'Question Count',
+          label: '❓ Questions',
           data: questionCounts,
-          borderColor: '#ff9f1c',
-          backgroundColor: '#ff9f1c',
-          tension: 0.3,
-          spanGaps: false,
-          pointRadius: 2,
-          pointHoverRadius: 6,
+          borderColor: COLORS.warning,
+          backgroundColor: COLORS.warning,
+          tension: 0.4,
+          fill: false,
+          pointRadius: 3,
+          pointHoverRadius: 7,
           yAxisID: 'y1'
         }
       ]
@@ -85,40 +112,35 @@
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      interaction: {
+        mode: 'index',
+        intersect: false
+      },
       scales: {
         x: {
-          ticks: {
-            maxRotation: 90,
-            minRotation: 45
-          },
+          ticks: { color: COLORS.darkGray, maxRotation: 45, minRotation: 45 },
+          // grid: { color: COLORS.lightGray },
           min: labels.length - 60,
           max: labels.length - 1
         },
         y: {
           beginAtZero: true,
-          title: {
-            display: true,
-            text: 'Max Streak'
-          },
+          ticks: { color: COLORS.primary },
+          // grid: { color: COLORS.lightGray },
+          title: { display: true, text: 'Max Streak', color: COLORS.primary },
           position: 'left'
         },
         y1: {
           beginAtZero: true,
-          title: {
-            display: true,
-            text: 'Question Count'
-          },
-          position: 'right',
-          grid: { drawOnChartArea: false }
+          ticks: { color: COLORS.warning },
+          grid: { drawOnChartArea: false },
+          title: { display: true, text: 'Question Count', color: COLORS.warning },
+          position: 'right'
         }
       },
       plugins: {
-        tooltip: {
-          callbacks: {
-            title: context => `Date: ${context[0].label}`,
-            label: context => `${context.dataset.label}: ${context.raw ?? 'No activity'}`
-          }
-        }
+        tooltip: { backgroundColor: '#222', titleColor: '#fff', bodyColor: '#fff' },
+        legend: { labels: { color: COLORS.darkGray } }
       }
     }
   });
@@ -128,67 +150,96 @@
     container.scrollLeft = container.scrollWidth;
   }
 
-  const accuracyChart = new Chart(document.getElementById('accuracyChart'), {
+  new Chart(document.getElementById('accuracyChart'), {
     type: 'doughnut',
     data: {
       labels: ['Correct', 'Incorrect'],
       datasets: [{
         label: 'Answer Accuracy',
         data: [128, 47],
-        backgroundColor: ['#38b000', '#d00000']
+        backgroundColor: [COLORS.vibrantGreen, COLORS.vibrantRed],
+        borderRadius: 6
       }]
     },
-    options: { responsive: true }
+    options: {
+      responsive: true,
+      plugins: {
+        tooltip: { backgroundColor: '#222', titleColor: '#fff', bodyColor: '#fff' },
+        legend: { labels: { color: COLORS.darkGray }, position: 'bottom' }
+      }
+    }
   });
 
-  const quizChart = new Chart(document.getElementById('quizChart'), {
+  new Chart(document.getElementById('quizChart'), {
     type: 'bar',
     data: {
-      labels: ['Max Quiz Streak'],
-      datasets: [{
-        label: 'Quiz Max Streak',
-        data: [22],
-        backgroundColor: '#3A86FF'
-      }]
+      labels: ['Today'],
+      datasets: [
+        { label: 'Quiz Max Streak', data: [22], backgroundColor: COLORS.primary, borderRadius: 6 },
+        { label: 'Question Count', data: [37], backgroundColor: COLORS.warning, borderRadius: 6 }
+      ]
     },
-    options: { responsive: true }
+    options: {
+      responsive: true,
+      plugins: {
+        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.raw}` }, backgroundColor: '#222', titleColor: '#fff', bodyColor: '#fff' },
+        legend: { position: 'bottom', labels: { color: COLORS.darkGray } }
+      },
+      scales: { y: { beginAtZero: true, ticks: { stepSize: 5, color: COLORS.darkGray }, grid: { color: COLORS.lightGray } } }
+    }
   });
 
-  const hardestWordsChart = new Chart(document.getElementById('hardestWordsChart'), {
+  new Chart(document.getElementById('hardestWordsChart'), {
     type: 'bar',
     data: {
       labels: ['abandonner', 'mériter', 'se plaindre', 'vaincre', 'résoudre'],
       datasets: [
-        {
-          label: 'Incorrect',
-          data: [12, 10, 9, 8, 7],
-          backgroundColor: '#d00000'
-        },
-        {
-          label: 'Correct',
-          data: [4, 6, 3, 2, 1],
-          backgroundColor: '#38b000'
-        }
+        { label: 'Incorrect', data: [12, 10, 9, 8, 7], backgroundColor: COLORS.vibrantRed, borderRadius: 6 },
+        { label: 'Correct', data: [4, 6, 3, 2, 1], backgroundColor: COLORS.vibrantGreen, borderRadius: 6 }
       ]
     },
     options: {
       responsive: true,
       indexAxis: 'y',
       scales: {
-        x: {
-          stacked: true,
-          max: 15
-        },
-        y: {
-          stacked: true
-        }
+        x: { stacked: true, max: 30, grid: { color: COLORS.lightGray }, ticks: { color: COLORS.darkGray } },
+        y: { stacked: true, ticks: { color: COLORS.darkGray } }
       },
       plugins: {
         tooltip: {
           callbacks: {
-            label: context => `${context.dataset.label}: ${context.raw}${context.raw >= 15 ? ' (capped)' : ''}`
-          }
-        }
+            label: ctx => `${ctx.dataset.label}: ${ctx.raw}${ctx.raw >= 15 ? ' (capped)' : ''}`
+          },
+          backgroundColor: '#222',
+          titleColor: '#fff',
+          bodyColor: '#fff'
+        },
+        legend: { labels: { color: COLORS.darkGray } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('mostCorrectWordsChart'), {
+    type: 'bar',
+    data: {
+      labels: ['finir', 'apprendre', 'boire', 'voir', 'entendre'],
+      datasets: [{
+        label: 'Correct Count',
+        data: [24, 21, 18, 15, 13],
+        backgroundColor: COLORS.success,
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      indexAxis: 'y',
+      scales: {
+        x: { beginAtZero: true, grid: { color: COLORS.lightGray }, ticks: { color: COLORS.darkGray } },
+        y: { ticks: { color: COLORS.darkGray } }
+      },
+      plugins: {
+        tooltip: { backgroundColor: '#222', titleColor: '#fff', bodyColor: '#fff' },
+        legend: { labels: { color: COLORS.darkGray } }
       }
     }
   });
