@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse, JSONResponse
-from sqlalchemy.exc import NoResultFound
 import traceback
 from ..models import Words, QuizStreaks, Users, Themes
 from ..schemas import AnswerRequest
@@ -8,6 +7,7 @@ from ..dependencies import db_dependency
 from ..config import templates
 from ..utils.db_utils import get_random_quiz_word_and_choices
 from ..utils.auth_utils import redirect_to_login, get_current_user
+from ..utils.check_answer_utils import handle_answer_evaluation
 
 
 router = APIRouter(prefix='/quiz', tags=['quiz'])
@@ -61,31 +61,14 @@ async def check_quiz_answer(request: Request, db: db_dependency, answer_request:
     user_answer = answer_request.user_answer.casefold().strip()
     is_correct = correct_meaning == user_answer
 
-    try:
-        streak_model = db.query(QuizStreaks).filter(QuizStreaks.owner_id == user.get('id')).one()
-    except NoResultFound:
-        streak_model = QuizStreaks(owner_id=user.get('id'), streak=0, max_streak=0)
-        db.add(streak_model)
-        db.commit()
-        db.refresh(streak_model)
-
-    if is_correct:
-        streak_model.streak += 1
-        streak_model.max_streak = max(streak_model.streak, streak_model.max_streak)
-    else:
-        streak_model.streak = 0
-    streak_model.question_count += 1
-    db.commit()
-
-    return JSONResponse(
-        status_code=status.HTTP_200_OK,
-        content={
-            'result': 'correct' if is_correct else 'incorrect',
-            'correct_answer': correct_meaning,
-            'streak': streak_model.streak,
-            'max_streak': streak_model.max_streak
-        }
+    return handle_answer_evaluation(
+        word_id=word_model.id,
+        user_id=user.get('id'),
+        is_correct=is_correct,
+        correct_meaning=correct_meaning,
+        db=db
     )
+
 
 
 @router.get('/next')

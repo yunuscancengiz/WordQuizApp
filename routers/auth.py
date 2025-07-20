@@ -17,7 +17,7 @@ router = APIRouter(prefix='/auth', tags=['auth'])
 @router.get('/login-page', name="login-page")
 def render_login_page(request: Request, db: db_dependency):
     default_theme = db.query(Themes).filter(Themes.is_default == True).first()
-    return templates.TemplateResponse('mock_dashboard.html', {'request': request, 'theme': default_theme})
+    return templates.TemplateResponse('login.html', {'request': request, 'theme': default_theme})
 
 
 @router.get('/register-page', name="register-page")

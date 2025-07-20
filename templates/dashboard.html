@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!-- Dashboard Chart Container -->
+<div class="grid lg:grid-cols-2 gap-6 p-4">
+
+  <!-- Max Streak & Question Count -->
+  <div class="col-span-2 bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow overflow-x-auto">
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="text-xl font-semibold">📈 Daily Max Streak & Question Count</h2>
+      <button onclick="scrollToToday()" class="bg-midcolor text-lightcolor px-3 py-1 rounded hover:bg-lightcolor hover:text-darkcolor transition">⏩ Today</button>
+    </div>
+    <div style="width: 100%; min-width: 100%; height: 280px;">
+      <canvas id="streakChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Most Incorrect Words -->
+  <div class="bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow">
+    <h2 class="text-xl font-semibold mb-4">📚 Most Challenging Words</h2>
+    <div style="height: 250px;">
+      <canvas id="hardestWordsChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Quiz Max Streak -->
+  <div class="bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow">
+    <h2 class="text-xl font-semibold mb-4">🏆 Quiz Max Streak & Question Count</h2>
+    <div style="height: 250px;">
+      <canvas id="quizChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Accuracy -->
+  <div class="bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow">
+    <h2 class="text-xl font-semibold mb-4">✅ Accuracy</h2>
+    <div class="flex justify-center" style="height: 250px;">
+      <canvas id="accuracyChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Most Correct Words -->
+  <div class="bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow">
+    <h2 class="text-xl font-semibold mb-4">🌟 Most Mastered Words</h2>
+    <div style="height: 250px;">
+      <canvas id="mostCorrectWordsChart"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<!-- External JS script for charts -->
+<script>
+  const dashboardData = {{ dashboard_data | tojson | safe }};
+</script>
+<script src="{{ url_for('static', path='/js/dashboard_script.js') }}"></script>
+
+{% endblock %}

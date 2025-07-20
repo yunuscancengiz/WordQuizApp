@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse, JSONResponse
-from sqlalchemy.exc import NoResultFound
 import traceback
 from ..models import Sentences, QuizStreaks, Users, Themes
 from ..schemas import SentenceAnswerRequest
@@ -8,6 +7,7 @@ from ..dependencies import db_dependency
 from ..config import templates
 from ..utils.db_utils import get_random_sentences
 from ..utils.auth_utils import redirect_to_login, get_current_user
+from ..utils.check_answer_utils import handle_answer_evaluation
 
 
 router = APIRouter(prefix='/ros', tags=['ros'])
@@ -52,41 +52,27 @@ async def ros_page(request: Request, db: db_dependency):
 async def check_answer(request: Request, db: db_dependency, sentence_answer_request: SentenceAnswerRequest):
     user = await get_current_user(token=request.cookies.get('access_token'))
 
-    sentence_model = db.query(Sentences).filter(Sentences.owner_id == user.get('id'), Sentences.sentence == sentence_answer_request.current_sentence).first()
+    sentence_model = db.query(Sentences).filter(
+        Sentences.owner_id == user.get('id'),
+        Sentences.sentence == sentence_answer_request.current_sentence
+    ).first()
+
     if not sentence_model:
         return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={'result': 'not_found'})
     
     correct_sentence = sentence_model.sentence.casefold().strip().rstrip('.')
-
     user_response = " ".join(sentence_answer_request.user_answer.casefold().split())
-    correct = " ".join(correct_sentence.casefold().split())
+    correct = " ".join(correct_sentence.split())
     is_correct = user_response == correct
 
-    try:
-        streak_model = db.query(QuizStreaks).filter(QuizStreaks.owner_id == user.get('id')).one()
-    except NoResultFound:
-        streak_model = QuizStreaks(owner_id=user.get('id'), streak=0, max_streak=0)
-        db.add(streak_model)
-        db.commit()
-        db.refresh(streak_model)
-
-    if is_correct:
-        streak_model.streak += 1
-        streak_model.max_streak = max(streak_model.streak, streak_model.max_streak)
-    else:
-        streak_model.streak = 0
-    streak_model.question_count += 1
-    db.commit()
-
-    return JSONResponse(
-        status_code=status.HTTP_200_OK,
-        content={
-            'result': 'correct' if is_correct else 'incorrect',
-            'correct_answer': correct_sentence,
-            'streak': streak_model.streak,
-            'max_streak': streak_model.max_streak
-        }
+    return handle_answer_evaluation(
+        word_id=sentence_model.word_id,
+        user_id=user.get('id'),
+        is_correct=is_correct,
+        correct_meaning=correct_sentence,
+        db=db
     )
+
 
 
 @router.get('/next')

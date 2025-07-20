@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse, JSONResponse
-from sqlalchemy.exc import NoResultFound
 import traceback
-from ..models import Words, QuizStreaks, CorrectIncorrect, Users, Themes
+from ..models import Words, QuizStreaks, Users, Themes
 from ..schemas import AnswerRequest
 from ..dependencies import db_dependency
 from ..config import templates
 from ..utils.db_utils import get_random_word_and_sentences
 from ..utils.auth_utils import redirect_to_login, get_current_user
+from ..utils.check_answer_utils import handle_answer_evaluation
 
 
 router = APIRouter(prefix='/flashcards', tags=['flashcards'])
@@ -51,56 +51,25 @@ async def flashcards_page(request: Request, db: db_dependency):
 async def check_answer(request: Request, db: db_dependency, answer_request: AnswerRequest):
     user = await get_current_user(token=request.cookies.get('access_token'))
     
-    word_model = db.query(Words).filter(Words.owner_id == user.get('id'), Words.word == answer_request.current_word).first()
+    word_model = db.query(Words).filter(
+        Words.owner_id == user.get('id'),
+        Words.word == answer_request.current_word
+    ).first()
+
     if not word_model:
         return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={'result': 'not_found'})
     
     correct_meaning = word_model.meaning.casefold().strip()
     is_correct = correct_meaning == answer_request.user_answer.casefold().strip()
 
-    # update quiz_streaks table
-    try:
-        streak_model = db.query(QuizStreaks).filter(QuizStreaks.owner_id == user.get('id')).one()
-    except NoResultFound:
-        streak_model = QuizStreaks(owner_id=user.get('id'), streak=0, max_streak=0)
-        db.add(streak_model)
-        db.commit()
-        db.refresh(streak_model)
-
-    if is_correct:
-        streak_model.streak += 1
-        streak_model.max_streak = max(streak_model.streak, streak_model.max_streak)
-    else:
-        streak_model.streak = 0
-    streak_model.question_count += 1
-    db.commit()
-
-    # update correct_incorrect table
-    correct_incorrect_model = db.query(CorrectIncorrect).filter(
-        CorrectIncorrect.word_id == word_model.id,
-        CorrectIncorrect.owner_id == user.get('id')
-    ).first()
-
-    if correct_incorrect_model:
-        correct_incorrect_model.is_last_time_correct = is_correct
-    else:
-        correct_incorrect_model = CorrectIncorrect(
-            word_id=word_model.id,
-            owner_id=user.get('id'),
-            is_last_time_correct=is_correct
-        )
-        db.add(correct_incorrect_model)
-    db.commit()
-
-    return JSONResponse(
-        status_code=status.HTTP_200_OK,
-        content={
-            'result': 'correct' if is_correct else 'incorrect',
-            'correct_answer': correct_meaning,
-            'streak': streak_model.streak,
-            'max_streak': streak_model.max_streak
-        }
+    return handle_answer_evaluation(
+        word_id=word_model.id,
+        user_id=user.get('id'),
+        is_correct=is_correct,
+        correct_meaning=correct_meaning,
+        db=db
     )
+
 
 
 @router.get('/next')
