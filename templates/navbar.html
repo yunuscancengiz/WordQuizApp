@@ -1,77 +1,66 @@
-<!-- Navbar -->
-<nav class="bg-darkcolor dark:bg-lightcolor text-lightcolor dark:text-darkcolor w-full">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap">
+<!-- Enhanced Navbar -->
+<nav class="bg-darkcolor dark:bg-lightcolor text-lightcolor dark:text-darkcolor w-full shadow-md">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
     <!-- Logo -->
-    <div class="flex items-center flex-shrink-0 mr-6">
+    <div class="flex items-center gap-2">
       <a href="/">
-        <!-- Dark mode için darkcolor logo -->
-        <img src="{{ url_for('static', path='/logo/logo_black.png') }}" 
-            alt="Oui Chérie Logo (dark mode)" 
-            class="h-20 hidden dark:block">
-
-        <!-- Light mode için lightcolor logo -->
-        <img src="{{ url_for('static', path='/logo/logo_white.png') }}" 
-            alt="Oui Chérie Logo (light mode)" 
-            class="h-20 block dark:hidden">
+        <img src="{{ url_for('static', path='/logo/logo_black.png') }}" alt="Oui Chérie Logo (dark mode)" class="h-12 hidden dark:block">
+        <img src="{{ url_for('static', path='/logo/logo_white.png') }}" alt="Oui Chérie Logo (light mode)" class="h-12 block dark:hidden">
       </a>
     </div>
 
-    <!-- Hamburger Menu Button -->
-    <div class="block md:hidden">
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden">
       <button class="text-lightcolor dark:text-darkcolor focus:outline-none" onclick="toggleNavbar()">
-        <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
           <path d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
     </div>
 
     <!-- Menu -->
-    <div id="navbar-menu" class="w-full md:flex md:items-center md:w-auto hidden md:block">
-      <ul class="md:flex md:space-x-6 text-sm font-medium">
-        {% if user %}
-        <li><a href="/flashcards" class="hover:text-midcolor transition">Flashcard</a></li>
-        <li><a href="/ros" class="hover:text-midcolor transition">ROS</a></li>
-        <li><a href="/quiz" class="hover:text-midcolor transition">Quiz</a></li>
-        <li><a href="/words" class="hover:text-midcolor transition">Words</a></li>
-        <li><a href="/conjugations" class="hover:text-midcolor transition">Conjugations</a></li>
-        <li><a href="/profile" class="hover:text-midcolor transition">Profile</a></li>
-        {% endif %}
-      </ul>
+    <div id="navbar-menu" class="hidden md:flex md:items-center md:space-x-6 text-sm font-medium">
+      {% if user %}
+        <a href="/flashcards" class="hover:text-midcolor transition flex items-center gap-1"><i class="fa-solid fa-clone"></i> Flashcard</a>
+        <a href="/ros" class="hover:text-midcolor transition flex items-center gap-1"><i class="fa-solid fa-shuffle"></i> ROS</a>
+        <a href="/quiz" class="hover:text-midcolor transition flex items-center gap-1"><i class="fa-solid fa-circle-question"></i> Quiz</a>
+        <a href="/words" class="hover:text-midcolor transition flex items-center gap-1"><i class="fa-solid fa-book"></i> Words</a>
+        <a href="/conjugations" class="hover:text-midcolor transition flex items-center gap-1"><i class="fa-solid fa-code-branch"></i> Conjugations</a>
+      {% endif %}
+    </div>
 
-      <ul class="mt-4 md:mt-0 md:ml-auto md:flex md:items-center md:space-x-4 text-sm">
-        {% if not user %}
-        <li><a href="{{ url_for('login-page') }}" class="hover:text-midcolor transition">Login</a></li>
-        <li><a href="{{ url_for('register-page') }}" class="hover:text-midcolor transition">Sign Up</a></li>
-        {% else %}
-        <li>
-          <button onclick="logout()" 
-                  class="border border-lightcolor dark:border-darkcolor 
-                         text-lightcolor dark:text-darkcolor 
-                         hover:bg-lightcolor dark:hover:bg-darkcolor 
-                         hover:text-darkcolor dark:hover:text-lightcolor 
-                         px-3 py-1 rounded transition duration-300">
-            Logout
-          </button>
-        </li>
-        {% endif %}
-      </ul>
+    <!-- Auth & Profile -->
+    <div class="relative ml-4">
+      {% if not user %}
+        <a href="{{ url_for('login-page') }}" class="hover:text-midcolor transition mr-4">Login</a>
+        <a href="{{ url_for('register-page') }}" class="hover:text-midcolor transition">Sign Up</a>
+      {% else %}
+        <button onclick="toggleDropdown()" class="flex items-center gap-2 hover:text-midcolor transition">
+          <i class="fa-solid fa-user-circle text-xl"></i> {{ user.sub }}
+          <svg class="h-4 w-4 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.23 8.29a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+        </button>
+        <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-lightcolor dark:bg-darkcolor border border-midcolor rounded shadow-lg z-50">
+          <a href="/profile" class="block px-4 py-2 hover:bg-midcolor text-darkcolor dark:text-lightcolor hover:text-lightcolor transition">👤 Profile</a>
+          <a href="/themes" class="block px-4 py-2 hover:bg-midcolor text-darkcolor dark:text-lightcolor hover:text-lightcolor transition">🎨 Themes</a>
+          <button onclick="toggleDarkMode()" class="w-full text-left px-4 py-2 hover:bg-midcolor text-darkcolor dark:text-lightcolor hover:text-lightcolor transition">🌙 Toggle Dark Mode</button>
+          <button onclick="logout()" class="w-full text-left px-4 py-2 hover:bg-midcolor text-darkcolor dark:text-lightcolor hover:text-lightcolor transition">🚪 Logout</button>
+        </div>
+      {% endif %}
     </div>
 
   </div>
 </nav>
 
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <script>
   function toggleNavbar() {
-    const menu = document.getElementById('navbar-menu');
-    menu.classList.toggle('hidden');
+    document.getElementById('navbar-menu').classList.toggle('hidden');
+  }
+
+  function toggleDropdown() {
+    document.getElementById('dropdown-menu').classList.toggle('hidden');
   }
 </script>
-
-<!-- (İsteğe bağlı) Margin ve padding sıfırlama -->
-<style>
-  body, html {
-    margin: 0;
-    padding: 0;
-  }
-</style>

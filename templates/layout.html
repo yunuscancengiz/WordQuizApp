@@ -42,11 +42,7 @@
   {% include 'navbar.html' %}
 
   <div class="container mx-auto px-4 py-8">
-    <div class="flex justify-end mb-4">
-      <button onclick="toggleDarkMode()" class="bg-midcolor text-white px-4 py-2 rounded hover:bg-lightcolor hover:text-darkcolor transition">
-        🌃 Dark Mode
-      </button>
-    </div>
+
     {% block content %}{% endblock %}
   </div>
 

@@ -1,0 +1,197 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!-- Mock Dashboard with Multiple Charts -->
+<div class="grid grid-cols-1 gap-8 p-6">
+
+  <!-- Max Streak & Question Count Line Chart -->
+  <div class="bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow overflow-x-auto">
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="text-xl font-semibold">📈 Daily Max Streak & Question Count</h2>
+      <button onclick="scrollToToday()" class="bg-midcolor text-lightcolor px-3 py-1 rounded hover:bg-lightcolor hover:text-darkcolor transition">⏩ Today</button>
+    </div>
+    <div style="width: 3600px; min-width: 100%;">
+      <canvas id="streakChart" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- Most Incorrect Words (Stacked Bar) -->
+  <div class="bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow">
+    <h2 class="text-xl font-semibold mb-4">📚 Most Challenging Words</h2>
+    <canvas id="hardestWordsChart"></canvas>
+  </div>
+
+  <!-- Quiz Max Streak -->
+  <div class="bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow">
+    <h2 class="text-xl font-semibold mb-4">🏆 Quiz Max Streak</h2>
+    <canvas id="quizChart"></canvas>
+  </div>
+
+  <!-- Correct vs Incorrect -->
+  <div class="bg-lightcolor dark:bg-darkcolor rounded-xl p-4 shadow">
+    <h2 class="text-xl font-semibold mb-4">✅ Accuracy</h2>
+    <canvas id="accuracyChart"></canvas>
+  </div>
+
+</div>
+
+<script>
+  const today = new Date();
+  const labels = [];
+  const maxStreaks = [];
+  const questionCounts = [];
+
+  for (let i = 364; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(today.getDate() - i);
+    const label = d.toISOString().split('T')[0];
+    labels.push(label);
+    const isActive = Math.random() > 0.2;
+    maxStreaks.push(isActive ? Math.floor(Math.random() * 40) : null);
+    questionCounts.push(isActive ? Math.floor(Math.random() * 50) + 1 : null);
+  }
+
+  const streakCtx = document.getElementById('streakChart');
+  const streakChart = new Chart(streakCtx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Max Streak',
+          data: maxStreaks,
+          borderColor: '#00b4d8',
+          backgroundColor: '#00b4d8',
+          tension: 0.3,
+          spanGaps: false,
+          pointRadius: 2,
+          pointHoverRadius: 6,
+          yAxisID: 'y'
+        },
+        {
+          label: 'Question Count',
+          data: questionCounts,
+          borderColor: '#ff9f1c',
+          backgroundColor: '#ff9f1c',
+          tension: 0.3,
+          spanGaps: false,
+          pointRadius: 2,
+          pointHoverRadius: 6,
+          yAxisID: 'y1'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            maxRotation: 90,
+            minRotation: 45
+          },
+          min: labels.length - 60,
+          max: labels.length - 1
+        },
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Max Streak'
+          },
+          position: 'left'
+        },
+        y1: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Question Count'
+          },
+          position: 'right',
+          grid: { drawOnChartArea: false }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            title: context => `Date: ${context[0].label}`,
+            label: context => `${context.dataset.label}: ${context.raw ?? 'No activity'}`
+          }
+        }
+      }
+    }
+  });
+
+  function scrollToToday() {
+    const container = streakCtx.parentElement.parentElement;
+    container.scrollLeft = container.scrollWidth;
+  }
+
+  const accuracyChart = new Chart(document.getElementById('accuracyChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Correct', 'Incorrect'],
+      datasets: [{
+        label: 'Answer Accuracy',
+        data: [128, 47],
+        backgroundColor: ['#38b000', '#d00000']
+      }]
+    },
+    options: { responsive: true }
+  });
+
+  const quizChart = new Chart(document.getElementById('quizChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Max Quiz Streak'],
+      datasets: [{
+        label: 'Quiz Max Streak',
+        data: [22],
+        backgroundColor: '#3A86FF'
+      }]
+    },
+    options: { responsive: true }
+  });
+
+  const hardestWordsChart = new Chart(document.getElementById('hardestWordsChart'), {
+    type: 'bar',
+    data: {
+      labels: ['abandonner', 'mériter', 'se plaindre', 'vaincre', 'résoudre'],
+      datasets: [
+        {
+          label: 'Incorrect',
+          data: [12, 10, 9, 8, 7],
+          backgroundColor: '#d00000'
+        },
+        {
+          label: 'Correct',
+          data: [4, 6, 3, 2, 1],
+          backgroundColor: '#38b000'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          stacked: true,
+          max: 15
+        },
+        y: {
+          stacked: true
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: context => `${context.dataset.label}: ${context.raw}${context.raw >= 15 ? ' (capped)' : ''}`
+          }
+        }
+      }
+    }
+  });
+</script>
+
+{% endblock %}
