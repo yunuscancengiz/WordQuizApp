@@ -1,14 +1,15 @@
-from datetime import datetime
+from datetime import datetime, date
 from zoneinfo import ZoneInfo
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import NoResultFound
 from fastapi.responses import JSONResponse
-from ..models import CorrectIncorrect, QuizStreaks
+from ..models import CorrectIncorrect, QuizStreaks, DailyStreaks
 
 
 def handle_answer_evaluation(word_id: int, user_id: int, is_correct: bool, correct_meaning: str, db: Session):
     try:
         now = datetime.now(tz=ZoneInfo('Europe/Istanbul'))
+        today = date.today()
 
         # QuizStreaks update
         try:
@@ -52,6 +53,24 @@ def handle_answer_evaluation(word_id: int, user_id: int, is_correct: bool, corre
                 last_attempted_at=now
             )
             db.add(correct_incorrect_model)
+
+        # DailyStreaks update (always update today's record)
+        today_record = db.query(DailyStreaks).filter(
+            DailyStreaks.owner_id == user_id,
+            DailyStreaks.date == today
+        ).first()
+
+        if today_record:
+            today_record.max_streak = streak_model.max_streak
+            today_record.question_count = streak_model.question_count
+        else:
+            today_record = DailyStreaks(
+                owner_id=user_id,
+                date=today,
+                max_streak=streak_model.max_streak,
+                question_count=streak_model.question_count
+            )
+            db.add(today_record)
 
         db.commit()
 

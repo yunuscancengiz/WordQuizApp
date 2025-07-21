@@ -8,6 +8,7 @@ from ..config import templates
 from ..utils.db_utils import get_random_sentences
 from ..utils.auth_utils import redirect_to_login, get_current_user
 from ..utils.check_answer_utils import handle_answer_evaluation
+from ..utils.streak_utils import update_daily_streak_if_needed
 
 
 router = APIRouter(prefix='/ros', tags=['ros'])
@@ -65,6 +66,7 @@ async def check_answer(request: Request, db: db_dependency, sentence_answer_requ
     correct = " ".join(correct_sentence.split())
     is_correct = user_response == correct
 
+    update_daily_streak_if_needed(db=db, user_id=user.get('id'))
     return handle_answer_evaluation(
         word_id=sentence_model.word_id,
         user_id=user.get('id'),

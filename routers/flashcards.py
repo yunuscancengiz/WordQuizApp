@@ -8,6 +8,7 @@ from ..config import templates
 from ..utils.db_utils import get_random_word_and_sentences
 from ..utils.auth_utils import redirect_to_login, get_current_user
 from ..utils.check_answer_utils import handle_answer_evaluation
+from ..utils.streak_utils import update_daily_streak_if_needed
 
 
 router = APIRouter(prefix='/flashcards', tags=['flashcards'])
@@ -62,6 +63,7 @@ async def check_answer(request: Request, db: db_dependency, answer_request: Answ
     correct_meaning = word_model.meaning.casefold().strip()
     is_correct = correct_meaning == answer_request.user_answer.casefold().strip()
 
+    update_daily_streak_if_needed(db=db, user_id=user.get('id'))
     return handle_answer_evaluation(
         word_id=word_model.id,
         user_id=user.get('id'),
