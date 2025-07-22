@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Path, Request, HTTPException, status
 from fastapi.responses import HTMLResponse, JSONResponse
+from typing import List
 import traceback
 from ..models import Words, CorrectIncorrect, Sentences, Users, Themes
-from ..schemas import WordUpdateRequest
+from ..schemas import WordUpdateRequest, CreateWordRequest
 from ..dependencies import db_dependency
 from ..config import templates
 from ..utils.auth_utils import redirect_to_login, get_current_user
@@ -65,26 +66,20 @@ async def read_word(request: Request, db: db_dependency, word_id: int = Path(ge=
 
 
 @router.post('/word', status_code=status.HTTP_201_CREATED)
-async def create_word(request: Request, db: db_dependency):
+async def create_word(request: Request, db: db_dependency, create_word_request: CreateWordRequest):
     user = await get_current_user(token=request.cookies.get('access_token'))
-    data = await request.json()
 
-    word_data = data.get('word', {})
-    sentence_data = data.get('sentence', {})
-    correct_data = data.get('correct_incorrect', {})
+    word = create_word_request.word
+    meaning = create_word_request.translition
+    sentence = create_word_request.example_sentence
 
-    word_text = word_data.get('word', '').strip()
-    meaning = word_data.get('meaning', '').strip()
-    sentence = sentence_data.get('sentence', '').strip()
-    is_correct = correct_data.get('is_last_time_correct', False)
-
-    if not word_text or not meaning or not sentence:
+    if not word or not meaning or not sentence:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="All fields are required.")
 
     # Check if word already exists for this user
     existing = db.query(Words).filter(
         Words.owner_id == user.get('id'),
-        Words.word.ilike(word_text)
+        Words.word.ilike(word)
     ).first()
 
     if existing:
@@ -94,7 +89,7 @@ async def create_word(request: Request, db: db_dependency):
         )
 
     word_model = Words(
-        word=word_text,
+        word=word,
         meaning=meaning,
         owner_id=user.get('id')
     )
@@ -105,7 +100,7 @@ async def create_word(request: Request, db: db_dependency):
     correct_model = CorrectIncorrect(
         word_id=word_model.id,
         owner_id=user.get('id'),
-        is_last_time_correct=is_correct
+        is_last_time_correct=False
     )
     db.add(correct_model)
 
@@ -118,6 +113,57 @@ async def create_word(request: Request, db: db_dependency):
     db.commit()
 
     return {"message": "Word created successfully."}
+
+
+@router.post('/bulk-create')
+async def bulk_create_words(request: Request, db: db_dependency, word_list: List[CreateWordRequest]):
+    user = await get_current_user(token=request.cookies.get('access_token'))
+
+    if user['user_role'] != 'admin':
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail='Only admins can bulk create words.')
+    
+    created = []
+    skipped = []
+
+    for word_data in word_list:
+        existing = db.query(Words).filter(
+            Words.word.ilike(word_data.word)
+        ).first()
+
+        if existing:
+            skipped.append(word_data.word)
+            continue
+
+        word_model = Words(
+            word=word_data.word,
+            meaning=word_data.translition,
+            owner_id=user.get('id')
+        )
+        db.add(word_model)
+        db.commit()
+        db.refresh(word_model)
+
+        correct_incorrect_model = CorrectIncorrect(
+            word_id=word_model.id,
+            owner_id=user.get('id'),
+            is_last_time_correct=False
+        )
+        db.add(correct_incorrect_model)
+
+        sentence_model = Sentences(
+            sentence=word_data.example_sentence,
+            word_id=word_model.id,
+            owner_id=user.get('id')
+        )
+        db.add(sentence_model)
+        created.append(word_data.word)
+    db.commit()
+    
+    return {
+        'message': 'Words processed.',
+        'created': created,
+        'skipped': skipped
+    }
 
 
 @router.put('/word/{word_id}', status_code=status.HTTP_204_NO_CONTENT)
@@ -165,6 +211,27 @@ async def update_word(
         ))
 
     db.commit()
+
+
+@router.delete('/delete-all')
+async def delete_all_songs(request: Request, db: db_dependency):
+    user = await get_current_user(token=request.cookies.get('access_token'))
+
+    if user['user_role'] != 'admin':
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail='Only admins can delete all songs.'
+        )
+
+    deleted_count = db.query(Words).delete()
+    db.query(CorrectIncorrect).delete()
+    db.query(Sentences).delete()
+    db.commit()
+
+    return {
+        'message': f'{deleted_count} words and their related sentences deleted successfully.'
+    }
+
 
 
 @router.delete('/word/{word_id}', status_code=status.HTTP_204_NO_CONTENT)

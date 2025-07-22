@@ -61,7 +61,7 @@ async def check_answer(request: Request, db: db_dependency, sentence_answer_requ
     if not sentence_model:
         return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={'result': 'not_found'})
     
-    correct_sentence = sentence_model.sentence.casefold().strip().rstrip('.')
+    correct_sentence = sentence_model.sentence.casefold().strip().rstrip('.').rstrip(' ?')
     user_response = " ".join(sentence_answer_request.user_answer.casefold().split())
     correct = " ".join(correct_sentence.split())
     is_correct = user_response == correct
