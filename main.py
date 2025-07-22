@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from .database import engine, Base
-from .routers import auth, words, admin, users, conjugations, home, flashcards, ros, quiz, themes, dashboard
+from .routers import auth, words, admin, users, conjugations, home, flashcards, ros, quiz, themes, dashboard, songs
 
 
 
@@ -28,3 +28,4 @@ app.include_router(router=ros.router)
 app.include_router(router=quiz.router)
 app.include_router(router=themes.router)
 app.include_router(router=dashboard.router)
+app.include_router(router=songs.router)

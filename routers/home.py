@@ -2,9 +2,10 @@ from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from starlette.responses import RedirectResponse
 from pathlib import Path
+from datetime import datetime
 import traceback
 from ..config import templates
-from ..models import QuizStreaks, Users
+from ..models import QuizStreaks, Users, Songs
 from ..dependencies import db_dependency
 from ..utils.auth_utils import redirect_to_login, get_current_user
 from ..utils.theme_utils import get_theme_by_id
@@ -26,6 +27,11 @@ async def home(request: Request, db: db_dependency):
 
         theme_id = db.query(Users.theme_id).filter(Users.id == user.get("id")).scalar()
         theme = get_theme_by_id(db=db, theme_id=theme_id)
+        
+        today = datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+        song = db.query(Songs).filter(Songs.date == today).first()
+        if not song:
+            song = db.query(Songs).filter(Songs.id == 1).first()
 
         return templates.TemplateResponse(
             "home.html",
@@ -35,6 +41,7 @@ async def home(request: Request, db: db_dependency):
                 "streak": streak,
                 "max_streak": max_streak,
                 "theme": theme,
+                "song": song
             },
         )
     except Exception as e:

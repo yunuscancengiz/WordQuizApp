@@ -148,7 +148,7 @@ async def create_theme(request: Request, db: db_dependency, create_theme_request
     if existing:
         return JSONResponse(
             status_code=status.HTTP_409_CONFLICT,
-            content={'message': 'Theme already exist!'}
+            content={'message': 'Theme already exists!'}
         )
     
     if is_default:

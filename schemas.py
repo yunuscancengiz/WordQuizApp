@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-
+from datetime import datetime
 
 ### routers/auth.py ###
 
@@ -73,6 +73,24 @@ class ThemeOut(BaseModel):
     is_default: bool
     is_favorite: bool = False
     is_active: bool
+
+    class Config:
+        from_attributes = True
+
+
+# routers/songs.py
+
+class CreateSongRequest(BaseModel):
+    date: datetime = Field()
+    song_name: str = Field(min_length=1, max_length=100)
+    spotify_url: str = Field(min_length=10, max_length=100)
+
+
+class SongOut(BaseModel):
+    id: int
+    date: str
+    song_name: str
+    spotify_url: str
 
     class Config:
         from_attributes = True
