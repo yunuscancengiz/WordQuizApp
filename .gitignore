@@ -1,7 +1,6 @@
 *.env
 *.csv
 *.xlsx
-*.txt
 *.db
 
 # Byte-compiled / optimized / DLL files
