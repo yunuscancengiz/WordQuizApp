@@ -1,14 +1,14 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse, JSONResponse
 import traceback
-from ..models import Words, QuizStreaks, Users, Themes
-from ..schemas import AnswerRequest
-from ..dependencies import db_dependency
-from ..config import templates
-from ..utils.db_utils import get_random_quiz_word_and_choices
-from ..utils.auth_utils import redirect_to_login, get_current_user
-from ..utils.check_answer_utils import handle_answer_evaluation
-from ..utils.streak_utils import update_daily_streak_if_needed
+from models import Words, QuizStreaks, Users, Themes
+from schemas import AnswerRequest
+from dependencies import db_dependency
+from config import templates
+from utils.db_utils import get_random_quiz_word_and_choices
+from utils.auth_utils import redirect_to_login, get_current_user
+from utils.check_answer_utils import handle_answer_evaluation
+from utils.streak_utils import update_daily_streak_if_needed
 
 
 router = APIRouter(prefix='/quiz', tags=['quiz'])

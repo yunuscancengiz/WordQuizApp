@@ -1,14 +1,14 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse, JSONResponse
 import traceback
-from ..models import Sentences, QuizStreaks, Users, Themes
-from ..schemas import SentenceAnswerRequest
-from ..dependencies import db_dependency
-from ..config import templates
-from ..utils.db_utils import get_random_sentences
-from ..utils.auth_utils import redirect_to_login, get_current_user
-from ..utils.check_answer_utils import handle_answer_evaluation
-from ..utils.streak_utils import update_daily_streak_if_needed
+from models import Sentences, QuizStreaks, Users, Themes
+from schemas import SentenceAnswerRequest
+from dependencies import db_dependency
+from config import templates
+from utils.db_utils import get_random_sentences
+from utils.auth_utils import redirect_to_login, get_current_user
+from utils.check_answer_utils import handle_answer_evaluation
+from utils.streak_utils import update_daily_streak_if_needed
 
 
 router = APIRouter(prefix='/ros', tags=['ros'])

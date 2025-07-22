@@ -1,12 +1,11 @@
-from fastapi import APIRouter, Request, HTTPException, status
+from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from sqlalchemy import func
 import traceback
-from ..dependencies import db_dependency
-from ..config import templates, bcrypt_context
-from ..models import Users, CorrectIncorrect, Words, QuizStreaks, DailyStreaks, Themes
-from ..utils.auth_utils import redirect_to_login, get_current_user
-from ..schemas import UserVerification
+from dependencies import db_dependency
+from config import templates
+from models import Users, CorrectIncorrect, Words, QuizStreaks, DailyStreaks, Themes
+from utils.auth_utils import redirect_to_login, get_current_user
 
 
 router = APIRouter(prefix="/profile", tags=["profile"])

@@ -4,8 +4,8 @@ from jose import jwt, JWTError
 from datetime import timedelta, datetime, timezone
 from typing import Annotated
 from sqlalchemy.orm import Session
-from ..models import Users
-from ..config import SECRET_KEY, ALGORITHM, oauth2_bearer, bcrypt_context
+from models import Users
+from config import SECRET_KEY, ALGORITHM, oauth2_bearer, bcrypt_context
 
 
 async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):

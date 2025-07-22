@@ -2,11 +2,11 @@ from fastapi import APIRouter, Path, Request, HTTPException, status
 from fastapi.responses import HTMLResponse, JSONResponse
 from typing import List
 import traceback
-from ..models import Words, CorrectIncorrect, Sentences, Users, Themes
-from ..schemas import WordUpdateRequest, CreateWordRequest
-from ..dependencies import db_dependency
-from ..config import templates
-from ..utils.auth_utils import redirect_to_login, get_current_user
+from models import Words, CorrectIncorrect, Sentences, Users, Themes
+from schemas import WordUpdateRequest, CreateWordRequest
+from dependencies import db_dependency
+from config import templates
+from utils.auth_utils import redirect_to_login, get_current_user
 
 
 router = APIRouter(prefix='/words', tags=['words'])

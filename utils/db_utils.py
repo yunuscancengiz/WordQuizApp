@@ -1,6 +1,6 @@
 import random
 from sqlalchemy.orm import Session
-from ..models import Words, Sentences, CorrectIncorrect, Themes
+from models import Words, Sentences, CorrectIncorrect, Themes
 
 
 def get_random_word_and_sentences(db, user_id: int):

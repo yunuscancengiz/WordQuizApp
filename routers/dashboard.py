@@ -3,10 +3,10 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from sqlalchemy import func, desc
 from datetime import date, timedelta
 import traceback
-from ..models import Users, Themes, DailyStreaks, QuizStreaks, CorrectIncorrect, Words
-from ..dependencies import db_dependency
-from ..config import templates
-from ..utils.auth_utils import redirect_to_login, get_current_user
+from models import Users, Themes, DailyStreaks, QuizStreaks, CorrectIncorrect, Words
+from dependencies import db_dependency
+from config import templates
+from utils.auth_utils import redirect_to_login, get_current_user
 
 
 router = APIRouter(prefix='/dashboard', tags=['dashboard'])

@@ -1,6 +1,6 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from ..models import DailyStreaks, QuizStreaks
+from models import DailyStreaks, QuizStreaks
 
 
 def update_daily_streak_if_needed(db, user_id):

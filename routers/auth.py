@@ -2,11 +2,11 @@ from fastapi import APIRouter, HTTPException, Depends, status, Request
 from fastapi.security import OAuth2PasswordRequestForm
 from datetime import timedelta
 from typing import Annotated
-from ..models import Users, Themes
-from ..schemas import CreateUserRequest, Token
-from ..dependencies import db_dependency
-from ..utils.auth_utils import create_access_token, authenticate_user
-from ..config import templates, bcrypt_context
+from models import Users, Themes
+from schemas import CreateUserRequest, Token
+from dependencies import db_dependency
+from utils.auth_utils import create_access_token, authenticate_user
+from config import templates, bcrypt_context
 
 
 router = APIRouter(prefix='/auth', tags=['auth'])

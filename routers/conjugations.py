@@ -2,11 +2,11 @@ from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from collections import defaultdict
 import traceback
-from ..utils.auth_utils import redirect_to_login, get_current_user
-from ..config import templates
-from ..utils.conjugation_utils import load_json_data
-from ..dependencies import db_dependency
-from ..models import Users, Themes
+from utils.auth_utils import redirect_to_login, get_current_user
+from config import templates
+from utils.conjugation_utils import load_json_data
+from dependencies import db_dependency
+from models import Users, Themes
 
 
 router = APIRouter(prefix='/conjugations', tags=['conjugations'])

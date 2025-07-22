@@ -3,12 +3,12 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from sqlalchemy import or_, and_
 from typing import List
 import traceback
-from ..models import Themes, UserThemeFavorite, Users
-from ..schemas import CreateThemeRequest, ThemeOut
-from ..dependencies import db_dependency
-from ..config import templates
-from ..utils.auth_utils import redirect_to_login, get_current_user
-from ..utils.db_utils import set_default_theme
+from models import Themes, UserThemeFavorite, Users
+from schemas import CreateThemeRequest, ThemeOut
+from dependencies import db_dependency
+from config import templates
+from utils.auth_utils import redirect_to_login, get_current_user
+from utils.db_utils import set_default_theme
 
 
 router = APIRouter(prefix='/themes', tags=['themes'])

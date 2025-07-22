@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from .database import engine, Base
-from .routers import auth, words, admin, users, conjugations, home, flashcards, ros, quiz, themes, dashboard, songs, profile
+from database import engine, Base
+from routers import auth, words, admin, users, conjugations, home, flashcards, ros, quiz, themes, dashboard, songs, profile
 
 
 
@@ -9,7 +9,7 @@ app = FastAPI()
 
 Base.metadata.create_all(bind=engine)
 
-app.mount('/static', StaticFiles(directory='OuiCherie/static'), name='static')
+app.mount('/static', StaticFiles(directory='static'), name='static')
 
 ### Endpoints ###
 

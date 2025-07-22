@@ -3,7 +3,7 @@ from zoneinfo import ZoneInfo
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import NoResultFound
 from fastapi.responses import JSONResponse
-from ..models import CorrectIncorrect, QuizStreaks, DailyStreaks
+from models import CorrectIncorrect, QuizStreaks, DailyStreaks
 
 
 def handle_answer_evaluation(word_id: int, user_id: int, is_correct: bool, correct_meaning: str, db: Session):

@@ -1,5 +1,5 @@
-from ..dependencies import db_dependency
-from ..models import Users, Themes
+from dependencies import db_dependency
+from models import Users, Themes
 
 
 

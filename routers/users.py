@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, status
-from ..models import Users
-from ..schemas import UserVerification
-from ..dependencies import db_dependency, user_dependency
-from ..config import bcrypt_context
+from models import Users
+from schemas import UserVerification
+from dependencies import db_dependency, user_dependency
+from config import bcrypt_context
 
 
 router = APIRouter(prefix='/user', tags=['user'])

@@ -1,14 +1,12 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
-from starlette.responses import RedirectResponse
-from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime
 import traceback
-from ..config import templates
-from ..models import QuizStreaks, DailyStreaks, Users, Songs, CorrectIncorrect, Words
-from ..dependencies import db_dependency
-from ..utils.auth_utils import redirect_to_login, get_current_user
-from ..utils.theme_utils import get_theme_by_id
+from config import templates
+from models import QuizStreaks, DailyStreaks, Users, Songs
+from dependencies import db_dependency
+from utils.auth_utils import redirect_to_login, get_current_user
+from utils.theme_utils import get_theme_by_id
 
 
 router = APIRouter()

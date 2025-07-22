@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Path, HTTPException, status
-from ..models import Words
-from ..dependencies import db_dependency, user_dependency
+from models import Words
+from dependencies import db_dependency, user_dependency
 
 
 router = APIRouter(prefix='/admin', tags=['admin'])
