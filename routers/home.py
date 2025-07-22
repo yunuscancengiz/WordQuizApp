@@ -5,7 +5,7 @@ from pathlib import Path
 from datetime import datetime, timedelta
 import traceback
 from ..config import templates
-from ..models import QuizStreaks, Users, Songs, CorrectIncorrect, Words
+from ..models import QuizStreaks, DailyStreaks, Users, Songs, CorrectIncorrect, Words
 from ..dependencies import db_dependency
 from ..utils.auth_utils import redirect_to_login, get_current_user
 from ..utils.theme_utils import get_theme_by_id
@@ -28,20 +28,14 @@ async def home(request: Request, db: db_dependency):
         theme_id = db.query(Users.theme_id).filter(Users.id == user.get("id")).scalar()
         theme = get_theme_by_id(db=db, theme_id=theme_id)
         
-        today = datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+        today = datetime.today()
+
         song = db.query(Songs).filter(Songs.date == today).first()
         if not song:
             song = db.query(Songs).filter(Songs.id == 1).first()
 
-
-        tomorrow = today + timedelta(days=1)
-        today_count = db.query(CorrectIncorrect).filter(
-            CorrectIncorrect.owner_id == user.get("id"),
-            CorrectIncorrect.last_attempted_at >= today,
-            CorrectIncorrect.last_attempted_at < tomorrow
-        ).count()
-
-        word_count = db.query(Words).filter(Words.owner_id == user.get("id")).count()
+        today_question_count = db.query(DailyStreaks.question_count).filter(DailyStreaks.date == today.date()).first()
+        today_question_count = today_question_count[0] if today_question_count else 0
 
         return templates.TemplateResponse(
             "home.html",
@@ -50,8 +44,7 @@ async def home(request: Request, db: db_dependency):
                 "user": user,
                 "streak": streak,
                 "max_streak": max_streak,
-                "today_question_count": today_count,
-                "total_words": word_count,
+                "today_question_count": today_question_count,
                 "theme": theme,
                 "song": song
             },

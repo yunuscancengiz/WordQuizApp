@@ -49,8 +49,17 @@ function showSuggestions() {
 }
 
 function updateSuggestionHighlight(suggestions) {
+  const isDarkMode = document.documentElement.classList.contains("dark");
+
   suggestions.forEach((el, idx) => {
-    el.classList.toggle("active", idx === selectedSuggestionIndex);
+    el.classList.remove("bg-lightcolor", "text-darkcolor", "bg-darkcolor", "text-lightcolor");
+    if (idx === selectedSuggestionIndex) {
+      if (isDarkMode) {
+        el.classList.add("bg-lightcolor", "text-darkcolor");
+      } else {
+        el.classList.add("bg-darkcolor", "text-lightcolor");
+      }
+    }
   });
 
   const activeElement = suggestions[selectedSuggestionIndex];

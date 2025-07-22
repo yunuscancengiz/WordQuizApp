@@ -5,53 +5,48 @@
   }
 })();
 
-// Mock data
-const labels = [
-  '2025-06-22', '2025-06-23', '2025-06-24', '2025-06-25',
-  '2025-06-26', '2025-06-27', '2025-06-28',
-  '2025-06-30', '2025-07-01', '2025-07-02',
-  '2025-07-03', '2025-07-04', '2025-07-05',
-  '2025-07-06', '2025-07-07'
-];
-
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'Daily Max Streak',
-    data: [15, 22, 18, 33, 25, 26, 27, 8, 32, 34, 36, 21, 40, 38, 37],
-    fill: false,
-    borderColor: '#ffffffff',
-    tension: 0.2,
-    pointHoverRadius: 20
-  }]
+const COLORS = {
+  primary: '#4361ee',
+  secondary: '#f72585',
+  highlight: '#4cc9f0',
+  warning: '#ff9f1c',
+  success: '#80ed99',
+  danger: '#ef233c',
+  lightGray: '#e0e0e0',
+  darkGray: '#6c757d',
+  vibrantGreen: '#38b000',
+  vibrantRed: '#d00000'
 };
 
-const config = {
-  type: 'line',
-  data: data,
+new Chart(document.getElementById('quizChart'), {
+  
+  type: 'bar',
+  data: {
+    labels: ['Today'],
+    datasets: [
+      { label: 'Quiz Max Streak', data: [max_streak], backgroundColor: COLORS.primary, borderRadius: 6 },
+      { label: 'Question Count', data: [today_question_count], backgroundColor: COLORS.warning, borderRadius: 6 }
+    ]
+  },
   options: {
+    responsive: true,
     plugins: {
       tooltip: {
-        callbacks: {
-          label: (context) => ` ${context.raw} max streak`
-        }
-      }
+        callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.raw}` },
+        backgroundColor: '#222', titleColor: '#fff', bodyColor: '#fff'
+      },
+      legend: { position: 'bottom', labels: { color: COLORS.darkGray } }
     },
     scales: {
       y: {
         beginAtZero: true,
-        title: { display: true, text: 'Max Streak' }
-      },
-      x: {
-        title: { display: true, text: 'Date' }
+        ticks: { stepSize: 5, color: COLORS.darkGray },
+        // grid: { color: COLORS.lightGray }
       }
-    },
-    responsive: true,
-    maintainAspectRatio: false
+    }
   }
-};
+});
 
 window.addEventListener('DOMContentLoaded', () => {
-  const ctx = document.getElementById('streakChart');
-  new Chart(ctx, config);
+  const ctx = document.getElementById('quizChart');
 });

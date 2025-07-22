@@ -7,12 +7,13 @@
 
   <!-- Left Panel: Chart -->
   <div class="flex-1 bg-midcolor p-4 rounded-lg shadow-md">
-    <h3 class="text-lg font-semibold mb-2">📊 Quick Stats</h3>
-    <ul class="text-lightcolor dark:text-darkcolor space-y-2">
-      <li>✅ Questions answered today: <span class="font-bold text-white">{{ today_question_count }}</span></li>
-      <li>🔥 Your all-time max streak: <span class="font-bold text-white">{{ max_streak }}</span></li>
-      <li>💡 Total words learned: <span class="font-bold text-white">{{ total_words }}</span></li>
-    </ul>
+    <!-- Quiz Max Streak -->
+    <div class="rounded-xl p-4">
+      <h2 class="text-xl font-semibold mb-4">Quiz Max Streak & Question Count</h2>
+      <div style="height: 250px;">
+        <canvas id="quizChart"></canvas>
+      </div>
+    </div>
   </div>
 
   <!-- Right Panel -->
@@ -43,5 +44,9 @@
 {% endblock %}
 
 {% block scripts %}
+<script>
+  const max_streak = {{ max_streak or 0 }};
+  const today_question_count = {{ today_question_count or 0 }};
+</script>
 <script src="{{ url_for('static', path='js/home_script.js') }}" defer></script>
 {% endblock %}

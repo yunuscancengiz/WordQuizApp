@@ -1,0 +1,1742 @@
+[
+  {
+    "word": "l'aveugle",
+    "translition": "blind",
+    "example_sentence": "Elle a expliqué l'aveugle à ses élèves."
+  },
+  {
+    "word": "malvoyant(e)",
+    "translition": "visually impaired",
+    "example_sentence": "Elle a expliqué malvoyant(e) à ses élèves."
+  },
+  {
+    "word": "une famille d'accueil",
+    "translition": "a host family",
+    "example_sentence": "Est-ce que tu connais une famille d'accueil ?"
+  },
+  {
+    "word": "le chien dressé",
+    "translition": "trained dog",
+    "example_sentence": "Elle a expliqué le chien dressé à ses élèves."
+  },
+  {
+    "word": "tranche",
+    "translition": "sliced",
+    "example_sentence": "Est-ce que tu connais tranche ?"
+  },
+  {
+    "word": "surgelé",
+    "translition": "deepfreezed",
+    "example_sentence": "Est-ce que tu connais surgelé ?"
+  },
+  {
+    "word": "la viande",
+    "translition": "meat",
+    "example_sentence": "Elle a expliqué la viande à ses élèves."
+  },
+  {
+    "word": "le repas",
+    "translition": "meal",
+    "example_sentence": "Il ne comprend pas bien le repas."
+  },
+  {
+    "word": "gâté",
+    "translition": "spoiled",
+    "example_sentence": "Elle a expliqué gâté à ses élèves."
+  },
+  {
+    "word": "des gants",
+    "translition": "gloves",
+    "example_sentence": "Elle a expliqué des gants à ses élèves."
+  },
+  {
+    "word": "une bouteille d’eau",
+    "translition": "a water bottle",
+    "example_sentence": "On parle souvent de une bouteille d’eau dans ce contexte."
+  },
+  {
+    "word": "la ceinture",
+    "translition": "belt",
+    "example_sentence": "Elle a expliqué la ceinture à ses élèves."
+  },
+  {
+    "word": "épuisé",
+    "translition": "exhausted",
+    "example_sentence": "On parle souvent de épuisé dans ce contexte."
+  },
+  {
+    "word": "médiatique",
+    "translition": "mediatic",
+    "example_sentence": "On parle souvent de médiatique dans ce contexte."
+  },
+  {
+    "word": "le combat",
+    "translition": "fight",
+    "example_sentence": "Est-ce que tu connais le combat ?"
+  },
+  {
+    "word": "le réchauffement climatique",
+    "translition": "global warming",
+    "example_sentence": "On parle souvent de le réchauffement climatique dans ce contexte."
+  },
+  {
+    "word": "la feuille",
+    "translition": "sheet/leaf",
+    "example_sentence": "Est-ce que tu connais la feuille ?"
+  },
+  {
+    "word": "le papier",
+    "translition": "paper",
+    "example_sentence": "Elle a expliqué le papier à ses élèves."
+  },
+  {
+    "word": "le bouquin",
+    "translition": "book",
+    "example_sentence": "Elle a expliqué le bouquin à ses élèves."
+  },
+  {
+    "word": "le cahier",
+    "translition": "notebook",
+    "example_sentence": "Il ne comprend pas bien le cahier."
+  },
+  {
+    "word": "l'encre",
+    "translition": "ink",
+    "example_sentence": "Est-ce que tu connais l'encre ?"
+  },
+  {
+    "word": "un stylo ",
+    "translition": "a pen",
+    "example_sentence": "On parle souvent de un stylo  dans ce contexte."
+  },
+  {
+    "word": "une crayon",
+    "translition": "a pencil",
+    "example_sentence": "Il ne comprend pas bien une crayon."
+  },
+  {
+    "word": "enfermé",
+    "translition": "locked up",
+    "example_sentence": "J'ai vu enfermé dans le film hier soir."
+  },
+  {
+    "word": "garder en laisse",
+    "translition": "to keep on a leash",
+    "example_sentence": "Est-ce que tu connais garder en laisse ?"
+  },
+  {
+    "word": "décrocher un travail",
+    "translition": "get a job",
+    "example_sentence": "On parle souvent de décrocher un travail dans ce contexte."
+  },
+  {
+    "word": "décrocher",
+    "translition": "pick up",
+    "example_sentence": "On parle souvent de décrocher dans ce contexte."
+  },
+  {
+    "word": "l'embouteillage",
+    "translition": "traffic jam",
+    "example_sentence": "Est-ce que tu connais l'embouteillage ?"
+  },
+  {
+    "word": "rouger",
+    "translition": "blush",
+    "example_sentence": "Elle a expliqué rouger à ses élèves."
+  },
+  {
+    "word": "renverser",
+    "translition": "spill",
+    "example_sentence": "Elle a expliqué renverser à ses élèves."
+  },
+  {
+    "word": "le chemisier",
+    "translition": "blouse",
+    "example_sentence": "On parle souvent de le chemisier dans ce contexte."
+  },
+  {
+    "word": "rattraper",
+    "translition": "catch up",
+    "example_sentence": "J'ai vu rattraper dans le film hier soir."
+  },
+  {
+    "word": "consacre à",
+    "translition": "devote to",
+    "example_sentence": "Il ne comprend pas bien consacre à."
+  },
+  {
+    "word": "plonge dans",
+    "translition": "dive into",
+    "example_sentence": "Elle a expliqué plonge dans à ses élèves."
+  },
+  {
+    "word": "le baladeur",
+    "translition": "walkman",
+    "example_sentence": "J'ai vu le baladeur dans le film hier soir."
+  },
+  {
+    "word": "balaier",
+    "translition": "sweep",
+    "example_sentence": "Elle a expliqué balaier à ses élèves."
+  },
+  {
+    "word": "respirer",
+    "translition": "breathe",
+    "example_sentence": "J'ai vu respirer dans le film hier soir."
+  },
+  {
+    "word": "indispensable",
+    "translition": "essential",
+    "example_sentence": "On parle souvent de indispensable dans ce contexte."
+  },
+  {
+    "word": "l'alimentation",
+    "translition": "food",
+    "example_sentence": "Est-ce que tu connais l'alimentation ?"
+  },
+  {
+    "word": "le génie",
+    "translition": "genius",
+    "example_sentence": "Elle a expliqué le génie à ses élèves."
+  },
+  {
+    "word": "interdite",
+    "translition": "forbidden",
+    "example_sentence": "On parle souvent de interdite dans ce contexte."
+  },
+  {
+    "word": "concuş",
+    "translition": "designed",
+    "example_sentence": "J'ai vu concuş dans le film hier soir."
+  },
+  {
+    "word": "le cerveau",
+    "translition": "brain",
+    "example_sentence": "J'ai vu le cerveau dans le film hier soir."
+  },
+  {
+    "word": "le soin",
+    "translition": "care",
+    "example_sentence": "Est-ce que tu connais le soin ?"
+  },
+  {
+    "word": "soins palliatifs",
+    "translition": "palliative care",
+    "example_sentence": "J'ai vu soins palliatifs dans le film hier soir."
+  },
+  {
+    "word": "le comportement social ",
+    "translition": "social behaviour",
+    "example_sentence": "Est-ce que tu connais le comportement social  ?"
+  },
+  {
+    "word": "une estime de soi",
+    "translition": "a self-esteem",
+    "example_sentence": "On parle souvent de une estime de soi dans ce contexte."
+  },
+  {
+    "word": "contester",
+    "translition": "challange",
+    "example_sentence": "Il ne comprend pas bien contester."
+  },
+  {
+    "word": "la concession",
+    "translition": "taviz",
+    "example_sentence": "Elle a expliqué la concession à ses élèves."
+  },
+  {
+    "word": "cul-de-sac",
+    "translition": "dead end",
+    "example_sentence": "Il ne comprend pas bien cul-de-sac."
+  },
+  {
+    "word": "l'ouverture",
+    "translition": "opening",
+    "example_sentence": "J'ai vu l'ouverture dans le film hier soir."
+  },
+  {
+    "word": "une glace",
+    "translition": "ice/ice cream",
+    "example_sentence": "On parle souvent de une glace dans ce contexte."
+  },
+  {
+    "word": "une reliure",
+    "translition": "bookbinding",
+    "example_sentence": "J'ai vu une reliure dans le film hier soir."
+  },
+  {
+    "word": "une mise en page",
+    "translition": "lay out",
+    "example_sentence": "Elle a expliqué une mise en page à ses élèves."
+  },
+  {
+    "word": "un croquis",
+    "translition": "sketch",
+    "example_sentence": "Elle a expliqué un croquis à ses élèves."
+  },
+  {
+    "word": "un signet",
+    "translition": "book mark",
+    "example_sentence": "Il ne comprend pas bien un signet."
+  },
+  {
+    "word": "retraitée",
+    "translition": "retired",
+    "example_sentence": "Il ne comprend pas bien retraitée."
+  },
+  {
+    "word": "bouger",
+    "translition": "to move",
+    "example_sentence": "Elle a expliqué bouger à ses élèves."
+  },
+  {
+    "word": "pousser",
+    "translition": "to push",
+    "example_sentence": "Il ne comprend pas bien pousser."
+  },
+  {
+    "word": "se plier a des horaires",
+    "translition": "comply with hours",
+    "example_sentence": "Il ne comprend pas bien se plier a des horaires."
+  },
+  {
+    "word": "toutefois",
+    "translition": "however",
+    "example_sentence": "Elle a expliqué toutefois à ses élèves."
+  },
+  {
+    "word": "des articulations",
+    "translition": "joints",
+    "example_sentence": "On parle souvent de des articulations dans ce contexte."
+  },
+  {
+    "word": "l’equitation",
+    "translition": "horse riding",
+    "example_sentence": "On parle souvent de l’equitation dans ce contexte."
+  },
+  {
+    "word": "lacher-prise",
+    "translition": "let go",
+    "example_sentence": "Elle a expliqué lacher-prise à ses élèves."
+  },
+  {
+    "word": "la récupération",
+    "translition": "recovery",
+    "example_sentence": "J'ai vu la récupération dans le film hier soir."
+  },
+  {
+    "word": "la sacoche",
+    "translition": "saddlebag",
+    "example_sentence": "Est-ce que tu connais la sacoche ?"
+  },
+  {
+    "word": "une tenue",
+    "translition": "an outfit",
+    "example_sentence": "Elle a expliqué une tenue à ses élèves."
+  },
+  {
+    "word": "ensoleillé",
+    "translition": "sunny",
+    "example_sentence": "J'ai vu ensoleillé dans le film hier soir."
+  },
+  {
+    "word": "matinales",
+    "translition": "morning",
+    "example_sentence": "Il ne comprend pas bien matinales."
+  },
+  {
+    "word": "nocturne",
+    "translition": "nocturnal",
+    "example_sentence": "Est-ce que tu connais nocturne ?"
+  },
+  {
+    "word": "des bâtons de marche",
+    "translition": "walking sticks ",
+    "example_sentence": "J'ai vu des bâtons de marche dans le film hier soir."
+  },
+  {
+    "word": "des assiette",
+    "translition": "plates",
+    "example_sentence": "Est-ce que tu connais des assiette ?"
+  },
+  {
+    "word": "les tasses/les gobelets",
+    "translition": "cups",
+    "example_sentence": "Il ne comprend pas bien les tasses/les gobelets."
+  },
+  {
+    "word": "des couverts",
+    "translition": "cutlery",
+    "example_sentence": "On parle souvent de des couverts dans ce contexte."
+  },
+  {
+    "word": "un bonnet en laine",
+    "translition": "woolen hat",
+    "example_sentence": "Elle a expliqué un bonnet en laine à ses élèves."
+  },
+  {
+    "word": "des gants ",
+    "translition": "gloves",
+    "example_sentence": "On parle souvent de des gants  dans ce contexte."
+  },
+  {
+    "word": "des chaussettes",
+    "translition": "socks",
+    "example_sentence": "On parle souvent de des chaussettes dans ce contexte."
+  },
+  {
+    "word": "un sac de couchage",
+    "translition": "a sleeping bag",
+    "example_sentence": "Il ne comprend pas bien un sac de couchage."
+  },
+  {
+    "word": "un mouchoir",
+    "translition": "handkerchief",
+    "example_sentence": "J'ai vu un mouchoir dans le film hier soir."
+  },
+  {
+    "word": "des pinces à ligne",
+    "translition": "clothespin",
+    "example_sentence": "Il ne comprend pas bien des pinces à ligne."
+  },
+  {
+    "word": "un couteau suisse",
+    "translition": "a swiss army knife",
+    "example_sentence": "Est-ce que tu connais un couteau suisse ?"
+  },
+  {
+    "word": "nettement",
+    "translition": "clearly",
+    "example_sentence": "Il ne comprend pas bien nettement."
+  },
+  {
+    "word": "notamment",
+    "translition": "notably",
+    "example_sentence": "Est-ce que tu connais notamment ?"
+  },
+  {
+    "word": "duper",
+    "translition": "to fool",
+    "example_sentence": "Est-ce que tu connais duper ?"
+  },
+  {
+    "word": "avouer",
+    "translition": "to confess",
+    "example_sentence": "J'ai vu avouer dans le film hier soir."
+  },
+  {
+    "word": "en depit de tout",
+    "translition": "despite verything",
+    "example_sentence": "Est-ce que tu connais en depit de tout ?"
+  },
+  {
+    "word": "le faussaire",
+    "translition": "forger",
+    "example_sentence": "Il ne comprend pas bien le faussaire."
+  },
+  {
+    "word": "plutôt que mieux",
+    "translition": "rather than better",
+    "example_sentence": "Est-ce que tu connais plutôt que mieux ?"
+  },
+  {
+    "word": "le propriétaire",
+    "translition": "the owner",
+    "example_sentence": "J'ai vu le propriétaire dans le film hier soir."
+  },
+  {
+    "word": "le client",
+    "translition": "client",
+    "example_sentence": "Est-ce que tu connais le client ?"
+  },
+  {
+    "word": "le gérant",
+    "translition": "manager",
+    "example_sentence": "Il ne comprend pas bien le gérant."
+  },
+  {
+    "word": "la suppression",
+    "translition": "deletion",
+    "example_sentence": "J'ai vu la suppression dans le film hier soir."
+  },
+  {
+    "word": "la propreté",
+    "translition": "cleanliness",
+    "example_sentence": "On parle souvent de la propreté dans ce contexte."
+  },
+  {
+    "word": "égal (m.)",
+    "translition": "equal",
+    "example_sentence": "J'ai vu égal (m.) dans le film hier soir."
+  },
+  {
+    "word": "égale (f.)",
+    "translition": "equal",
+    "example_sentence": "On parle souvent de égale (f.) dans ce contexte."
+  },
+  {
+    "word": "l'égalité",
+    "translition": "equality",
+    "example_sentence": "J'ai vu l'égalité dans le film hier soir."
+  },
+  {
+    "word": "également",
+    "translition": "equally",
+    "example_sentence": "Est-ce que tu connais également ?"
+  },
+  {
+    "word": "équilibrer",
+    "translition": "to balance",
+    "example_sentence": "On parle souvent de équilibrer dans ce contexte."
+  },
+  {
+    "word": "l'équilibre",
+    "translition": "the balance",
+    "example_sentence": "Elle a expliqué l'équilibre à ses élèves."
+  },
+  {
+    "word": "rez-de-chaussée ",
+    "translition": "ground floor",
+    "example_sentence": "Elle a expliqué rez-de-chaussée  à ses élèves."
+  },
+  {
+    "word": "se rendre compte",
+    "translition": "to realize",
+    "example_sentence": "Est-ce que tu connais se rendre compte ?"
+  },
+  {
+    "word": "prendre en compte",
+    "translition": "take into account",
+    "example_sentence": "Est-ce que tu connais prendre en compte ?"
+  },
+  {
+    "word": "ensoleillé",
+    "translition": "sunny",
+    "example_sentence": "Elle a expliqué ensoleillé à ses élèves."
+  },
+  {
+    "word": "une connaissance",
+    "translition": "knowledge",
+    "example_sentence": "On parle souvent de une connaissance dans ce contexte."
+  },
+  {
+    "word": "une croissance",
+    "translition": "growth ",
+    "example_sentence": "Est-ce que tu connais une croissance ?"
+  },
+  {
+    "word": "un ricochet",
+    "translition": "hopping",
+    "example_sentence": "Il ne comprend pas bien un ricochet."
+  },
+  {
+    "word": "à grande échelle.",
+    "translition": "on a large scale",
+    "example_sentence": "Est-ce que tu connais à grande échelle. ?"
+  },
+  {
+    "word": "en toile de fond",
+    "translition": "on the background",
+    "example_sentence": "Elle a expliqué en toile de fond à ses élèves."
+  },
+  {
+    "word": "à l'échelle mondiale",
+    "translition": "worldwide ",
+    "example_sentence": "Il ne comprend pas bien à l'échelle mondiale."
+  },
+  {
+    "word": "lutter/battre contre",
+    "translition": "fight against",
+    "example_sentence": "Il ne comprend pas bien lutter/battre contre."
+  },
+  {
+    "word": "se soucier",
+    "translition": "to care",
+    "example_sentence": "J'ai vu se soucier dans le film hier soir."
+  },
+  {
+    "word": "souhaiter",
+    "translition": "to wish",
+    "example_sentence": "On parle souvent de souhaiter dans ce contexte."
+  },
+  {
+    "word": "sourire",
+    "translition": "to smile",
+    "example_sentence": "J'ai vu sourire dans le film hier soir."
+  },
+  {
+    "word": "espérer",
+    "translition": "to hope",
+    "example_sentence": "On parle souvent de espérer dans ce contexte."
+  },
+  {
+    "word": "vaincre",
+    "translition": "overcome",
+    "example_sentence": "On parle souvent de vaincre dans ce contexte."
+  },
+  {
+    "word": "surmonter",
+    "translition": "overcome",
+    "example_sentence": "On parle souvent de surmonter dans ce contexte."
+  },
+  {
+    "word": "le réchauffement",
+    "translition": "warming",
+    "example_sentence": "Elle a expliqué le réchauffement à ses élèves."
+  },
+  {
+    "word": "bienfaisance",
+    "translition": "charity",
+    "example_sentence": "On parle souvent de bienfaisance dans ce contexte."
+  },
+  {
+    "word": "une recyclerie",
+    "translition": "recycling center",
+    "example_sentence": "J'ai vu une recyclerie dans le film hier soir."
+  },
+  {
+    "word": "la décheterie",
+    "translition": "recycling center",
+    "example_sentence": "Elle a expliqué la décheterie à ses élèves."
+  },
+  {
+    "word": "friperie",
+    "translition": "thrift store",
+    "example_sentence": "Est-ce que tu connais friperie ?"
+  },
+  {
+    "word": "des fripes",
+    "translition": "second-hand clothes",
+    "example_sentence": "Est-ce que tu connais des fripes ?"
+  },
+  {
+    "word": "un glaçon",
+    "translition": "ice cube",
+    "example_sentence": "J'ai vu un glaçon dans le film hier soir."
+  },
+  {
+    "word": "la santé",
+    "translition": "health",
+    "example_sentence": "Est-ce que tu connais la santé ?"
+  },
+  {
+    "word": "séché",
+    "translition": "dried",
+    "example_sentence": "J'ai vu séché dans le film hier soir."
+  },
+  {
+    "word": "cuit",
+    "translition": "cooked",
+    "example_sentence": "Elle a expliqué cuit à ses élèves."
+  },
+  {
+    "word": "crue",
+    "translition": "raw",
+    "example_sentence": "Il ne comprend pas bien crue."
+  },
+  {
+    "word": "éveiller",
+    "translition": "awaken",
+    "example_sentence": "J'ai vu éveiller dans le film hier soir."
+  },
+  {
+    "word": "congelé",
+    "translition": "frozen",
+    "example_sentence": "Est-ce que tu connais congelé ?"
+  },
+  {
+    "word": "surgelé",
+    "translition": "frozen",
+    "example_sentence": "On parle souvent de surgelé dans ce contexte."
+  },
+  {
+    "word": "la coquille",
+    "translition": "shell",
+    "example_sentence": "On parle souvent de la coquille dans ce contexte."
+  },
+  {
+    "word": "la saveur",
+    "translition": "savor",
+    "example_sentence": "On parle souvent de la saveur dans ce contexte."
+  },
+  {
+    "word": "l'étal",
+    "translition": "market stall",
+    "example_sentence": "Est-ce que tu connais l'étal ?"
+  },
+  {
+    "word": "apporter du ton",
+    "translition": "bring energy",
+    "example_sentence": "Il ne comprend pas bien apporter du ton."
+  },
+  {
+    "word": "appartenir",
+    "translition": "belong",
+    "example_sentence": "Est-ce que tu connais appartenir ?"
+  },
+  {
+    "word": "allumer",
+    "translition": "turn on",
+    "example_sentence": "J'ai vu allumer dans le film hier soir."
+  },
+  {
+    "word": "éteindre",
+    "translition": "turn off",
+    "example_sentence": "On parle souvent de éteindre dans ce contexte."
+  },
+  {
+    "word": "désaltérer",
+    "translition": "to quench thirst",
+    "example_sentence": "On parle souvent de désaltérer dans ce contexte."
+  },
+  {
+    "word": "mamie/mémé/grand-maman",
+    "translition": "granny",
+    "example_sentence": "Est-ce que tu connais mamie/mémé/grand-maman ?"
+  },
+  {
+    "word": "pépé/grand-papa",
+    "translition": "grandpa",
+    "example_sentence": "On parle souvent de pépé/grand-papa dans ce contexte."
+  },
+  {
+    "word": "meconnu",
+    "translition": "unknown",
+    "example_sentence": "Elle a expliqué meconnu à ses élèves."
+  },
+  {
+    "word": "le coq",
+    "translition": "rooster",
+    "example_sentence": "Il ne comprend pas bien le coq."
+  },
+  {
+    "word": "la poule",
+    "translition": "chicken",
+    "example_sentence": "Il ne comprend pas bien la poule."
+  },
+  {
+    "word": "la chair",
+    "translition": "fresh",
+    "example_sentence": "Il ne comprend pas bien la chair."
+  },
+  {
+    "word": "oeufs de poissons seches",
+    "translition": "dried fish eggs",
+    "example_sentence": "On parle souvent de oeufs de poissons seches dans ce contexte."
+  },
+  {
+    "word": "etre ric-rac en",
+    "translition": "be tight in",
+    "example_sentence": "On parle souvent de etre ric-rac en dans ce contexte."
+  },
+  {
+    "word": "pertinent",
+    "translition": "relevant",
+    "example_sentence": "Est-ce que tu connais pertinent ?"
+  },
+  {
+    "word": "se mettre au vert",
+    "translition": "to go green",
+    "example_sentence": "Il ne comprend pas bien se mettre au vert."
+  },
+  {
+    "word": "tenter",
+    "translition": "essayer",
+    "example_sentence": "On parle souvent de tenter dans ce contexte."
+  },
+  {
+    "word": "tenir à préciser",
+    "translition": "to be precise",
+    "example_sentence": "J'ai vu tenir à préciser dans le film hier soir."
+  },
+  {
+    "word": "le trajet",
+    "translition": "journey",
+    "example_sentence": "Il ne comprend pas bien le trajet."
+  },
+  {
+    "word": "tendre (vers)",
+    "translition": "tend to",
+    "example_sentence": "Il ne comprend pas bien tendre (vers)."
+  },
+  {
+    "word": "des sols",
+    "translition": "soils",
+    "example_sentence": "J'ai vu des sols dans le film hier soir."
+  },
+  {
+    "word": "casser",
+    "translition": "to break",
+    "example_sentence": "On parle souvent de casser dans ce contexte."
+  },
+  {
+    "word": "la planète",
+    "translition": "planate",
+    "example_sentence": "J'ai vu la planète dans le film hier soir."
+  },
+  {
+    "word": "un attrait",
+    "translition": "interest",
+    "example_sentence": "Est-ce que tu connais un attrait ?"
+  },
+  {
+    "word": "la demarche",
+    "translition": "approach",
+    "example_sentence": "J'ai vu la demarche dans le film hier soir."
+  },
+  {
+    "word": "augmenter",
+    "translition": "to increase",
+    "example_sentence": "Il ne comprend pas bien augmenter."
+  },
+  {
+    "word": "diminuer",
+    "translition": "to decrease",
+    "example_sentence": "Est-ce que tu connais diminuer ?"
+  },
+  {
+    "word": "s'engager",
+    "translition": "to engage",
+    "example_sentence": "Est-ce que tu connais s'engager ?"
+  },
+  {
+    "word": "agir",
+    "translition": "to act",
+    "example_sentence": "Il ne comprend pas bien agir."
+  },
+  {
+    "word": "militer",
+    "translition": "to campaign",
+    "example_sentence": "Est-ce que tu connais militer ?"
+  },
+  {
+    "word": "bienveillant(e)",
+    "translition": "benevolent",
+    "example_sentence": "On parle souvent de bienveillant(e) dans ce contexte."
+  },
+  {
+    "word": "bienveillance",
+    "translition": "benevolence",
+    "example_sentence": "Est-ce que tu connais bienveillance ?"
+  },
+  {
+    "word": "veiller",
+    "translition": "to watch over",
+    "example_sentence": "J'ai vu veiller dans le film hier soir."
+  },
+  {
+    "word": "natal",
+    "translition": "native ",
+    "example_sentence": "On parle souvent de natal dans ce contexte."
+  },
+  {
+    "word": "éduquer",
+    "translition": "to educate",
+    "example_sentence": "Il ne comprend pas bien éduquer."
+  },
+  {
+    "word": "littoral",
+    "translition": "coastline",
+    "example_sentence": "Il ne comprend pas bien littoral."
+  },
+  {
+    "word": "urbain",
+    "translition": "urban",
+    "example_sentence": "On parle souvent de urbain dans ce contexte."
+  },
+  {
+    "word": "rural",
+    "translition": "rural",
+    "example_sentence": "Il ne comprend pas bien rural."
+  },
+  {
+    "word": "décrire",
+    "translition": "to describe",
+    "example_sentence": "Il ne comprend pas bien décrire."
+  },
+  {
+    "word": "houleux/houleuse (la mer)",
+    "translition": "rough",
+    "example_sentence": "Est-ce que tu connais houleux/houleuse (la mer) ?"
+  },
+  {
+    "word": "le sentier",
+    "translition": "path",
+    "example_sentence": "Il ne comprend pas bien le sentier."
+  },
+  {
+    "word": "agitée",
+    "translition": "agitated",
+    "example_sentence": "Il ne comprend pas bien agitée."
+  },
+  {
+    "word": "nulle part ailleurs",
+    "translition": "nowhere else",
+    "example_sentence": "Est-ce que tu connais nulle part ailleurs ?"
+  },
+  {
+    "word": "un paysan",
+    "translition": "a peasant",
+    "example_sentence": "On parle souvent de un paysan dans ce contexte."
+  },
+  {
+    "word": "se découper",
+    "translition": "to cut out",
+    "example_sentence": "Est-ce que tu connais se découper ?"
+  },
+  {
+    "word": "parrain",
+    "translition": "godfather",
+    "example_sentence": "Elle a expliqué parrain à ses élèves."
+  },
+  {
+    "word": "marrain",
+    "translition": "godmother",
+    "example_sentence": "J'ai vu marrain dans le film hier soir."
+  },
+  {
+    "word": "le ravageur",
+    "translition": "pest",
+    "example_sentence": "Il ne comprend pas bien le ravageur."
+  },
+  {
+    "word": "venir a bout de",
+    "translition": "get rid of ",
+    "example_sentence": "Il ne comprend pas bien venir a bout de."
+  },
+  {
+    "word": "afin de",
+    "translition": "in order to",
+    "example_sentence": "Il ne comprend pas bien afin de."
+  },
+  {
+    "word": "pulvériser",
+    "translition": "to spray",
+    "example_sentence": "Il ne comprend pas bien pulvériser."
+  },
+  {
+    "word": "une sauterelle",
+    "translition": "a grasshopper",
+    "example_sentence": "Il ne comprend pas bien une sauterelle."
+  },
+  {
+    "word": "un grillon",
+    "translition": "a cricket",
+    "example_sentence": "J'ai vu un grillon dans le film hier soir."
+  },
+  {
+    "word": "un criquet",
+    "translition": "a cricket",
+    "example_sentence": "J'ai vu un criquet dans le film hier soir."
+  },
+  {
+    "word": "l'acridien",
+    "translition": "locust",
+    "example_sentence": "Il ne comprend pas bien l'acridien."
+  },
+  {
+    "word": "l'employé",
+    "translition": "employer",
+    "example_sentence": "Il ne comprend pas bien l'employé."
+  },
+  {
+    "word": "le salaire",
+    "translition": "the salary",
+    "example_sentence": "Est-ce que tu connais le salaire ?"
+  },
+  {
+    "word": "l'embouteillage",
+    "translition": "traffic jam",
+    "example_sentence": "Elle a expliqué l'embouteillage à ses élèves."
+  },
+  {
+    "word": "le bouchon",
+    "translition": "traffic jam",
+    "example_sentence": "Est-ce que tu connais le bouchon ?"
+  },
+  {
+    "word": "sans compter ",
+    "translition": "not to mention",
+    "example_sentence": "Est-ce que tu connais sans compter  ?"
+  },
+  {
+    "word": "croc",
+    "translition": "fang",
+    "example_sentence": "J'ai vu croc dans le film hier soir."
+  },
+  {
+    "word": "fidèle",
+    "translition": "faithful",
+    "example_sentence": "Elle a expliqué fidèle à ses élèves."
+  },
+  {
+    "word": "molle",
+    "translition": "soft",
+    "example_sentence": "Est-ce que tu connais molle ?"
+  },
+  {
+    "word": "virer",
+    "translition": "turn",
+    "example_sentence": "Il ne comprend pas bien virer."
+  },
+  {
+    "word": "nuire",
+    "translition": "harm",
+    "example_sentence": "Est-ce que tu connais nuire ?"
+  },
+  {
+    "word": "âpre",
+    "translition": "harsh",
+    "example_sentence": "Elle a expliqué âpre à ses élèves."
+  },
+  {
+    "word": "saisissant",
+    "translition": "gripping",
+    "example_sentence": "Est-ce que tu connais saisissant ?"
+  },
+  {
+    "word": "trahir",
+    "translition": "betray",
+    "example_sentence": "J'ai vu trahir dans le film hier soir."
+  },
+  {
+    "word": "trahie",
+    "translition": "betrayed",
+    "example_sentence": "Il ne comprend pas bien trahie."
+  },
+  {
+    "word": "de façon grossiere",
+    "translition": "in a rude manner",
+    "example_sentence": "On parle souvent de de façon grossiere dans ce contexte."
+  },
+  {
+    "word": "a grande échelle",
+    "translition": "on a large scale",
+    "example_sentence": "On parle souvent de a grande échelle dans ce contexte."
+  },
+  {
+    "word": "l’échelle",
+    "translition": "scale",
+    "example_sentence": "On parle souvent de l’échelle dans ce contexte."
+  },
+  {
+    "word": "à l'échelle mondiale",
+    "translition": "worldwide ",
+    "example_sentence": "On parle souvent de à l'échelle mondiale dans ce contexte."
+  },
+  {
+    "word": "le monde entier",
+    "translition": "whole world",
+    "example_sentence": "Est-ce que tu connais le monde entier ?"
+  },
+  {
+    "word": "la trame",
+    "translition": "plot",
+    "example_sentence": "Est-ce que tu connais la trame ?"
+  },
+  {
+    "word": "l'intrigue",
+    "translition": "plot",
+    "example_sentence": "Elle a expliqué l'intrigue à ses élèves."
+  },
+  {
+    "word": "pécher",
+    "translition": "sin",
+    "example_sentence": "J'ai vu pécher dans le film hier soir."
+  },
+  {
+    "word": "veiller",
+    "translition": "watch out",
+    "example_sentence": "J'ai vu veiller dans le film hier soir."
+  },
+  {
+    "word": "vieillir",
+    "translition": "to grow old",
+    "example_sentence": "On parle souvent de vieillir dans ce contexte."
+  },
+  {
+    "word": "débouché",
+    "translition": "outcome",
+    "example_sentence": "Il ne comprend pas bien débouché."
+  },
+  {
+    "word": "la méduse",
+    "translition": "jellyfish",
+    "example_sentence": "On parle souvent de la méduse dans ce contexte."
+  },
+  {
+    "word": "la chouette",
+    "translition": "owl",
+    "example_sentence": "Est-ce que tu connais la chouette ?"
+  },
+  {
+    "word": "hululer",
+    "translition": "howl",
+    "example_sentence": "On parle souvent de hululer dans ce contexte."
+  },
+  {
+    "word": "dans l'obscurité",
+    "translition": "in the darkness",
+    "example_sentence": "Elle a expliqué dans l'obscurité à ses élèves."
+  },
+  {
+    "word": "les poils",
+    "translition": "hair",
+    "example_sentence": "On parle souvent de les poils dans ce contexte."
+  },
+  {
+    "word": "la nuque",
+    "translition": "neck",
+    "example_sentence": "Est-ce que tu connais la nuque ?"
+  },
+  {
+    "word": "Je te jure",
+    "translition": "I swear to you",
+    "example_sentence": "Elle a expliqué Je te jure à ses élèves."
+  },
+  {
+    "word": "ecogestes",
+    "translition": "eco-friendly actions",
+    "example_sentence": "Il ne comprend pas bien ecogestes."
+  },
+  {
+    "word": "le comportement social",
+    "translition": "social behaviour",
+    "example_sentence": "Il ne comprend pas bien le comportement social."
+  },
+  {
+    "word": "enjeux",
+    "translition": "challenges",
+    "example_sentence": "J'ai vu enjeux dans le film hier soir."
+  },
+  {
+    "word": "bâtir",
+    "translition": "build",
+    "example_sentence": "On parle souvent de bâtir dans ce contexte."
+  },
+  {
+    "word": "durable",
+    "translition": "sustainable",
+    "example_sentence": "On parle souvent de durable dans ce contexte."
+  },
+  {
+    "word": "équitable",
+    "translition": "fair",
+    "example_sentence": "On parle souvent de équitable dans ce contexte."
+  },
+  {
+    "word": "un sac en toile",
+    "translition": "canvas bag",
+    "example_sentence": "J'ai vu un sac en toile dans le film hier soir."
+  },
+  {
+    "word": "la prairie",
+    "translition": "meadow",
+    "example_sentence": "Est-ce que tu connais la prairie ?"
+  },
+  {
+    "word": "le patois",
+    "translition": "dialect",
+    "example_sentence": "Il ne comprend pas bien le patois."
+  },
+  {
+    "word": "la vache",
+    "translition": "cow",
+    "example_sentence": "Elle a expliqué la vache à ses élèves."
+  },
+  {
+    "word": "le cochon",
+    "translition": "pig",
+    "example_sentence": "Elle a expliqué le cochon à ses élèves."
+  },
+  {
+    "word": "le bétail",
+    "translition": "cattle",
+    "example_sentence": "On parle souvent de le bétail dans ce contexte."
+  },
+  {
+    "word": "l'élevage",
+    "translition": "breeding",
+    "example_sentence": "Est-ce que tu connais l'élevage ?"
+  },
+  {
+    "word": "chimique",
+    "translition": "chemical",
+    "example_sentence": "Elle a expliqué chimique à ses élèves."
+  },
+  {
+    "word": "épais",
+    "translition": "thick",
+    "example_sentence": "Elle a expliqué épais à ses élèves."
+  },
+  {
+    "word": "incontournable",
+    "translition": "unavoidable",
+    "example_sentence": "Elle a expliqué incontournable à ses élèves."
+  },
+  {
+    "word": "le songe",
+    "translition": "dream",
+    "example_sentence": "Il ne comprend pas bien le songe."
+  },
+  {
+    "word": "le caprice",
+    "translition": "whim",
+    "example_sentence": "Elle a expliqué le caprice à ses élèves."
+  },
+  {
+    "word": "soi",
+    "translition": "self",
+    "example_sentence": "Il ne comprend pas bien soi."
+  },
+  {
+    "word": "pousser",
+    "translition": "release",
+    "example_sentence": "Elle a expliqué pousser à ses élèves."
+  },
+  {
+    "word": "bienfaisant",
+    "translition": "beneficent",
+    "example_sentence": "Il ne comprend pas bien bienfaisant."
+  },
+  {
+    "word": "le cercle vicieux",
+    "translition": "vicious circle",
+    "example_sentence": "On parle souvent de le cercle vicieux dans ce contexte."
+  },
+  {
+    "word": "la ferme",
+    "translition": "farm",
+    "example_sentence": "On parle souvent de la ferme dans ce contexte."
+  },
+  {
+    "word": "le maïs",
+    "translition": "corn",
+    "example_sentence": "J'ai vu le maïs dans le film hier soir."
+  },
+  {
+    "word": "élu",
+    "translition": "elected",
+    "example_sentence": "J'ai vu élu dans le film hier soir."
+  },
+  {
+    "word": "un depassement",
+    "translition": "overtaking",
+    "example_sentence": "Est-ce que tu connais un depassement ?"
+  },
+  {
+    "word": "au volant",
+    "translition": "at the wheel",
+    "example_sentence": "Il ne comprend pas bien au volant."
+  },
+  {
+    "word": "la canicule",
+    "translition": "heat wave",
+    "example_sentence": "Elle a expliqué la canicule à ses élèves."
+  },
+  {
+    "word": "inédit",
+    "translition": "unpublished",
+    "example_sentence": "Est-ce que tu connais inédit ?"
+  },
+  {
+    "word": "la sécheresse",
+    "translition": "drought",
+    "example_sentence": "Il ne comprend pas bien la sécheresse."
+  },
+  {
+    "word": "trimestre",
+    "translition": "quarter",
+    "example_sentence": "J'ai vu trimestre dans le film hier soir."
+  },
+  {
+    "word": "s'assoupir",
+    "translition": "to fall asleep",
+    "example_sentence": "Est-ce que tu connais s'assoupir ?"
+  },
+  {
+    "word": "epargner",
+    "translition": "to save",
+    "example_sentence": "Elle a expliqué epargner à ses élèves."
+  },
+  {
+    "word": "oeuf",
+    "translition": "egg",
+    "example_sentence": "On parle souvent de oeuf dans ce contexte."
+  },
+  {
+    "word": "la tortue",
+    "translition": "turtle",
+    "example_sentence": "Elle a expliqué la tortue à ses élèves."
+  },
+  {
+    "word": "une centaine",
+    "translition": "hundred",
+    "example_sentence": "J'ai vu une centaine dans le film hier soir."
+  },
+  {
+    "word": "voire",
+    "translition": "even, indeed",
+    "example_sentence": "On parle souvent de voire dans ce contexte."
+  },
+  {
+    "word": "aquarelle",
+    "translition": "watercolor",
+    "example_sentence": "Elle a expliqué aquarelle à ses élèves."
+  },
+  {
+    "word": "mêler",
+    "translition": "to mix",
+    "example_sentence": "On parle souvent de mêler dans ce contexte."
+  },
+  {
+    "word": "inépuisable",
+    "translition": "endless,",
+    "example_sentence": "On parle souvent de inépuisable dans ce contexte."
+  },
+  {
+    "word": "vif",
+    "translition": "lively",
+    "example_sentence": "Est-ce que tu connais vif ?"
+  },
+  {
+    "word": "licenciement",
+    "translition": "dismissal",
+    "example_sentence": "Il ne comprend pas bien licenciement."
+  },
+  {
+    "word": "menacer",
+    "translition": "threaten",
+    "example_sentence": "Elle a expliqué menacer à ses élèves."
+  },
+  {
+    "word": "feuilleter",
+    "translition": "browse",
+    "example_sentence": "J'ai vu feuilleter dans le film hier soir."
+  },
+  {
+    "word": "une liseuse",
+    "translition": "e-reader",
+    "example_sentence": "On parle souvent de une liseuse dans ce contexte."
+  },
+  {
+    "word": "encombré",
+    "translition": "clutter",
+    "example_sentence": "J'ai vu encombré dans le film hier soir."
+  },
+  {
+    "word": "en depit de",
+    "translition": "despite",
+    "example_sentence": "Il ne comprend pas bien en depit de."
+  },
+  {
+    "word": "faire la vaisselle",
+    "translition": "to wash the dishes",
+    "example_sentence": "Il ne comprend pas bien faire la vaisselle."
+  },
+  {
+    "word": "sauf erreur de ma part",
+    "translition": "unless I'm mistaken",
+    "example_sentence": "Est-ce que tu connais sauf erreur de ma part ?"
+  },
+  {
+    "word": "pas ma tasse de the",
+    "translition": "not my cup of tea",
+    "example_sentence": "Elle a expliqué pas ma tasse de the à ses élèves."
+  },
+  {
+    "word": "l'antan",
+    "translition": "past",
+    "example_sentence": "Est-ce que tu connais l'antan ?"
+  },
+  {
+    "word": "l'avenir",
+    "translition": "future",
+    "example_sentence": "On parle souvent de l'avenir dans ce contexte."
+  },
+  {
+    "word": "en quelque sorte",
+    "translition": "in some way",
+    "example_sentence": "J'ai vu en quelque sorte dans le film hier soir."
+  },
+  {
+    "word": "repousser",
+    "translition": "to push back",
+    "example_sentence": "J'ai vu repousser dans le film hier soir."
+  },
+  {
+    "word": "pourtant",
+    "translition": "yet",
+    "example_sentence": "Il ne comprend pas bien pourtant."
+  },
+  {
+    "word": "un aussi bon...",
+    "translition": "such a good...",
+    "example_sentence": "Elle a expliqué un aussi bon... à ses élèves."
+  },
+  {
+    "word": "avant",
+    "translition": "before",
+    "example_sentence": "On parle souvent de avant dans ce contexte."
+  },
+  {
+    "word": "après",
+    "translition": "after",
+    "example_sentence": "Est-ce que tu connais après ?"
+  },
+  {
+    "word": "être à la baguette",
+    "translition": "be in charge ",
+    "example_sentence": "J'ai vu être à la baguette dans le film hier soir."
+  },
+  {
+    "word": "melomanes",
+    "translition": "music lovers",
+    "example_sentence": "Elle a expliqué melomanes à ses élèves."
+  },
+  {
+    "word": "nocif",
+    "translition": "harmful",
+    "example_sentence": "On parle souvent de nocif dans ce contexte."
+  },
+  {
+    "word": "nuisible",
+    "translition": "harmful",
+    "example_sentence": "J'ai vu nuisible dans le film hier soir."
+  },
+  {
+    "word": "nefaste",
+    "translition": "harmful",
+    "example_sentence": "On parle souvent de nefaste dans ce contexte."
+  },
+  {
+    "word": "flou",
+    "translition": "fuzzy",
+    "example_sentence": "J'ai vu flou dans le film hier soir."
+  },
+  {
+    "word": "la poste",
+    "translition": "position",
+    "example_sentence": "Est-ce que tu connais la poste ?"
+  },
+  {
+    "word": "fournir",
+    "translition": "provide",
+    "example_sentence": "Elle a expliqué fournir à ses élèves."
+  },
+  {
+    "word": "l'escarpin",
+    "translition": "stiletto",
+    "example_sentence": "On parle souvent de l'escarpin dans ce contexte."
+  },
+  {
+    "word": "bouchon",
+    "translition": "traffic jam",
+    "example_sentence": "J'ai vu bouchon dans le film hier soir."
+  },
+  {
+    "word": "embouteillage",
+    "translition": "traffic jam",
+    "example_sentence": "J'ai vu embouteillage dans le film hier soir."
+  },
+  {
+    "word": "bouteille",
+    "translition": "bottle",
+    "example_sentence": "Il ne comprend pas bien bouteille."
+  },
+  {
+    "word": "embouteillé",
+    "translition": "bottled",
+    "example_sentence": "Est-ce que tu connais embouteillé ?"
+  },
+  {
+    "word": "bouchon",
+    "translition": "cork",
+    "example_sentence": "J'ai vu bouchon dans le film hier soir."
+  },
+  {
+    "word": "allonger",
+    "translition": "extend",
+    "example_sentence": "J'ai vu allonger dans le film hier soir."
+  },
+  {
+    "word": "prolonger",
+    "translition": "extend",
+    "example_sentence": "Est-ce que tu connais prolonger ?"
+  },
+  {
+    "word": "rallonger",
+    "translition": "extend",
+    "example_sentence": "On parle souvent de rallonger dans ce contexte."
+  },
+  {
+    "word": "aigu",
+    "translition": "high-pitched",
+    "example_sentence": "J'ai vu aigu dans le film hier soir."
+  },
+  {
+    "word": "cuir",
+    "translition": "leather",
+    "example_sentence": "Il ne comprend pas bien cuir."
+  },
+  {
+    "word": "caoutchouc",
+    "translition": "rubber",
+    "example_sentence": "J'ai vu caoutchouc dans le film hier soir."
+  },
+  {
+    "word": "chouchou",
+    "translition": "darling",
+    "example_sentence": "On parle souvent de chouchou dans ce contexte."
+  },
+  {
+    "word": "oriental",
+    "translition": "eastern",
+    "example_sentence": "Il ne comprend pas bien oriental."
+  },
+  {
+    "word": "rebaptise",
+    "translition": "rename",
+    "example_sentence": "J'ai vu rebaptise dans le film hier soir."
+  },
+  {
+    "word": "occidentale",
+    "translition": "western",
+    "example_sentence": "Est-ce que tu connais occidentale ?"
+  },
+  {
+    "word": "contrefaçon",
+    "translition": "counterfeit",
+    "example_sentence": "Elle a expliqué contrefaçon à ses élèves."
+  },
+  {
+    "word": "contrefait",
+    "translition": "counterfeit",
+    "example_sentence": "Elle a expliqué contrefait à ses élèves."
+  },
+  {
+    "word": "les douanes",
+    "translition": "customs",
+    "example_sentence": "Il ne comprend pas bien les douanes."
+  },
+  {
+    "word": "saisir",
+    "translition": "understand",
+    "example_sentence": "Est-ce que tu connais saisir ?"
+  },
+  {
+    "word": "le maitre",
+    "translition": "master",
+    "example_sentence": "Est-ce que tu connais le maitre ?"
+  },
+  {
+    "word": "s'épanouir",
+    "translition": "thrive yourself",
+    "example_sentence": "Est-ce que tu connais s'épanouir ?"
+  },
+  {
+    "word": "remplir",
+    "translition": "fill",
+    "example_sentence": "Il ne comprend pas bien remplir."
+  },
+  {
+    "word": "accomplir",
+    "translition": "fulfill yourself",
+    "example_sentence": "Il ne comprend pas bien accomplir."
+  },
+  {
+    "word": "inauguré",
+    "translition": "initiated",
+    "example_sentence": "J'ai vu inauguré dans le film hier soir."
+  },
+  {
+    "word": "les files d'embouteillage",
+    "translition": "traffic jam",
+    "example_sentence": "Est-ce que tu connais les files d'embouteillage ?"
+  },
+  {
+    "word": "ralentir",
+    "translition": "slow down",
+    "example_sentence": "Elle a expliqué ralentir à ses élèves."
+  },
+  {
+    "word": "ralentissement",
+    "translition": "downturn",
+    "example_sentence": "Est-ce que tu connais ralentissement ?"
+  },
+  {
+    "word": "l'engagement du trafic",
+    "translition": "traffic congestion",
+    "example_sentence": "Elle a expliqué l'engagement du trafic à ses élèves."
+  },
+  {
+    "word": "parcours rallongé",
+    "translition": "extended travel",
+    "example_sentence": "On parle souvent de parcours rallongé dans ce contexte."
+  },
+  {
+    "word": "dès que",
+    "translition": "as soon as ",
+    "example_sentence": "Elle a expliqué dès que à ses élèves."
+  },
+  {
+    "word": "atour",
+    "translition": "asset",
+    "example_sentence": "Est-ce que tu connais atour ?"
+  },
+  {
+    "word": "l'entourage",
+    "translition": "surrounding",
+    "example_sentence": "On parle souvent de l'entourage dans ce contexte."
+  },
+  {
+    "word": "attendrissant",
+    "translition": "touching",
+    "example_sentence": "J'ai vu attendrissant dans le film hier soir."
+  },
+  {
+    "word": "inhibe",
+    "translition": "inhibited",
+    "example_sentence": "Est-ce que tu connais inhibe ?"
+  },
+  {
+    "word": "les lacets",
+    "translition": "shoe laces",
+    "example_sentence": "J'ai vu les lacets dans le film hier soir."
+  },
+  {
+    "word": "grincer",
+    "translition": "squeak",
+    "example_sentence": "Elle a expliqué grincer à ses élèves."
+  },
+  {
+    "word": "le cerveau",
+    "translition": "brain",
+    "example_sentence": "On parle souvent de le cerveau dans ce contexte."
+  },
+  {
+    "word": "cérébral",
+    "translition": "cerebral",
+    "example_sentence": "J'ai vu cérébral dans le film hier soir."
+  },
+  {
+    "word": "se couler",
+    "translition": "fit into",
+    "example_sentence": "Elle a expliqué se couler à ses élèves."
+  },
+  {
+    "word": "le vieillissement",
+    "translition": "aging",
+    "example_sentence": "Est-ce que tu connais le vieillissement ?"
+  },
+  {
+    "word": "l'echec",
+    "translition": "failure",
+    "example_sentence": "J'ai vu l'echec dans le film hier soir."
+  },
+  {
+    "word": "malléable",
+    "translition": "easygoing",
+    "example_sentence": "Il ne comprend pas bien malléable."
+  },
+  {
+    "word": "mettre en garde",
+    "translition": "warn",
+    "example_sentence": "J'ai vu mettre en garde dans le film hier soir."
+  },
+  {
+    "word": "bouleversé",
+    "translition": "upset",
+    "example_sentence": "Elle a expliqué bouleversé à ses élèves."
+  },
+  {
+    "word": "c'est censé",
+    "translition": "it is supposed to ",
+    "example_sentence": "Est-ce que tu connais c'est censé ?"
+  },
+  {
+    "word": "quoique",
+    "translition": "though",
+    "example_sentence": "Est-ce que tu connais quoique ?"
+  },
+  {
+    "word": "haut de gamme",
+    "translition": "high-end",
+    "example_sentence": "On parle souvent de haut de gamme dans ce contexte."
+  },
+  {
+    "word": "quotidien",
+    "translition": "daily",
+    "example_sentence": "J'ai vu quotidien dans le film hier soir."
+  },
+  {
+    "word": "hebdomadaire",
+    "translition": "weekly",
+    "example_sentence": "Elle a expliqué hebdomadaire à ses élèves."
+  },
+  {
+    "word": "mensuel",
+    "translition": "monthly",
+    "example_sentence": "J'ai vu mensuel dans le film hier soir."
+  },
+  {
+    "word": "annuel",
+    "translition": "annually",
+    "example_sentence": "On parle souvent de annuel dans ce contexte."
+  },
+  {
+    "word": "les coutumes",
+    "translition": "customs",
+    "example_sentence": "Est-ce que tu connais les coutumes ?"
+  },
+  {
+    "word": "les chants",
+    "translition": "singings",
+    "example_sentence": "J'ai vu les chants dans le film hier soir."
+  },
+  {
+    "word": "le chanteur",
+    "translition": "singer",
+    "example_sentence": "On parle souvent de le chanteur dans ce contexte."
+  },
+  {
+    "word": "la chanteuse",
+    "translition": "singer",
+    "example_sentence": "On parle souvent de la chanteuse dans ce contexte."
+  },
+  {
+    "word": "amérindien",
+    "translition": "american-indien",
+    "example_sentence": "Est-ce que tu connais amérindien ?"
+  },
+  {
+    "word": "la flèche",
+    "translition": "arrow",
+    "example_sentence": "Elle a expliqué la flèche à ses élèves."
+  },
+  {
+    "word": "c'est un cap",
+    "translition": "it's a milestone",
+    "example_sentence": "Est-ce que tu connais c'est un cap ?"
+  },
+  {
+    "word": "franchir",
+    "translition": "overcome",
+    "example_sentence": "J'ai vu franchir dans le film hier soir."
+  },
+  {
+    "word": "surmonter",
+    "translition": "overcome",
+    "example_sentence": "Est-ce que tu connais surmonter ?"
+  },
+  {
+    "word": "établir",
+    "translition": "establish",
+    "example_sentence": "J'ai vu établir dans le film hier soir."
+  },
+  {
+    "word": "constater",
+    "translition": "determine",
+    "example_sentence": "Est-ce que tu connais constater ?"
+  }
+]
