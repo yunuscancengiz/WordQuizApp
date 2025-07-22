@@ -7,7 +7,12 @@
 
   <!-- Left Panel: Chart -->
   <div class="flex-1 bg-midcolor p-4 rounded-lg shadow-md">
-    <canvas id="streakChart"></canvas>
+    <h3 class="text-lg font-semibold mb-2">📊 Quick Stats</h3>
+    <ul class="text-lightcolor dark:text-darkcolor space-y-2">
+      <li>✅ Questions answered today: <span class="font-bold text-white">{{ today_question_count }}</span></li>
+      <li>🔥 Your all-time max streak: <span class="font-bold text-white">{{ max_streak }}</span></li>
+      <li>💡 Total words learned: <span class="font-bold text-white">{{ total_words }}</span></li>
+    </ul>
   </div>
 
   <!-- Right Panel -->
@@ -15,14 +20,14 @@
 
     <!-- Streak Info Box -->
     <div class="bg-midcolor p-4 rounded-lg shadow-md">
-      <h3 class="text-lg font-semibold mb-2">🎯 Streak Info</h3>
+      <h3 class="text-lg font-semibold mb-2">Streak Info</h3>
       <p class="text-lightcolor dark:text-darkcolor">Current Streak: <span id="currentStreak" class="font-bold text-white">{{ streak }}</span></p>
       <p class="text-lightcolor dark:text-darkcolor">Today's Max Streak: <span id="maxStreak" class="font-bold text-white">{{ max_streak }}</span></p>
     </div>
 
     <!-- Song Box -->
     <div class="bg-midcolor p-4 rounded-lg shadow-md">
-      <h3 class="text-lg font-semibold mb-2">🎵 Today's Song</h3>
+      <h3 class="text-lg font-semibold mb-2">Today's Song</h3>
       <div class="aspect-video">
         <iframe class="rounded-xl w-full h-40"
           src="{{ song.spotify_url }}"
