@@ -48,7 +48,6 @@ async def profile_page(request: Request, db: db_dependency):
             DailyStreaks.owner_id == user.get("id")
         ).distinct().count()
 
-        active_days = 53    # @TODO: delete later
         # Badge belirleme
         badges = []
         if active_days >= 10:
