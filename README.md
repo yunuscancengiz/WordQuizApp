@@ -2,6 +2,8 @@
 
 **OuiChérie** is an interactive, gamified French learning platform built with FastAPI and vanilla JavaScript. Designed to help users master vocabulary, sentence structure, and verb conjugations while keeping track of their daily progress through streaks and visualizations.
 
+Now fully deployed and live!
+
 ---
 
 ## 🚀 Features
@@ -29,21 +31,21 @@
 
 ### 📈 Streak & Progress
 - 🔥 Daily streak counter across all game modes
-- 📊 Streak graph and max streak stats (Line plot / bar plot coming soon)
+- 📊 Streak graph and max streak stats (Line plot / bar plot)
 
-### 🎧 Daily French Song *(Coming Soon)*
+### 🎧 Daily French Song
 - Embedded Spotify player via API
 - Random daily French song display
 - Playlist creation and control
 
-### 🗃️ Vocabulary Management *(Coming Soon)*
+### 🗃️ Vocabulary Management
 - List all saved words
 - Search bar and real-time filtering
 - Edit and delete individual words
 
-### 👤 Profile Page *(To be Updated)*
-- Show max streaks per module
-- Display registered email and account info
+### 👤 Profile Page
+- Max streaks per module
+- Registered email and account info
 - Quick access to all game modes
 
 ---
@@ -71,10 +73,12 @@
 ├── config.py
 ├── dependencies.py
 ├── database.py
-├── .env
+├── requirements.txt
 ├── ouicherie.db
+├── .env
+├── README.md
 │
-├── /templates       # Jinja2 HTML templates
+├── /templates
 │   ├── layout.html
 │   ├── flashcards.html
 │   ├── quiz.html
@@ -83,6 +87,10 @@
 │   ├── login.html
 │   ├── navbar.html
 │   ├── register.html
+│   ├── profile.html
+│   ├── themes.html
+│   ├── words.html
+│   ├── dashboard.html
 │   ├── conjugation.html
 │   └── conjugation_table.html
 │
@@ -93,6 +101,10 @@
 │       ├── script.js
 │       ├── home_script.js
 │       ├── conjugation_script.js
+│       ├── dashboard_script.js
+│       ├── profile_script.js
+│       ├── themes_script.js
+│       ├── words_script.js
 │       └── ros_script.js
 │
 ├── /routers
@@ -104,13 +116,19 @@
 │   ├── home.py
 │   ├── users.py
 │   ├── words.py
+│   ├── dashboard.py
+│   ├── profile.py
+│   ├── themes.py
+│   ├── songs.py
 │   └── conjugations.py
 │
 ├── /utils
 │   ├── db_utils.py
+│   ├── check_answer_utils.py
+│   ├── streak_utils.py
+│   ├── theme_utils.py
 |   ├── conjugation_utils.py
 │   └── auth_utils.py
-
 ```
 
 ---
@@ -136,7 +154,7 @@ uvicorn main:app --reload
 
 ## ⚙️ Environment Variables
 
-Create a `.env` file with the following (or manage via `config.py`):
+Create a `.env` file with the following:
 
 ```env
 DATABASE_URL=postgresql://user:password@localhost:5432/yourdb
@@ -147,24 +165,16 @@ SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
 
 ---
 
-## 🔮 Roadmap
+## 📦 Deployment
 
-- [x] Flashcards with example sentences
-- [x] Quiz mode with multiple choices
-- [x] Sentence construction game (ROS)
-- [x] Conjugation table
-- [x] Streak system
-- [ ] Spotify integration for daily songs & playlists
-- [ ] Word list management with search, edit, delete
-- [ ] Enhanced user profile
-- [ ] Admin panel (future dev use)
+This project is now deployed using a separate private repo (`OuiCherie-Deployment`) that includes `.env`, `.db`, and configuration files.
 
 ---
 
 ## 📄 License
 
-MIT License © 2025 [Your Name or Team Name]
+MIT License © 2025 [Yunus Can Cengiz]
 
 ---
 
-🥐 *Made for French learners.*
+🥐 *Made for French learners with ❤️*
