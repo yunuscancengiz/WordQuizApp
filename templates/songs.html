@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="max-w-5xl mx-auto mt-20 p-6 bg-darkcolor dark:bg-lightcolor text-lightcolor dark:text-darkcolor rounded-lg shadow-lg">
+    <div class="text-center mb-6">
+        <h2 class="text-2xl font-semibold mb-4">Songs</h2>
+
+        <div id="songs" class="flex flex-wrap justify-center gap-3 mb-6">
+            {% for song in songs %}
+                <iframe class="rounded-xl w-full h-40"
+                    src="{{ song.spotify_url }}"
+                    frameborder="0" allowfullscreen
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy">
+                </iframe>
+
+
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="pagination" class="flex justify-center space-x-2 mt-6"></div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='js/song_script.js') }}" defer></script>
+
+<script>
+  const currentPage = {{ current_page | tojson }};
+  const totalPages = {{ total_pages | tojson }};
+</script>
+{% endblock %}

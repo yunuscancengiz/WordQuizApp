@@ -94,7 +94,7 @@ class CreateSongRequest(BaseModel):
 
 class SongOut(BaseModel):
     id: int
-    date: str
+    date: datetime
     song_name: str
     spotify_url: str
 

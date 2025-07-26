@@ -1,9 +1,10 @@
-from fastapi import APIRouter, Request, status, HTTPException, Path
+from fastapi import APIRouter, Request, status, HTTPException, Path, Query
 from fastapi.responses import HTMLResponse, JSONResponse
 from sqlalchemy import or_, and_
 from typing import List
 import traceback
-from models import Songs
+import math
+from models import Songs, Users, Themes
 from schemas import CreateSongRequest, SongOut
 from dependencies import db_dependency
 from config import templates
@@ -14,6 +15,48 @@ router = APIRouter(prefix='/songs', tags=['songs'])
 
 
 ### Pages ###
+
+@router.get('/', response_class=HTMLResponse)
+async def songs_page(request: Request, db: db_dependency, page: int = Query(1, ge=1)):
+    try:
+        user = await get_current_user(token=request.cookies.get('access_token'))
+
+        user_model = db.query(Users).filter(Users.id == user.get('id')).first()
+        theme_model = db.query(Themes).filter(Themes.id == user_model.theme_id).first()
+
+        all_songs = db.query(Songs).all()
+        total_pages = math.ceil(len(all_songs) / 10)
+
+        start_index = (page - 1) * 10
+        end_index = page * 10
+
+        paginated_songs = all_songs[start_index:end_index]
+        
+        songs = [
+            SongOut(
+                id=song.id,
+                date=song.date,
+                song_name=song.song_name,
+                spotify_url=song.spotify_url
+            )
+            for song in paginated_songs
+        ]
+        
+        return templates.TemplateResponse(
+            'songs.html',
+            {
+                'request': request,
+                'user': user,
+                'songs': songs,
+                'theme': theme_model,
+                'current_page': page,
+                'total_pages': total_pages
+            }
+        )
+
+    except Exception as exc:
+        print(traceback.format_exc())
+        return redirect_to_login()
 
 
 ### Endpoints ###
